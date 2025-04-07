@@ -1,0 +1,184 @@
+.work {
+
+    main {
+        display: flex;
+        gap: var(--common-gap);
+        height : calc(100vh - var(--header-height));
+        padding-top: var(--header-height);
+
+        .left {
+            padding-top: var(--common-gap);
+            width: var(--left-width);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-bottom: 98px;
+
+            @media (min-width: 1023px) and (max-width: 1439px){
+                & {
+                    padding-bottom: 77px;
+                }
+            }
+
+            .introduce {
+                width: 100%;
+                display: flex;
+                align-items: flex-end;
+
+                p {
+                    width: 100%;
+                    font-size: 20px;
+                    line-height: 28px;
+
+                    @media (min-width: 1023px) and (max-width: 1439px){
+                        & {
+                            font-size: 14px;
+                            line-height: 18px;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .right {
+            width: calc(100% - var(--left-width) - var(--common-gap));
+            height: unset !important;
+            overflow: hidden;
+            overflow-y: auto;
+
+            .grid-sizer,.grid-item { 
+                width: calc((100% - 20px) / 2);
+            }
+
+            .img-box {
+                margin-bottom: 17px;
+                border-radius: 20px;
+                overflow: hidden;
+
+                a {
+                    display: inline-block;
+                    width: 100%;
+                    position: relative;
+                    transition: all 0.3s;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                        object-fit: cover;
+                    }
+
+                    &::after {
+                        content: '';
+                        transition: background-color 0.3s;
+                    }
+
+
+                    &:hover, &.active {
+                        &::after {
+                            content: '';
+                            color: #fff;
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            background-color: rgba(0, 0, 0, 0.4);
+                            width: 100%;
+                            height: 100%;
+                            text-align: center;
+                            align-content: center;
+                            font-size: 22px;
+                            letter-spacing: 0.6px;
+                            font-weight: 500;
+                        }
+                    }
+
+                    /* 썸네일관리 */
+                    &.work01 {
+                        &:hover, &.active {
+                            &::after {
+                                content: 'MORII Magazine';
+                            }
+
+                        }
+                    }
+
+                    &.work02 {
+                        &:hover, &.active {
+                            &::after {
+                                content: 'AHOLE Typeface';
+                            }
+
+                        }
+                    }
+
+                    &.work03 {
+                        &:hover, &.active {
+                            &::after {
+                                content: 'COMM DSGN';
+                            }
+
+                        }
+                    }
+
+                    &.work04 {
+                        &:hover, &.active {
+                            &::after {
+                                content: 'Hey, Nike!';
+                            }
+
+                        }
+                    }
+
+                    &.work05 {
+                        &:hover, &.active {
+                            &::after {
+                                content: 'Airplan';
+                            }
+
+                        }
+                    }
+
+                    &.work06 {
+                        &:hover, &.active {
+                            &::after {
+                                content: 'Pedal to Petal';
+                            }
+
+                        }
+                    }
+
+                    &.work07 {
+                        &:hover, &.active {
+                            &::after {
+                                content: 'Pedal to Petal';
+                            }
+
+                        }
+                    }
+
+                    &.work08 {
+                        &:hover, &.active {
+                            &::after {
+                                content: 'SVA Yearbook';
+                            }
+
+                        }
+                    }
+
+                }
+            }
+
+            .blank-top{
+                width: 100%;
+                height: var(--common-gap);
+            }
+
+            .blank{
+                width: 100%;
+                height: 80px;
+            }
+        }
+    }
+}
