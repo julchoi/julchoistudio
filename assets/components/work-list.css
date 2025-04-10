@@ -33,6 +33,7 @@ work-list{
                         @media (min-width: 1023px) and (max-width: 1439px){
                             & {
                                 font-size: 11px;
+                                line-height: 32px;
                             }
                         }
                     }
@@ -58,6 +59,12 @@ work-list{
 
                             &:first-child {
                                 margin-right: 20px;
+
+                                @media (min-width: 1023px) and (max-width: 1439px){
+                                    & {
+                                        margin-right: 14px;
+                                    }
+                                }
                             }
 
                             &:nth-of-type(3) {
@@ -135,7 +142,7 @@ work-list{
 
                     @media (min-width: 1023px) and (max-width: 1439px){
                         & {
-                            margin-bottom: 49px;
+                            margin-bottom: 40px;
                         }
                     }
                 }

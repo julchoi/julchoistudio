@@ -48,13 +48,39 @@
             overflow-y: auto;
 
             .grid-sizer,.grid-item { 
-                width: calc((100% - 20px) / 2);
+                width: calc((100% - 40px) / 2);
+                margin-right: 20px;
+
+                @media (min-width: 1023px) and (max-width: 1439px){
+                    & {
+                        width: calc((100% - 22px) / 2);
+                        margin-right: 11px;
+                    }
+                }
             }
 
-            .img-box {
+            .grid-item {
                 margin-bottom: 17px;
                 border-radius: 20px;
                 overflow: hidden;
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
+
+                &.show {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+
+                &.margin-none{
+                    margin-right: 0;
+                }
+
+                @media (min-width: 1023px) and (max-width: 1439px){
+                    & {
+                        margin-bottom: 11px;
+                    }
+                }
 
                 a {
                     display: inline-block;
@@ -75,7 +101,9 @@
                     }
 
 
-                    &:hover, &.active {
+                    &:hover,
+                    &:active, 
+                    &.active {
                         &::after {
                             content: '';
                             color: #fff;
@@ -91,6 +119,12 @@
                             font-size: 22px;
                             letter-spacing: 0.6px;
                             font-weight: 500;
+                        }
+
+                        @media (min-width: 1023px) and (max-width: 1439px){
+                            &::after {
+                                font-size: 16px;
+                            }
                         }
                     }
 
@@ -173,6 +207,7 @@
             .blank-top{
                 width: 100%;
                 height: var(--common-gap);
+                margin-bottom: 0;
             }
 
             .blank{

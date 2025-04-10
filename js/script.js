@@ -1,13 +1,4 @@
 document.addEventListener('DOMContentLoaded', (e) => {
-    
-    //Gallery View (Images)
-    var msnry = new Masonry('.grid', {
-         itemSelector: '.grid-item', 
-         columnWidth: '.grid-sizer',
-         percentPosition: true,
-         gutter : 20,
-         fitWidth : false
-        });
 
     //Work List (Menu)
     class workList extends HTMLElement {
@@ -160,11 +151,23 @@ document.addEventListener('DOMContentLoaded', (e) => {
           document.querySelector(`.list-group li[data-id="${id}"]`)?.classList.remove("hover");
         });
     });
+    const scrollContainer = document.querySelector(".work .grid");
 
     document.querySelectorAll("work-list .list-group li").forEach((list) => {
         list.addEventListener("mouseenter", function () {
             const id = this.dataset.id; // 이미지의 data-id 값 가져오기
-            document.querySelector(`.grid .grid-item[data-id="${id}"] a`)?.classList.add("active");
+            const targetImg = document.querySelector(`.grid .grid-item[data-id="${id}"] a`)
+            targetImg?.classList.add("active");
+
+            const containerTop = scrollContainer.getBoundingClientRect().top; // 스크롤 컨테이너가 브라우저 기준에서 얼마나 아래에 있는지
+            const imageTop = targetImg.getBoundingClientRect().top; // 타겟이미지가 브라우저 기준에서 얼마나 아래에 있는지지
+
+            const offset = imageTop - containerTop + scrollContainer.scrollTop - 100;
+
+            scrollContainer.scrollTo({
+                top: offset,
+                behavior: "smooth"
+            });
         });
       
         list.addEventListener("mouseleave", function () {
@@ -202,5 +205,24 @@ document.addEventListener('DOMContentLoaded', (e) => {
             ticking = true;
         }
     });
+
+    const items = document.querySelectorAll('.grid-item');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                // observer.unobserve(entry.target); // 한 번만 실행
+            }
+
+            else {
+                entry.target.classList.remove('show');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    items.forEach((item) => observer.observe(item));
 
 });
