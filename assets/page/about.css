@@ -225,7 +225,109 @@
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
+        /* Mobile Size */
+        @media (min-width: 360px) and (max-width: 1023px) {
+            & {
+                display: block;
+                padding-top: var(--common-gap);
+                
+
+            >.title-list{
+                display: none;
+            }
+
+            >.about-img{
+                width: 100%;
+                margin-left: 0;
+
+                .img-box{
+                    width: 100%;
+                    border-radius: 10px;
+                    
+                    picture{
+                        width: 100%;
+                    }
+                }
+
+                .m-title-list{
+                    .title{
+                        font-size: 11px;
+                        color: var(--gray);
+                        display: inline-block;
+                        margin-bottom: 13px;
+
+                    }
+
+                    >ul{
+                        >li{
+                            padding-bottom: 20px;
+                            padding-top: 20px;
+                            border-bottom: var(--border-thickness) solid var(--black);
+
+                            >p{
+                                font-size: 14px;
+                                line-height: 18px;
+
+                                em{
+                                    display: block;
+                                    height: 8px;
+                                }
+                                
+                            }
+
+                            >ul{
+                                >li{
+                                    &:not(:last-child){
+                                        margin-bottom: 10px;
+                                    }
+    
+                                    >span{
+                                        font-size: 12px;
+                                        display: block;
+                                        margin-bottom: 4px;
+                                    }
+                                    
+                                    >b{
+                                        font-size: 14px;
+                                        font-weight: 500;
+                                        line-height: 17px;
+                                        
+                                        >a{
+                                            font-size: 14px;
+                                            font-weight: 500;
+                                            line-height: 17px;
+                                        }
+                                    }
+                                }
+                            }
+
+                            &.m-contact{
+                                li{
+                                    margin-bottom: 5px !important;
+                                }
+                            }
+
+                            &:last-child{
+                                border-bottom: 0;
+                            }
+
+                        }
+                    }               
+                }
+            }
+
+            .contact{
+                display: none !important;
+            }
+
+            .hide-bottom{
+                display: none;
+            }
+
+            }
         }
+        
+    }
 
     @media (min-width: 1023px) and (max-width: 1439px){
         & {
@@ -233,5 +335,5 @@
         }
     }
 
-    
-    }
+   
+}
