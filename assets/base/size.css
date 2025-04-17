@@ -2,6 +2,7 @@
     --left-width: 24%;
     --header-height: 60px;
     --common-gap: 30px;
+    --border-thickness: 1.5px;
 }
 
 /* Tablet Size */
@@ -10,5 +11,16 @@
         --header-height: 42px;
         --common-gap: 15px;
         --left-width: 25%;
+        --border-thickness: 1px;
+    }
+}
+
+/* Mobile Size */
+@media (min-width: 360px) and (max-width: 1023px){
+    :root{
+        --header-height: 48px;
+        --common-gap: 15px;
+        --border-thickness: 1px;
+
     }
 }

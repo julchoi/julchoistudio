@@ -12,20 +12,20 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 <p class="list-title">Featured Work</p>
                             </li>
                             <li data-id="1">
-                                <a href="morii.html">
+                                <a href="ahole.html">
                                     <span>2024</span>
-                                    <span>MORII Magazine</span>
-                                    <span>Editorial</span>
+                                    <span>AHOLE</span>
+                                    <span>Typeface</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
                                     </span>
                                 </a>
                             </li>
                             <li data-id="2">
-                                <a href="ahole.html">
+                                <a href="morii.html">
                                     <span>2024</span>
-                                    <span>AHOLE</span>
-                                    <span>Typeface</span>
+                                    <span>MORII Magazine</span>
+                                    <span>Editorial</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
                                     </span>
@@ -150,6 +150,27 @@ document.addEventListener('DOMContentLoaded', (e) => {
           // hover class 제거
           document.querySelector(`.list-group li[data-id="${id}"]`)?.classList.remove("hover");
         });
+
+        // tablet touch hover effect
+        let touched = false;
+    
+        img.addEventListener('touchstart', (e) => {
+            if (!touched) {
+                touched = true;
+    
+                // 강제로 hover 스타일을 보여주기 위해 focus
+                document.querySelector(`.list-group li[data-id="${id}"]`)?.classList.add('hover');
+    
+                // 짧은 시간 후에 다시 false로 초기화 (예: 1.5초)
+                setTimeout(() => {
+                    touched = false;
+                    document.querySelector(`.list-group li[data-id="${id}"]`)?.classList.remove('hover-simulated');
+                }, 1500);
+    
+                e.preventDefault(); // 첫 번째 터치에서 링크 이동 방지
+            }
+        });
+
     });
     const scrollContainer = document.querySelector(".work .grid");
 
@@ -224,5 +245,18 @@ document.addEventListener('DOMContentLoaded', (e) => {
     });
 
     items.forEach((item) => observer.observe(item));
+
+    // mobile bottom menu
+    const mMenuBtn = document.querySelector('.m-menu-btn');
+    const mMenuNav = document.querySelector('.m-nav');
+    const mMenuClose = document.querySelector('.m-nav-close');
+
+    mMenuBtn.addEventListener('click', () => {
+        mMenuNav.classList.toggle('active');
+    });
+
+    mMenuClose.addEventListener('click', () => {
+         mMenuNav.classList.remove('active');
+    });
 
 });

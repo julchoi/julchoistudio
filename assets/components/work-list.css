@@ -10,7 +10,7 @@ work-list{
                 width: 100%;
 
                 li {
-                    border-top: 1.5px solid #000;
+                    border-top: var(--border-thickness) solid #000;
 
                     a{
                         display: flex;
@@ -44,10 +44,10 @@ work-list{
                     }
 
                     &:last-child{
-                        border-bottom: 1.5px solid #000;
+                        border-bottom: var(--border-thickness) solid #000;
                         &:hover, &.active{
-                            border-top: 1.5px solid var(--primary);
-                            border-bottom: 1.5px solid var(--primary);
+                            border-top: var(--border-thickness) solid var(--primary);
+                            border-bottom: var(--border-thickness) solid var(--primary);
                             cursor: pointer;
                         }
                     }
@@ -84,11 +84,11 @@ work-list{
                     }
 
                     &:hover, &.hover {
-                        border-top: 1.5px solid var(--primary);
+                        border-top: var(--border-thickness) solid var(--primary);
                         cursor: pointer;
 
                         +li{
-                            border-top: 1.5px solid var(--primary);
+                            border-top: var(--border-thickness) solid var(--primary);
                         }
                         
                         span {
@@ -105,11 +105,11 @@ work-list{
                     }
 
                     &.active{
-                        border-top: 1.5px solid var(--primary);
+                        border-top: var(--border-thickness) solid var(--primary);
                         pointer-events: none;
 
                         +li{
-                            border-top: 1.5px solid var(--primary);
+                            border-top: var(--border-thickness) solid var(--primary);
                         }
                         
                         span {
@@ -123,14 +123,14 @@ work-list{
                  
                     @media (min-width: 1023px) and (max-width: 1439px){
                         & {
-                            border-top: 1px solid #000;
+                            border-top: var(--border-thickness) solid #000;
                         }
 
                         &:last-child{
-                            border-bottom: 1px solid #000;
+                            border-bottom: var(--border-thickness) solid #000;
                             &:hover, &.active{
-                                border-top: 1px solid var(--primary);
-                                border-bottom: 1px solid var(--primary);
+                                border-top: var(--border-thickness) solid var(--primary);
+                                border-bottom: var(--border-thickness) solid var(--primary);
                                 cursor: pointer;
                             }
                         }
@@ -151,4 +151,10 @@ work-list{
         }
 
     }
+
+    @media (min-width: 360px) and (max-width: 1023px){
+            &{
+                display: none;
+            }
+        }
 }

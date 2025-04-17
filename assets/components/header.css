@@ -1,14 +1,14 @@
 header{
     height: var(--header-height);
-    border-bottom: 1.5px solid #000;   
+    border-bottom: var(--border-thickness) solid #000;   
     position: fixed;
     width: calc(100% - (var(--common-gap)*2));
     background-color: #fff;
     z-index: 10;
 
-    @media (min-width: 1023px) and (max-width: 1439px){
+    @media (min-width: 1024px) and (max-width: 1439px){
         &{
-            border-bottom: 1px solid #000;  
+            border-bottom: var(--border-thickness) solid #000;  
         }
     }
 
@@ -38,6 +38,12 @@ header{
                     &.logo{
                         font-weight: 600;
                         font-size: 24px;
+
+                        @media (min-width: 360px) and (max-width: 1023px){
+                            &{
+                                font-size: 17px;
+                            }
+                        }
                     }
 
                     &.active{
@@ -55,8 +61,24 @@ header{
                         }
                     }
 
+                    /* Mobile Size */
+                    @media (min-width: 360px) and (max-width: 1023px){
+                        &:not(.logo){
+                            display: none;
+                        }
+                    }
+
                 }
             }
         }
     }
+
+    /* Mobile Size */
+    @media (min-width: 360px) and (max-width: 1023px){
+        &{
+           position: unset;
+           width: 100%;
+        }
+    }
+
 }

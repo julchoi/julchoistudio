@@ -21,6 +21,7 @@
                 text-transform: uppercase;
                 font-size: 16px;
                 color: var(--gray);
+                white-space: nowrap;
 
                 @media (min-width: 1023px) and (max-width: 1439px){
                     & {
@@ -35,13 +36,13 @@
                 padding-bottom: 100px;
                 >li {
                     padding: var(--common-gap) 0;
-                    border-bottom: 1.5px solid var(--black);
+                    border-bottom: var(--border-thickness) solid var(--black);
                     display: flex;
                     align-items: flex-start;
 
                     @media (min-width: 1023px) and (max-width: 1439px){
                         & {
-                            border-bottom: 1px solid var(--black);
+                            border-bottom: var(--border-thickness) solid var(--black);
                         }
                     }
     
@@ -52,7 +53,7 @@
 
                         @media (min-width: 1023px) and (max-width: 1439px){
                             & {
-                                width: 42.7%;
+                                width: 45%;
                             }
                         }
                     }
@@ -68,8 +69,8 @@
 
                         @media (min-width: 1023px) and (max-width: 1439px){
                             & {
-                                font-size: 12px;
-                                line-height: 16px;
+                                font-size: 14px;
+                                line-height: 18px;
                             }
                         }
                     }
@@ -164,14 +165,17 @@
                     width: 100%;
 
                     ul{
+                        width: 415px;
 
                         li{
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+
                             a{
                                 font-size: 20px;
                                 font-weight: 500;
                                 display: inline-block;
-                                width: 250px;
-                                margin-right: 8px;
                                 margin-bottom: 8px;
     
                             }
@@ -189,12 +193,14 @@
                             @media (min-width: 1023px) and (max-width: 1439px){
                                 & {
                                     display: flex;
+                                    justify-content: flex-end;
                                     gap: 22px;
 
 
                                     >li{
                                         display: flex;
                                         flex-direction: column;
+                                        align-items: flex-start;
 
                                         a{
                                             font-size: 12px;
@@ -220,4 +226,12 @@
         }
 
         }
+
+    @media (min-width: 1023px) and (max-width: 1439px){
+        & {
+            overflow: hidden;
+        }
+    }
+
+    
     }
