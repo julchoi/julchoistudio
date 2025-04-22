@@ -199,7 +199,25 @@
                     &.work08 {
                         &:hover, &.active {
                             &::after {
-                                content: 'SVA Yearbook';
+                                content: 'Yearbook Poster';
+                            }
+
+                        }
+                    }
+
+                    &.work09 {
+                        &:hover, &.active {
+                            &::after {
+                                content: 'SOLE Magazine';
+                            }
+
+                        }
+                    }
+
+                    &.work10 {
+                        &:hover, &.active {
+                            &::after {
+                                content: 'COMM DSGN';
                             }
 
                         }

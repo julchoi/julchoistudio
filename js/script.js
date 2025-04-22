@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                             <li data-id="8">
                                 <a href="yearbook.html">
                                     <span>2023</span>
-                                    <span>Yearbook Design</span>
+                                    <span>Yearbook Poster</span>
                                     <span>Editorial</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
