@@ -1,6 +1,13 @@
 .detail {
     main {
         .left {
+            /* Mobile Size */
+            @media (min-width: 360px) and (max-width: 1023px) {
+                & {
+                    padding-bottom: 15px;
+                }
+            }
+
             .work-info {
                 padding-bottom: 27px;
                 border-bottom: var(--border-thickness) solid var(--black);
@@ -30,6 +37,13 @@
                     gap: 14px;
                     width: 100%;
 
+                    /* Mobile Size */
+                    @media (min-width: 360px) and (max-width: 1023px) {
+                        & {
+                           gap: 12px;
+                        }
+                    }
+
                     li {
                         display: flex;
                         align-items: center;
@@ -40,6 +54,7 @@
                                 gap: 13px;
                             }
                         }
+
 
                         >span {
                             color: var(--gray);
@@ -59,7 +74,7 @@
                             @media (min-width: 360px) and (max-width: 1023px) {
                                 & {
                                     font-size: 11px;
-                                    width: 79px;
+                                    width: 75px;
                                 }
                             }
                         }
@@ -78,7 +93,8 @@
                             /* Mobile Size */
                             @media (min-width: 360px) and (max-width: 1023px) {
                                 & {
-                                    font-size: 14px;
+                                    font-size: 15px;
+                                    font-weight: 500;
                                 }
                             }
                         }
@@ -131,7 +147,7 @@
                 @media (min-width: 360px) and (max-width: 1023px) {
                     & {
                         font-size: 14px;
-                        line-height: 18px;
+                        line-height: 19px;
                         padding-bottom: 15px;
                     }
                 }
@@ -234,7 +250,7 @@
                 @media (min-width: 360px) and (max-width: 1023px) {
                     & {
                         border-radius: 10px;
-                        margin-bottom: 10px;
+                        margin-bottom: 8px;
                     }
                 }
     
