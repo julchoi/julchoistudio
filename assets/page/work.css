@@ -230,14 +230,14 @@
                 .left{
                     width: 100%;
                     padding-top: var(--common-gap);
-                    padding-bottom: var(--common-gap);
+                    padding-bottom: 20px;
 
                     .introduce{
                         width: 100%;
 
                         >p{
-                            font-size: 14px;
-                            line-height: 18px;
+                            font-size: 15px;
+                            line-height: 19px;
                         }
                     }
                 }
@@ -262,6 +262,7 @@
                                 font-size: 12px;
                                 font-weight: 600;
                                 margin-top: 7px;
+                                margin-bottom: 3px;
                             }
 
                         }
