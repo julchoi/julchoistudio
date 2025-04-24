@@ -248,14 +248,14 @@
                 .left{
                     width: 100%;
                     padding-top: var(--common-gap);
-                    padding-bottom: 20px;
+                    padding-bottom: 34px;
 
                     .introduce{
                         width: 100%;
 
                         >p{
-                            font-size: 15px;
-                            line-height: 20px;
+                            font-size: 14px;
+                            line-height: 19px;
                         }
                     }
                 }
