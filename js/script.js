@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
     //Work List (Menu)
     class workList extends HTMLElement {
         connectedCallback() {
-            this.innerHTML = `<section class="detail">
+            this.innerHTML = `<section class="detail-list">
                     <!-- work list -->
                     <div class="list-group" id="listGroup">
 
