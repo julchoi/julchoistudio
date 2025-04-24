@@ -157,7 +157,12 @@
                     object-fit: cover;
                 }
             }
-                .contact{
+
+            .m-title-list{
+                display: none;
+            }
+
+            .contact{
                     padding: var(--common-gap) 0;
                     display: flex;
                     align-items: flex-start;
@@ -213,7 +218,38 @@
                             }
                         }
                     }
+            }
+
+
+            /* arrow styling */
+            .dig{
+                &::after{
+                    content: '';
+                    width: 20px;
+                    height: 20px;
+                    display: inline-block;
+                    background: url('/assets/images/icons/arrow-dig.svg') no-repeat;
+                    background-size: contain;
+                    vertical-align: middle;
+                    margin-left: 3px;
                 }
+
+                @media (min-width: 1023px) and (max-width: 1439px){
+                    &::after {
+                        width: 13px;
+                        height: 13px;
+                        margin-left: 2px;
+                    }
+                }
+
+                @media (min-width: 360px) and (max-width: 1023px){
+                    &::after {
+                        width: 13px;
+                        height: 13px;
+                        margin-left: 2px;
+                    }
+                }
+            }
         }
         
         .hide-bottom{
@@ -250,6 +286,9 @@
                 }
 
                 .m-title-list{
+                    display: block;
+                    padding-bottom: 70px;
+                    
                     .title{
                         font-size: 11px;
                         color: var(--gray);

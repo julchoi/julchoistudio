@@ -125,6 +125,37 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
     customElements.define('work-list', workList);
 
+    //m-nav template
+    class mNav extends HTMLElement {
+        connectedCallback(){
+            this.innerHTML = `<div class="m-bottom-menu">
+            <button class="m-menu-btn">Menu</button>
+            <nav class="m-nav">
+                <button class="m-nav-close">
+                    <img src="assets/images/icons/close.svg" alt="nav close">
+                </button>
+                <ul>
+                    <li>
+                        <a href="work.html">Work</a>
+                    </li>
+                    <li>
+                        <a href="archive.html">Archive</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                </ul>
+                <div>
+                    <a href="">Instagram <img src="assets/images/icons/arrow-dig.svg" alt="go instagram"></a>
+                    <a href="">Linkedin <img src="assets/images/icons/arrow-dig.svg" alt="go Linkedin"></a>
+                </div>
+            </nav>
+        </div>`
+        }
+    }
+
+    customElements.define('m-nav', mNav);
+
        // 해당 페이지에서 리스트 요소 활성화
        const workDetail = document.querySelectorAll(".detail .list-group > ul > li > a");
        const currentPath = window.location.pathname; // 현재 페이지 경로
@@ -151,25 +182,31 @@ document.addEventListener('DOMContentLoaded', (e) => {
           document.querySelector(`.list-group li[data-id="${id}"]`)?.classList.remove("hover");
         });
 
-        // tablet touch hover effect
-        let touched = false;
-    
-        img.addEventListener('touchstart', (e) => {
-            if (!touched) {
-                touched = true;
-    
-                // 강제로 hover 스타일을 보여주기 위해 focus
-                document.querySelector(`.list-group li[data-id="${id}"]`)?.classList.add('hover');
-    
-                // 짧은 시간 후에 다시 false로 초기화 (예: 1.5초)
-                setTimeout(() => {
-                    touched = false;
-                    document.querySelector(`.list-group li[data-id="${id}"]`)?.classList.remove('hover-simulated');
-                }, 1500);
-    
-                e.preventDefault(); // 첫 번째 터치에서 링크 이동 방지
-            }
-        });
+        // tablet touch hover effect 
+       let touched = false;
+
+       img.addEventListener('touchstart', (e) => {
+           if (!touched) {
+             e.preventDefault(); // 첫 터치에 링크 이동 막음
+             img.classList.add('active');
+             touched = true;
+       
+             // 다른 요소를 터치하면 상태 초기화
+             document.addEventListener('touchstart', function resetTouch(event) {
+               if (!link.contains(event.target)) {
+                 link.classList.remove('active');
+                 touched = false;
+                 document.removeEventListener('touchstart', resetTouch);
+               }
+             });
+           } else {
+             // 두 번째 터치면 링크 이동
+             link.classList.remove('active');
+             touched = false;
+             window.location.href = img.firstElementChild('a').getAttribute('href');
+           }
+         });
+   
 
     });
     const scrollContainer = document.querySelector(".work .grid");
