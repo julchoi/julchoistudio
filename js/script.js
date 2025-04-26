@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 </button>
                 <ul>
                     <li>
-                        <a href="work.html">Work</a>
+                        <a href="index.html">Work</a>
                     </li>
                     <li>
                         <a href="archive.html">Archive</a>
