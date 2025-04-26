@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 </a>
                             </li>
                             <li data-id="6">
-                                <a href="crafty.html">
+                                <a href="p2p.html">
                                     <span>2024</span>
                                     <span>Crafty Critter</span>
                                     <span>UX/UI</span>
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 </a>
                             </li>
                             <li data-id="7">
-                                <a href="p2p.html">
+                                <a href="pedaltopetal.html">
                                     <span>2023</span>
                                     <span>Pedal to Petal</span>
                                     <span>Branding</span>
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 </a>
                             </li>
                             <li data-id="9">
-                                <a href="notdefined">
+                                <a href="empty.hyml">
                                     <span>2022</span>
                                     <span>SOLE Magazine</span>
                                     <span>Editorial</span>
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 </a>
                             </li>
                             <li data-id="10">
-                                <a href="notdefined">
+                                <a href="empty2.html">
                                     <span>2022</span>
                                     <span>COMM DSGN</span>
                                     <span>Branding</span>
