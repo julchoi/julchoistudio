@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                         <a href="index.html">Work</a>
                     </li>
                     <li>
-                        <a href="archive.html">Archive</a>
+                        <a href="playground.html">Playground</a>
                     </li>
                     <li>
                         <a href="about.html">About</a>
