@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 </a>
                             </li>
                             <li data-id="9">
-                                <a href="empty.hyml">
+                                <a href="empty.html">
                                     <span>2022</span>
                                     <span>SOLE Magazine</span>
                                     <span>Editorial</span>
