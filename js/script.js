@@ -146,8 +146,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
                     </li>
                 </ul>
                 <div>
-                    <a href="">Instagram <img src="assets/images/icons/arrow-dig.svg" alt="go instagram"></a>
-                    <a href="">Linkedin <img src="assets/images/icons/arrow-dig.svg" alt="go Linkedin"></a>
+                    <a href="https://www.instagram.com/julchoi.studio/">Instagram <img src="assets/images/icons/arrow-dig.svg" alt="go instagram"></a>
+                    <a href="https://www.linkedin.com/in/julie-c-454063305/">Linkedin <img src="assets/images/icons/arrow-dig.svg" alt="go Linkedin"></a>
                 </div>
             </nav>
         </div>`
