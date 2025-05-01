@@ -90,7 +90,8 @@
 
                         /* Mobile Size */
                         @media (min-width: 360px) and (max-width: 835px) {
-                            font-size: 12px;
+                            font-size: 11px;
+                            line-height: 13px;
                             margin-top: 5px;
                             margin-bottom: 18px;
                         }
