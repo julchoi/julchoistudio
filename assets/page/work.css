@@ -63,7 +63,7 @@
 
             .grid-sizer,
             .grid-item {
-                width: 49.3%;
+                width: calc( (100% - 20px) / 2);
                 direction: ltr;
 
                 /* Mid Size*/
