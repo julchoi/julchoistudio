@@ -1,7 +1,7 @@
 .work {
 
     /* 모바일에서 하단바 고정 */
-    @media (min-width: 360px) and (max-width: 661px) {
+    @media (min-width: 360px) and (max-width: 835px) {
         & {
             height: 100dvh;
             overflow-x: hidden;
@@ -24,7 +24,7 @@
             padding-bottom: 98px;
 
             /* Mid ~ Tablet Size */
-            @media (min-width: 662px) and (max-width: 1439px) {
+            @media (min-width: 836px) and (max-width: 1439px) {
                 & {
                     padding-bottom: 77px;
                 }
@@ -42,7 +42,7 @@
 
 
                     /* Mid ~ Tablet Size */
-                    @media (min-width: 662px) and (max-width: 1439px) {
+                    @media (min-width: 836px) and (max-width: 1439px) {
                         & {
                             font-size: 14px;
                             line-height: 18px;
@@ -67,7 +67,7 @@
                 direction: ltr;
 
                 /* Mid Size*/
-                @media (min-width: 662px) and (max-width: 1023px) {
+                @media (min-width: 836px) and (max-width: 1023px) {
                     width: 100%;
                 }
             }
@@ -90,7 +90,7 @@
                 }
 
                 /* Mid ~ Tablet Size */
-                @media (min-width: 662px) and (max-width: 1439px) {
+                @media (min-width: 836px) and (max-width: 1439px) {
                     & {
                         margin-bottom: 11px;
                     }
@@ -145,14 +145,14 @@
                         }
 
                         /* Mid ~ Tablet Size */
-                        @media (min-width: 662px) and (max-width: 1439px) {
+                        @media (min-width: 836px) and (max-width: 1439px) {
                             &::after {
                                 font-size: 16px;
                             }
                         }
 
                         /* Mobile Size */
-                        @media (min-width: 360px) and (max-width: 661px) {
+                        @media (min-width: 360px) and (max-width: 835px) {
                             &::after {
                                 font-size: 15px;
                             }
@@ -177,7 +177,7 @@
 
 
         /* Mobile Size */
-        @media (min-width: 360px) and (max-width: 661px) {
+        @media (min-width: 360px) and (max-width: 835px) {
             & {
                 flex-direction: column;
                 gap: 0;

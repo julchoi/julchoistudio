@@ -18,7 +18,7 @@ work-list {
                         line-height: 46px;
 
                         /* Mid ~ Tablet Size */
-                        @media (min-width: 662px) and (max-width: 1439px) {
+                        @media (min-width: 836px) and (max-width: 1439px) {
                             & {
                                 line-height: 32px;
                             }
@@ -32,7 +32,7 @@ work-list {
                         font-size: 16px;
 
                         /* Mid ~ Tablet Size */
-                        @media (min-width: 662px) and (max-width: 1439px) {
+                        @media (min-width: 836px) and (max-width: 1439px) {
                             & {
                                 font-size: 11px;
                                 line-height: 32px;
@@ -65,7 +65,7 @@ work-list {
                                 margin-right: 20px;
 
                                 /* Mid ~ Tablet Size */
-                                @media (min-width: 662px) and (max-width: 1439px) {
+                                @media (min-width: 836px) and (max-width: 1439px) {
                                     & {
                                         margin-right: 14px;
                                     }
@@ -81,7 +81,7 @@ work-list {
                             }
 
                             /* Mid ~ Tablet Size */
-                            @media (min-width: 662px) and (max-width: 1439px) {
+                            @media (min-width: 836px) and (max-width: 1439px) {
                                 & {
                                     font-size: 12px;
                                 }
@@ -130,7 +130,7 @@ work-list {
                     }
 
                     /* Mid ~ Tablet Size */
-                    @media (min-width: 662px) and (max-width: 1439px) {
+                    @media (min-width: 836px) and (max-width: 1439px) {
                         & {
                             border-top: var(--border-thickness) solid #000;
                         }
@@ -152,7 +152,7 @@ work-list {
                     margin-bottom: 68px;
 
                     /* Mid ~ Tablet Size */
-                    @media (min-width: 662px) and (max-width: 1439px) {
+                    @media (min-width: 836px) and (max-width: 1439px) {
                         & {
                             margin-bottom: 40px;
                         }
@@ -164,7 +164,7 @@ work-list {
 
     }
 
-    @media (min-width: 360px) and (max-width: 661px) {
+    @media (min-width: 360px) and (max-width: 835px) {
         & {
             display: none;
         }

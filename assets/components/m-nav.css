@@ -105,12 +105,12 @@
 
 
         /* if mobile size, mene show */
-        @media (min-width : 360px) and (max-width:661px) {
+        @media (min-width : 360px) and (max-width:835px) {
             display: block;
         }
 
         /* if not mobile size, menu hide */
-        @media (min-width : 661px) {
+        @media (min-width : 835px) {
             display: none;
         }
 

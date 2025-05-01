@@ -52,7 +52,7 @@
 .about {
 
     /* 모바일에서 하단바 고정 */
-    @media (min-width: 360px) and (max-width: 661px) {
+    @media (min-width: 360px) and (max-width: 835px) {
         & {
             height: 100dvh;
             overflow-x: hidden;
@@ -67,7 +67,7 @@
         position: relative;
 
         /* Mid Size */
-        @media (min-width: 662px) and (max-width: 1023px) {
+        @media (min-width: 836px) and (max-width: 1023px) {
             display: block;
         }
 
@@ -82,7 +82,7 @@
                 animation: opacityPage1 0.8s linear 0.3s 1 normal forwards;
 
                 /* Mid ~ Tablet Size */
-                @media (min-width: 662px) and (max-width: 1439px) {
+                @media (min-width: 836px) and (max-width: 1439px) {
                     & {
                         font-size: 11px;
                     }
@@ -102,7 +102,7 @@
                 padding-bottom: 100px;
 
                  /* Mid Size */
-                 @media (min-width: 662px) and (max-width: 1023px) {
+                 @media (min-width: 836px) and (max-width: 1023px) {
                     padding-bottom: 30px;
                 }
 
@@ -118,7 +118,7 @@
                     align-items: flex-start;
 
                     /* Mid ~ Tablet Size */
-                    @media (min-width: 662px) and (max-width: 1439px) {
+                    @media (min-width: 836px) and (max-width: 1439px) {
                         & {
                             border-bottom: var(--border-thickness) solid var(--black);
                         }
@@ -131,7 +131,7 @@
 
 
                         /* Mid Size */
-                        @media (min-width: 662px) and (max-width: 1023px) {
+                        @media (min-width: 836px) and (max-width: 1023px) {
                             & {
                                 width: calc(var(--left-width) + 18px);
                             }
@@ -155,7 +155,7 @@
                         }
 
                         /* Mid ~ Tablet Size */
-                        @media (min-width: 662px) and (max-width: 1439px) {
+                        @media (min-width: 836px) and (max-width: 1439px) {
                             & {
                                 font-size: 14px;
                                 line-height: 18px;
@@ -169,7 +169,7 @@
                         gap: 24px;
 
                         /* Mid ~ Tablet Size */
-                        @media (min-width: 662px) and (max-width: 1439px) {
+                        @media (min-width: 836px) and (max-width: 1439px) {
                             & {
                                 gap: 12px;
                             }
@@ -183,7 +183,7 @@
                                 margin-bottom: 8px;
 
                                 /* Mid ~ Tablet Size */
-                                @media (min-width: 662px) and (max-width: 1439px) {
+                                @media (min-width: 836px) and (max-width: 1439px) {
                                     & {
                                         font-size: 12px;
                                         margin-bottom: 3px;
@@ -197,7 +197,7 @@
                                 line-height: 30px;
 
                                 /* Mid ~ Tablet Size */
-                                @media (min-width: 662px) and (max-width: 1439px) {
+                                @media (min-width: 836px) and (max-width: 1439px) {
                                     & {
                                         font-size: 14px;
                                         line-height: 1px;
@@ -233,7 +233,7 @@
 
 
              /* Mid Size */
-             @media (min-width: 662px) and (max-width: 1023px) {
+             @media (min-width: 836px) and (max-width: 1023px) {
                 & {
                    width: 100%;
                    margin-left: 0;
@@ -288,7 +288,7 @@
 
 
                     /* Mid Size:  */
-                    @media (min-width: 662px) and (max-width: 1023px){
+                    @media (min-width: 836px) and (max-width: 1023px){
                         width: 365px;
                         justify-content: space-between;
                     }
@@ -308,7 +308,7 @@
 
                         
                             /* Mid~Tablet Size */
-                            @media (min-width: 662px) and (max-width: 1439px) {
+                            @media (min-width: 836px) and (max-width: 1439px) {
                                 font-size: 12px;
                             }
                         }
@@ -368,12 +368,12 @@
         }
 
         /* Mobile Size */
-        @media (min-width: 360px) and (max-width: 661px) {
+        @media (min-width: 360px) and (max-width: 835px) {
             & {
                 display: block;
                 padding-top: var(--common-gap);
 
-                @media (min-width: 360px) and (max-width: 661px) {
+                @media (min-width: 360px) and (max-width: 835px) {
                     animation: opacityPageMobile 0.8s linear 1 normal forwards;
                 }
 
