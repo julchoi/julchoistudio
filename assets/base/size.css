@@ -21,9 +21,8 @@
 @media (min-width: 836px) and (max-width: 1023px){
     :root{
         --header-height: 42px;
-        --left-width: 39%;
+        --left-width: 25%;
         --common-gap: 15px;
-        --border-thickness: 1px;
         --border-radius : 10px;
     }
 }

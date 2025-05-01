@@ -28,7 +28,7 @@ header {
             /* Mid ~ Tablet Size */
             @media (min-width: 836px) and (max-width: 1439px) {
                 & {
-                    width: calc(var(--left-width) + var(--common-gap) + 48px);
+                    width: calc(var(--left-width) + var(--common-gap) + 40px);
                 }
             }
 
@@ -73,17 +73,6 @@ header {
                         }
                     }
 
-                }
-            }
-
-
-            &:last-child {
-
-                /* Mid Size */
-                @media (min-width: 836px) and (max-width: 1023px) {
-                    width: 50%;
-                    justify-content: flex-end;
-                    gap: 35%;
                 }
             }
         }
