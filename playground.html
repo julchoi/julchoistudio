@@ -10,6 +10,8 @@
 </head>
 <body>
     <div class="wrap play">
+
+        <!-- header -->
         <header>
             <nav>
                 <ul>
@@ -29,6 +31,7 @@
                     </li>
                 </ul>
         </header>
+        <!-- header -->
 
         <main>
             <div class="grid">
@@ -135,41 +138,71 @@
 
     <script src="js/script.js"></script>
     <script>
-
-        //Gallery View (Images)
         const grid = document.querySelector('.grid');
-
+        const body = document.body;
+    
+        // 로딩 중에는 스크롤 방지
+        body.classList.add('loading');
+    
         function getGutterByWindowWidth() {
             if (window.innerWidth > 1439) return 20;
             if (window.innerWidth < 1439) return 11;
             return 20;
         }
-       
-        const msnry = new Masonry('.grid', {
-            itemSelector: '.grid-item', 
-            columnWidth: '.grid-sizer',
-            percentPosition: true,
-            gutter: getGutterByWindowWidth(),
-            fitWidth : false,
-            horizontalOrder: true,
-        });
-
+    
+        let msnry = null;
+    
+        function initMasonry() {
+            msnry = new Masonry(grid, {
+                itemSelector: '.grid-item',
+                columnWidth: '.grid-sizer',
+                percentPosition: true,
+                gutter: getGutterByWindowWidth(),
+                fitWidth: false,
+                horizontalOrder: true
+            });
+        }
+    
+        function refreshMasonry() {
+            imagesLoaded(grid, function () {
+                msnry.layout();
+            });
+        }
+    
+        // 최초 초기화
         imagesLoaded(grid, function () {
+            initMasonry();
             msnry.layout();
+    
+            // 스크롤 맨 위로
+            window.scrollTo(0, 0);
+    
+            // IntersectionObserver 적용 (선택 사항)
+            const items = document.querySelectorAll('.grid-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    } else {
+                        entry.target.classList.remove('show');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+    
+            items.forEach((item) => observer.observe(item));
         });
-
+    
+        // 리사이즈 대응
         let resizeTimer;
-
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => {
-                imagesLoaded(grid, () => {
-                    msnry.layout(); // Masonry 레이아웃 다시 계산
-                });
-            }, 200); // 너무 자주 발생하는 걸 방지 (debounce)
+                msnry.options.gutter = getGutterByWindowWidth();
+                refreshMasonry();
+            }, 200);
         });
-
-
     </script>
 
 </body>

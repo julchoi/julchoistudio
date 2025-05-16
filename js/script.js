@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', (e) => {
 
-    //Work List (Menu)
+    //Work List template (Menu)
     class workList extends HTMLElement {
         connectedCallback() {
             this.innerHTML = `<section class="detail-list">
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
     customElements.define('work-list', workList);
 
-    //m-nav template
+    //m-nav template (Mobile bottom menu button)
     class mNav extends HTMLElement {
         connectedCallback() {
             this.innerHTML = `<div class="m-bottom-menu">
@@ -155,6 +155,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
     }
 
     customElements.define('m-nav', mNav);
+
+
 
     // 해당 페이지에서 리스트 요소 활성화
     const workDetail = document.querySelectorAll(".detail .list-group > ul > li > a");
@@ -209,20 +211,19 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 
     });
-    const scrollContainer = document.querySelector(".work .grid");
 
+
+    // list hover 시 해당 이미지 위치로 스크롤 이동
     document.querySelectorAll("work-list .list-group li").forEach((list) => {
         list.addEventListener("mouseenter", function () {
             const id = this.dataset.id; // 이미지의 data-id 값 가져오기
             const targetImg = document.querySelector(`.grid .grid-item[data-id="${id}"] a`)
             targetImg?.classList.add("active");
 
-            const containerTop = scrollContainer.getBoundingClientRect().top; // 스크롤 컨테이너가 브라우저 기준에서 얼마나 아래에 있는지
             const imageTop = targetImg.getBoundingClientRect().top; // 타겟이미지가 브라우저 기준에서 얼마나 아래에 있는지지
+            const offset = window.scrollY + imageTop - 100;
 
-            const offset = imageTop - containerTop + scrollContainer.scrollTop - 100;
-
-            scrollContainer.scrollTo({
+            window.scrollTo({
                 top: offset,
                 behavior: "smooth"
             });
@@ -270,9 +271,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
+            
             if (entry.isIntersecting) {
                 entry.target.classList.add('show');
-                // observer.unobserve(entry.target); // 한 번만 실행
             }
 
             else {
@@ -286,29 +287,33 @@ document.addEventListener('DOMContentLoaded', (e) => {
     items.forEach((item) => observer.observe(item));
 
 
-    // 디테일페이지에서 아이템 애니메이션 효과
-    const detailDesc = document.querySelectorAll('.detail > main > .right');
 
-    const detailObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show');
+    // 디테일 페이지 요소 애니메이션 효과
+    const parts = document.querySelectorAll('.detail > main > .right > *');
+
+    function isInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        const buffer = 70; // 살짝 보이기만 해도 true로 판단
+        return (
+            rect.top < window.innerHeight - buffer &&
+            rect.bottom > buffer
+        );
+    }
+
+    function checkVisibility() {
+        parts.forEach((item) => {
+            if (isInViewport(item)) {
+                item.classList.add('show');
             } else {
-                entry.target.classList.remove('show');
+                item.classList.remove('show');
             }
         });
-    }, {
-        threshold: 0.1
-    });
+        requestAnimationFrame(checkVisibility);
+    }
 
-    // 각 .right 안의 자식 요소들에 대해 observer 설정
-    detailDesc.forEach((rightSection) => {
-        
-        const parts = rightSection.children;
-        Array.from(parts).forEach((item) => {
-            detailObserver.observe(item);
-        });
-    });
+    // 최초 실행
+    requestAnimationFrame(checkVisibility);
+
 
 
 
