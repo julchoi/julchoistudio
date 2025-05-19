@@ -135,6 +135,11 @@
                 transform: translateY(3rem);
                 transition: opacity 0.6s ease, transform 0.6s ease;
 
+                /* mobile size */
+                @media (min-width: 360px) and (max-width: 835px) {
+                    border-radius: 0;
+                }
+
                 &.show {
                     opacity: 1;
                     transform: translateY(0);
