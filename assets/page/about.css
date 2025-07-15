@@ -365,7 +365,7 @@
             margin-left: var(--common-gap);
             flex-shrink: 0;
             opacity: 0;
-            animation: opacityPage2 0.6s linear 0.3s forwards;
+            animation: opacityPage2 0.8s linear 0.3s forwards;
 
 
             /* Mobile Size */
