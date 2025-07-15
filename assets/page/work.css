@@ -93,6 +93,7 @@
         .right {
             position: absolute !important;
             right: 0;
+            top: var(--header-height);
             width: calc(100% - var(--left-width) - var(--common-gap));
 
             /* mobile Size */
@@ -106,12 +107,14 @@
             /* 썸네일 크기 조정 */
             .grid-sizer,
             .grid-item {
-                width: calc((100% - 2rem) / 2);  /*2 colunm*/
+                width: calc((100% - 2rem) / 2);
+                /*2 colunm*/
                 direction: ltr;
 
                 /* Macbook Size */
-                @media (min-width: 1536px) and (max-height: 900px){
-                    width: 100%;
+                @media (min-width: 1536px) and (max-height: 900px) {
+                    width: calc((100% - 2.5rem) / 2);
+                    /*2 colunm*/
                 }
 
                 /* Mid Size*/
@@ -135,13 +138,22 @@
                 transform: translateY(3rem);
                 transition: opacity 0.6s ease, transform 0.6s ease;
 
-                &.show {
+                /* mobile size */
+                @media (min-width: 360px) and (max-width: 835px) {
+                    border-radius: 0;
+                }
+
+                &.show:not(.blank-top) {
                     opacity: 1;
                     transform: translateY(0);
                 }
 
                 &.margin-none {
                     margin-right: 0;
+                }
+
+                &:nth-last-child(2){
+                    margin-bottom: 0;
                 }
 
                 /* Mid ~ Tablet Size */
@@ -238,7 +250,11 @@
                     }
 
                 }
+
+                
             }
+
+
 
 
             /* blank  ------- */

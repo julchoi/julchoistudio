@@ -158,5 +158,34 @@
 
     </div>
     <script src="js/script.js"></script>
+    <script>
+        //about페이지에서 스크롤시 하단 요소 애니메이션 작업
+    let lastScrollTop = 0;
+    let ticking = false;
+    const targetElement = document.querySelector(".hide-bottom");
+
+    function onScroll() {
+        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentScroll - lastScrollTop > 3) {
+            targetElement.style.transform = "translateY(100%)";
+            targetElement.style.opacity = "0";
+        } else if (lastScrollTop - currentScroll > 3) {
+            targetElement.style.transform = "translateY(0)";
+            targetElement.style.opacity = "1";
+        }
+
+        lastScrollTop = currentScroll; // 스크롤 값 갱신
+        ticking = false;
+    }
+
+    window.addEventListener("scroll", function () {
+        if (!ticking) {
+            requestAnimationFrame(onScroll);
+            ticking = true;
+        }
+    });
+
+    </script>
 </body>
 </html>

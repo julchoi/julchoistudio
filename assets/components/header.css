@@ -2,7 +2,11 @@ header {
     height: var(--header-height);
     border-bottom: var(--border-thickness) solid #000;
     position: fixed;
-    width: calc(100% - (var(--common-gap)*2));
+    top: 0;
+    left: 0;
+    padding: 0 var(--common-gap);
+    box-sizing: border-box;
+    width: 100%;
     background-color: #fff;
     z-index: 10;
 
