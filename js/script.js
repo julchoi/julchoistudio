@@ -220,13 +220,15 @@ document.addEventListener('DOMContentLoaded', (e) => {
             const targetImg = document.querySelector(`.grid .grid-item[data-id="${id}"] a`)
             targetImg?.classList.add("active");
 
-            const imageTop = targetImg.getBoundingClientRect().top; // 타겟이미지가 브라우저 기준에서 얼마나 아래에 있는지지
-            const offset = window.scrollY + imageTop - 100;
+            const container = document.querySelector('.work .grid')
+            const containerTop = container.getBoundingClientRect().top;
+            const imageTop = targetImg.getBoundingClientRect().top + window.scrollY; // 타겟이미지가 브라우저 기준에서 얼마나 아래에 있는지지
+            const offset = imageTop -containerTop + container.scrollTop - 100;
 
-            window.scrollTo({
+            container.scrollTo({
                 top: offset,
                 behavior: "smooth"
-            });
+            }); 
         });
 
         list.addEventListener("mouseleave", function () {
@@ -257,7 +259,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
             }
         });
     }, {
-        threshold: 0.1
+        root : null,
+        rootMargin: '0px',
+        threshold: 0
     });
 
     items.forEach((item) => observer.observe(item));
@@ -265,33 +269,37 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 
     // 디테일 페이지 요소 애니메이션 효과
-//     const parts = document.querySelectorAll('.detail > main > .right > *');
 
-//  // Intersection Observer 생성
-//  const observer02 = new IntersectionObserver((entries, observer) => {
-//      entries.forEach(entry => {
-//          // entry.isIntersecting: 요소가 화면에 보이면 true, 아니면 false
-//          if (entry.isIntersecting) {
-//              entry.target.classList.add('show'); // 보이면 'show' 클래스 추가
-//              // 중요: 한번 보이면 더 이상 관찰할 필요 없으니까 관찰 중지!
-//              observer02.unobserve(entry.target);
-//          }
-//          // else 부분은 필요 없어. 한번 'show' 붙으면 안 뗄 거니까.
-//      });
-//  }, {
-//      // 옵션 설정 (화면 하단에서 얼마나 올라왔을 때 보인다고 판단할지)
-//      // rootMargin: '0px 0px -75px 0px' => 뷰포트 하단에서 75px 위에 트리거 라인 설정
-//      // threshold: 0 => 요소가 1px이라도 보이면 콜백 함수 실행
-//      rootMargin: '0px 0px -75px 0px',
-//      threshold: 0
-//  });
+    const parts = document.querySelectorAll('.detail > main > .right > *');
 
-//  // 아까 찾아둔 요소들을 각각 observer에게 관찰하라고 등록
-//  parts.forEach(item => {
-//      observer02.observe(item);
-//  });
+ // Intersection Observer 생성
+ const observer02 = new IntersectionObserver((entries) => {
+     entries.forEach(entry => {
 
-//  // requestAnimationFrame 부분은 이제 필요 없어짐!
+        const target = entry.target;
+
+         if (entry.isIntersecting) {
+             target.classList.add('show');
+            //  observer02.unobserve(entry.target);
+         } else{
+             target.classList.remove('show');
+         }
+         // else 부분은 필요 없어. 한번 'show' 붙으면 안 뗄 거니까.
+     });
+ }, {
+     // 옵션 설정 (화면 하단에서 얼마나 올라왔을 때 보인다고 판단할지)
+     // rootMargin: '0px 0px -75px 0px' => 뷰포트 하단에서 75px 위에 트리거 라인 설정
+     // threshold: 0 => 요소가 1px이라도 보이면 콜백 함수 실행
+     rootMargin: '0px 0px -10px 0px',
+     threshold: 0
+ });
+
+ // 아까 찾아둔 요소들을 각각 observer에게 관찰하라고 등록
+ parts.forEach(item => {
+     observer02.observe(item);
+ });
+
+ // requestAnimationFrame 부분은 이제 필요 없어짐!
 
 
 

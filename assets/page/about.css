@@ -53,6 +53,8 @@
 
 
 .about {
+    height: 100vh;
+    overflow: hidden;
 
     /* Tablet Size */
     @media (min-width: 1024px) and (max-width: 1439px) {
@@ -70,7 +72,9 @@
         display: flex;
         width: 100%;
         height: calc(100vh - var(--header-height));
+        overflow-y: auto;
         position: relative;
+        padding-top: var(--common-gap);
 
 
         /* Tablet Size */
@@ -88,6 +92,7 @@
 
         /* Mobile Size */
         @media (min-width: 360px) and (max-width: 835px) {
+              overflow: unset;
             flex-direction: column-reverse;
             height: auto;
             padding-top: var(--common-gap);
@@ -172,7 +177,7 @@
 
 
                     /* Mobile Size */
-                    @media (min-width: 360px) and (max-width: 835px) {
+                    @media (min-width: 360px) and (max-width: 1023px) {
                         display: flex;
                         flex-direction: column;
                         padding-bottom: 2rem;
@@ -305,11 +310,11 @@
                     }
 
                     &.m-contact {
-
+                        border-bottom: 0;
                         display: none;
 
                         /* Mobile Size */
-                        @media (min-width: 360px) and (max-width: 835px) {
+                        @media (min-width: 360px) and (max-width: 1023px) {
                             display: block;
 
                             ul {
@@ -321,32 +326,10 @@
                             }
                         }
 
-                        /* Mid ~ Tablet Size */
-                        @media (min-width: 836px) and (max-width: 1439px) {
-                            display: flex;
-
-                            >ul {
-                                gap: .8rem;
-
-                                li {
-
-                                    a {
-                                        font-weight: 500;
-                                    }
-                                }
-
-                            }
-                        }
-
                     }
 
                     &:nth-child(4) {
                         border-bottom: 0;
-
-                        /* Mobile ~ tablet Size */
-                        @media (min-width: 360px) and (max-width: 1439px) {
-                            border-bottom: var(--border-thickness) solid black;
-                        }
                     }
 
                     >*:not(.title) {

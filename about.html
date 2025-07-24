@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/style.css">
     <title>About</title>
 </head>
+
 <body>
     <div class="wrap about">
 
@@ -22,7 +24,7 @@
                 </ul>
                 <ul>
                     <li>
-                        <a href="index.html">Work</a> 
+                        <a href="index.html">Work</a>
                     </li>
                     <li>
                         <a href="playground.html">Playground</a>
@@ -34,7 +36,7 @@
 
 
         <main>
-            
+
             <!-- Text contents -->
             <section class="title-list">
                 <ul>
@@ -107,13 +109,16 @@
                                 <b><a href="" target="_blank" class="dig">+1 929 989 5162</a></b>
                             </li>
                             <li>
-                                <b><a href="mailto:julchoi24@gmail.com" target="_blank" class="dig">julchoi24@gmail.com</a></b>
+                                <b><a href="mailto:julchoi24@gmail.com" target="_blank"
+                                        class="dig">julchoi24@gmail.com</a></b>
                             </li>
                             <li>
-                                <b><a href="https://www.instagram.com/julchoi.studio/" target="_blank" class="dig">Instagram</a></b>
+                                <b><a href="https://www.instagram.com/julchoi.studio/" target="_blank"
+                                        class="dig">Instagram</a></b>
                             </li>
                             <li>
-                                <b><a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank" class="dig">Linkedln</a></b>
+                                <b><a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank"
+                                        class="dig">Linkedln</a></b>
                             </li>
                         </ul>
                     </li>
@@ -139,8 +144,10 @@
                             <a href="mailto:julchoi24@gmail.com" target="_blank" class="dig">julchoi24@gmail.com</a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/julchoi.studio/" target="_blank" class="dig">Instagram</a>
-                            <a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank" class="dig">Linkedln</a>                        
+                            <a href="https://www.instagram.com/julchoi.studio/" target="_blank"
+                                class="dig">Instagram</a>
+                            <a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank"
+                                class="dig">Linkedln</a>
                         </li>
                     </ul>
                 </div>
@@ -152,40 +159,48 @@
             <div class="hide-bottom">
             </div>
         </main>
-    
+
         <!-- Mobile bottom menu -->
         <m-nav></m-nav>
 
     </div>
     <script src="js/script.js"></script>
     <script>
-        //about페이지에서 스크롤시 하단 요소 애니메이션 작업
+         // about 페이지에서 스크롤 시 하단 요소 애니메이션 작업
     let lastScrollTop = 0;
     let ticking = false;
+
     const targetElement = document.querySelector(".hide-bottom");
+    const aboutContainer = document.querySelector(".about main");
 
     function onScroll() {
-        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        const currentScroll = aboutContainer.scrollTop;
 
         if (currentScroll - lastScrollTop > 3) {
+            // 아래로 스크롤
             targetElement.style.transform = "translateY(100%)";
             targetElement.style.opacity = "0";
         } else if (lastScrollTop - currentScroll > 3) {
+            // 위로 스크롤
             targetElement.style.transform = "translateY(0)";
             targetElement.style.opacity = "1";
         }
 
-        lastScrollTop = currentScroll; // 스크롤 값 갱신
+        lastScrollTop = currentScroll;
         ticking = false;
     }
 
-    window.addEventListener("scroll", function () {
+    aboutContainer.addEventListener("scroll", function () {
         if (!ticking) {
             requestAnimationFrame(onScroll);
             ticking = true;
         }
     });
 
+    window.addEventListener("load", function () {
+    document.querySelector('.about main').scrollTop = 0;
+});
     </script>
 </body>
+
 </html>

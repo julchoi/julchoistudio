@@ -1,4 +1,11 @@
 .play {
+    height: 100dvh;
+     overflow: hidden;
+
+       header {
+           flex-shrink: 0;
+        }
+
 
     /* 모바일에서 하단바 고정 */
     @media (min-width: 360px) and (max-width: 835px) {
@@ -8,20 +15,26 @@
             overflow-y: auto;
         }
 
-        header {
+        /* header {
             position: fixed;
             width: calc(100% - (var(--common-gap)*2));
-        }
+        } */
     }
 
     main {
         display: flex;
         gap: var(--common-gap);
+        padding-top: var(--common-gap);
+        height: calc(100% - var(--header-height));
+        overflow-y: auto;
+      
 
         /* Mobile Size */
         @media (min-width: 360px) and (max-width: 835px) {
             flex-direction: column;
             gap: 0;
+            height: auto;
+            overflow: unset;
         }
 
         .grid {
