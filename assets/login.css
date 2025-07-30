@@ -1,0 +1,80 @@
+/* login.css */
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #1e1e1e !important;
+    font-family: 'Inter', sans-serif !important;
+    color: #f0f0f0 !important;
+    height: 100dvh !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  .container {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .lock-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    color: #aaa;
+    margin-bottom: 4rem;
+  }
+  
+  form {
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  input[type="password"] {
+    flex-grow: 1;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    outline: none;
+    color: #333;
+    height: 1.4rem;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #eee;
+  }
+  
+  #error {
+    color: crimson;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+  
