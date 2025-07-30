@@ -24,14 +24,29 @@ body {
   
   h1 {
     font-size: 3rem;
-    font-weight: 400;
+    font-weight: 300;
     margin-bottom: 0.2rem;
+
+    /* mobile Size */
+    @media (min-width: 360px) and (max-width: 835px) {
+      font-size: 2rem;
+      font-weight: 300;
+      margin-bottom: 0.1rem;
+    }
+
   }
   
   p {
     font-size: 1.2rem;
     color: #aaa;
     margin-bottom: 4rem;
+
+    /* mobile Size */
+    @media (min-width: 360px) and (max-width: 835px) {
+      font-size: 1rem;
+      margin-bottom: 3rem;
+    }
+
   }
   
   form {
