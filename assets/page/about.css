@@ -92,7 +92,7 @@
 
         /* Mobile Size */
         @media (min-width: 360px) and (max-width: 835px) {
-              overflow: unset;
+            overflow: unset;
             flex-direction: column-reverse;
             height: auto;
             padding-top: var(--common-gap);
@@ -255,7 +255,7 @@
 
                         >li {
                             span {
-                                font-size: 2rem;
+                                font-size: 1.8rem;
                                 color: var(--gray);
                                 display: block;
                                 margin-bottom: .8rem;
@@ -275,7 +275,7 @@
                             }
 
                             b {
-                                font-size: 2.2rem;
+                                font-size: 2rem;
                                 font-weight: 500;
                                 line-height: 3rem;
 
