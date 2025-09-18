@@ -67,9 +67,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 </a>
                             </li>
                             <li data-id="6">
-                                <a href="p2p.html">
+                                <a href="cvs.html">
                                     <span>2024</span>
-                                    <span>Crafty Critter</span>
+                                    <span>CVS Health</span>
                                     <span>UX/UI</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
