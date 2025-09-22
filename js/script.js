@@ -99,8 +99,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
                             <li data-id="9">
                                 <a href="empty.hyml">
                                     <span>2022</span>
-                                    <span>SOLE Magazine</span>
-                                    <span>Editorial</span>
+                                    <span>Project 1</span>
+                                    <span>Branding</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
                                     </span>
@@ -109,8 +109,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
                             <li data-id="10">
                                 <a href="empty2.html">
                                     <span>2022</span>
-                                    <span>COMM DSGN</span>
-                                    <span>Branding</span>
+                                    <span>Project 2</span>
+                                    <span>UX/UI</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
                                     </span>
