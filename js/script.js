@@ -32,10 +32,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 </a>
                             </li>
                             <li data-id="3">
-                                <a href="commdsgn.html">
-                                    <span>2024</span>
-                                    <span>COMM DSGN</span>
-                                    <span>Branding</span>
+                                <a href="keepr.html">
+                                    <span>2025</span>
+                                    <span>Keepr</span>
+                                    <span>UXUI</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
                                     </span>
