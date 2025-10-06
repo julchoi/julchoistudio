@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 <a href="keepr.html">
                                     <span>2025</span>
                                     <span>Keepr</span>
-                                    <span>UXUI</span>
+                                    <span>UX/UI</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
                                     </span>
