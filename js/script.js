@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 <p class="list-title">Featured Work</p>
                             </li>
                             <li data-id="1">
-                                <a href="ahole.html">
-                                    <span>2024</span>
-                                    <span>AHOLE</span>
-                                    <span>Typeface</span>
+                                <a href="keepr.html">
+                                    <span>2025</span>
+                                    <span>Keepr</span>
+                                    <span>UX/UI</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
                                     </span>
@@ -32,9 +32,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 </a>
                             </li>
                             <li data-id="3">
-                                <a href="keepr.html">
-                                    <span>2025</span>
-                                    <span>Keepr</span>
+                                <a href="heynike.html">
+                                    <span>2024</span>
+                                    <span>Hey, Nike!</span>
                                     <span>UX/UI</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
@@ -42,9 +42,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 </a>
                             </li>
                             <li data-id="4">
-                                <a href="heynike.html">
+                                <a href="cvs.html">
                                     <span>2024</span>
-                                    <span>Hey, Nike!</span>
+                                    <span>CVS Health</span>
                                     <span>UX/UI</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
@@ -57,30 +57,30 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 <p class="list-title">All Work</p>
                             </li>
                             <li data-id="5">
-                                <a href="airplan.html">
-                                    <span>2024</span>
-                                    <span>Airplan</span>
-                                    <span>UX/UI</span>
+                                <a href="pedaltopetal.html">
+                                    <span>2023</span>
+                                    <span>Pedal to Petal</span>
+                                    <span>Branding</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
                                     </span>
                                 </a>
                             </li>
                             <li data-id="6">
-                                <a href="cvs.html">
+                                <a href="ahole.html">
                                     <span>2024</span>
-                                    <span>CVS Health</span>
-                                    <span>UX/UI</span>
+                                    <span>AHOLE</span>
+                                    <span>Typeface</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
                                     </span>
                                 </a>
                             </li>
                             <li data-id="7">
-                                <a href="pedaltopetal.html">
-                                    <span>2023</span>
-                                    <span>Pedal to Petal</span>
-                                    <span>Branding</span>
+                                <a href="airplan.html">
+                                    <span>2024</span>
+                                    <span>Airplan</span>
+                                    <span>UX/UI</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
                                     </span>
@@ -97,10 +97,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 </a>
                             </li>
                             <li data-id="9">
-                                <a href="empty.hyml">
+                                <a href="empty.html">
                                     <span>2022</span>
                                     <span>Project 1</span>
-                                    <span>Branding</span>
+                                    <span>UX/UI</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
                                     </span>
