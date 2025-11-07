@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                             </li>
                             <li data-id="2">
                                 <a href="morii.html">
-                                    <span>2024</span>
+                                    <span>2025</span>
                                     <span>MORII Magazine</span>
                                     <span>Editorial</span>
                                     <span class="icon">
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                             </li>
                             <li data-id="5">
                                 <a href="pedaltopetal.html">
-                                    <span>2023</span>
+                                    <span>2024</span>
                                     <span>Pedal to Petal</span>
                                     <span>Branding</span>
                                     <span class="icon">
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                             </li>
                             <li data-id="8">
                                 <a href="yearbook.html">
-                                    <span>2023</span>
+                                    <span>2024</span>
                                     <span>Yearbook Poster</span>
                                     <span>Editorial</span>
                                     <span class="icon">
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                             </li>
                             <li data-id="9">
                                 <a href="empty.html">
-                                    <span>2022</span>
+                                    <span>2023</span>
                                     <span>Project 1</span>
                                     <span>UX/UI</span>
                                     <span class="icon">
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                             </li>
                             <li data-id="10">
                                 <a href="empty2.html">
-                                    <span>2022</span>
+                                    <span>2023</span>
                                     <span>Project 2</span>
                                     <span>UX/UI</span>
                                     <span class="icon">
