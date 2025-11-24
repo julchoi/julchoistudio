@@ -22,10 +22,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 </a>
                             </li>
                             <li data-id="2">
-                                <a href="morii.html">
+                                <a href="familihear.html">
                                     <span>2025</span>
-                                    <span>MORII Magazine</span>
-                                    <span>Editorial</span>
+                                    <span>Familihear</span>
+                                    <span>Hackathon</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
                                     </span>
@@ -67,10 +67,10 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 </a>
                             </li>
                             <li data-id="6">
-                                <a href="ahole.html">
-                                    <span>2024</span>
-                                    <span>AHOLE</span>
-                                    <span>Typeface</span>
+                                <a href="morii.html">
+                                    <span>2025</span>
+                                    <span>MORII Magazine</span>
+                                    <span>Editorial</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
                                     </span>
@@ -87,20 +87,20 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 </a>
                             </li>
                             <li data-id="8">
-                                <a href="yearbook.html">
+                                <a href="ahole.html">
                                     <span>2024</span>
-                                    <span>Yearbook Poster</span>
-                                    <span>Editorial</span>
+                                    <span>AHOLE</span>
+                                    <span>Typeface</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
                                     </span>
                                 </a>
                             </li>
                             <li data-id="9">
-                                <a href="empty.html">
-                                    <span>2023</span>
-                                    <span>Project 1</span>
-                                    <span>UX/UI</span>
+                                <a href="bff.html">
+                                    <span>2025</span>
+                                    <span>BFF</span>
+                                    <span>Branding</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
                                     </span>
@@ -108,8 +108,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
                             </li>
                             <li data-id="10">
                                 <a href="empty2.html">
-                                    <span>2023</span>
-                                    <span>Project 2</span>
+                                    <span>2026</span>
+                                    <span>Project</span>
                                     <span>UX/UI</span>
                                     <span class="icon">
                                         <img src="assets/images/icons/Arrow right.svg" alt="">
