@@ -323,6 +323,24 @@
 
             }
 
+            .video-box {
+                position: relative;
+                width: 100%;
+                padding-top: 56.27%; /* 1377x774 ratio */
+                border-radius: var(--border-radius);
+                overflow: hidden;
+              }
+              
+              .video-box iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: none;
+              }
+              
+
 
             /* 2개의 이미지가 붙어있는 스타일 */
             .img-col-2 {
