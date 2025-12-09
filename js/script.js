@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                                 </a>
                             </li>
                             <li data-id="2">
-                                <a href="familihear.html">
+                                <a href="https://medium.com/@schoi77/sva-ai-hackathon-creating-an-ai-communication-platform-for-immigrant-families-31a9896f44e7?postPublishedType=repub">
                                     <span>2025</span>
                                     <span>Familihear</span>
                                     <span>Hackathon</span>
