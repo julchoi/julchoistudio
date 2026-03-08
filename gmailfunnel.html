@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>julchoistudio - Gmail Funnel Extension </title>
+    <title>julchoistudio - Gmail Sales Funnel Extension </title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%235D4FF6'/></svg>"> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&family=STIX+Two+Text:ital@1&display=swap" rel="stylesheet">
 
     <style>
-        * { cursor: none; box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Geist', sans-serif;
@@ -22,21 +22,7 @@
         a { text-decoration: none; color: inherit; }
         img { display: block; width: 100%; height: auto; }
 
-        /* ── CURSOR ── */
-        .cursor {
-            width: 12px;
-            height: 12px;
-            background: #5D4FF6;
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-        }
-
-        /* ── NAV ── */
+       /* ── NAV ── */
         nav {
             display: flex;
             align-items: center;
@@ -264,6 +250,67 @@
             width: 100%;
             height: auto;
             display: block;
+            object-position: center 20%;
+        }
+
+        .feature-list {
+            margin-bottom: 4rem;
+        }
+
+        .feature-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            padding: 1.2rem 0 2.5rem;
+            border-top: 1px solid #e0e0e0;
+            align-items: start;
+        }
+
+        .feature-item:last-child {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .feature-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .feature-num {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.72rem;
+            color: #aaa;
+            letter-spacing: 0.06em;
+        }
+
+        .feature-name {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            color: #33363F;
+        }
+
+        .feature-desc {
+            font-size: 0.88rem;
+            line-height: 1.8;
+            color: #666;
+            padding-top: 0.3rem;
+        }
+
+        .competitor-logos {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .competitor-logos img {
+            width: 100%;
+            height: 150px;
+            border-radius: 8px;
+            background: #fff;
+            padding: 1.5rem 2rem;
+            object-fit: contain;
         }
 
         .img-slideshow-col {
@@ -402,13 +449,13 @@
         <div class="main">
 
             <p class="project-tag">Google · Design Challenge 2026</p>
-            <h1 class="project-title">Gmail Funnel Extension</h1>
+            <h1 class="project-title">Gmail Sales Funnel Extension</h1>
             <p class="project-desc">A Chrome extension that transforms Gmail into a lightweight CRM — helping sales teams track leads, prioritize follow-ups, and close deals without leaving their inbox.</p>
 
             <div class="project-meta">
                 <div class="meta-item">
                     <span class="meta-label">Role</span>
-                    <span class="meta-value">UX/UI Designer</span>
+                    <span class="meta-value">Product Designer</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Timeline</span>
@@ -420,7 +467,7 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Skills</span>
-                    <span class="meta-value">UX/UI · Research</span>
+                    <span class="meta-value">UX/UI · Research · Product <br> Strategy · Prototyping</span>
                 </div>
             </div>
 
@@ -457,12 +504,12 @@
             </div>
 
             <div class="img-full">
-                <div class="img-placeholder tall">Image</div>
+                <img src="assets/images/Website_Images/Funnel/3-1.png" alt="Funnel">
             </div>
 
             <div class="text-section" id="research">
                 <h2 class="section-title">Research Insights</h2>
-                <p class="section-body">These insight reinforce the direction that sales workflows should be integrated directly into communication tools like Gmail, rather than relying on separate CRM. 
+                <p class="section-body">These numbers reinforce the direction that sales workflows should be integrated directly into communication tools like Gmail, rather than relying on separate CRM platforms. Since most sales communication already happens in email, switching between multiple tools creates friction and wastes time on manual updates. Embedding CRM functions directly into Gmail could streamline workflows and reduce administrative work.
                 </p>
             </div>
 
@@ -473,7 +520,7 @@
             <div class="text-section" id="userresearch">
                 <p class="section-label">[ User Research ]</p>
                 <h2 class="section-title">Target Users</h2>
-                <p class="section-body">SMB sales managers (25-40) struggling with complex and 
+                <p class="section-body">SMB (Small to Medium) sales managers (25-40) struggling with complex and 
                     time-consuming CRMS.</p>
             </div>
 
@@ -485,10 +532,20 @@
                 <h2 class="section-title">Competitor Analysis</h2>
                 <p class="section-body">Competitors like HubSpot and Salesforce already provide advanced funnel management capabilities through features such as AI email drafting and automated meeting notes, but they still lack deeper intelligence in areas like smart attachment automation and relationship mapping.</p>
             </div>
-
-            <div class="img-full">
-                <img src="assets/images/Website_Images/Funnel/5.png" alt="Funnel">
+            <div class="competitor-logos">
+                <img src="assets/images/Website_Images/Funnel/5-1.png" alt="HubSpot">
+                <img src="assets/images/Website_Images/Funnel/5-2.png" alt="Streak">
+                <img src="assets/images/Website_Images/Funnel/5-3.png" alt="Slack">
+                <img src="assets/images/Website_Images/Funnel/5-4.png" alt="Notion">
+                <img src="assets/images/Website_Images/Funnel/5-5.png" alt="Salesforce">
+                <img src="assets/images/Website_Images/Funnel/5-6.png" alt="Copper">
+                <img src="assets/images/Website_Images/Funnel/5-7.png" alt="Pipedrive">
+                <img src="assets/images/Website_Images/Funnel/5-8.png" alt="Microsoft Dynamics">
             </div>
+
+            <!-- <div class="img-full">
+                <img src="assets/images/Website_Images/Funnel/5.png" alt="Funnel">
+            </div> -->
 
             <div class="text-section" id="userresearch">
                 <p class="section-body">I positioned our service as a high-AI, workflow-native solution that supports both individual productivity and team-level deal visibility.</p>
@@ -499,14 +556,32 @@
 
             <div class="text-section" id="solutions">
                 <p class="section-label">[ Solutions ]</p>
-                <h2 class="section-title">3 Key Features</h2>
-                <p class="section-body">Funnel works as an intelligent sales workflow layer that turns everyday sales communication into actionable deal insights and automated sales actions.
-                </p>
-            </div>
-            <div class="img-full">
-                <img src="assets/images/Website_Images/Funnel/7-1.png" alt="Funnel">
+                <h2 class="section-title">3 Key Features</h2>                </p>
             </div>
 
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-left">
+                        <span class="feature-num">01</span>
+                        <h3 class="feature-name">AI Deal Intelligence</h3>
+                    </div>
+                    <p class="feature-desc">Gmail uses AI to analyze email engagement and deal activity to surface lead priority, predict deal risk, and recommend next best actions, helping sales managers focus on high-impact opportunities.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-left">
+                        <span class="feature-num">02</span>
+                        <h3 class="feature-name">Smart Attachment → Funnel Intelligence</h3>
+                    </div>
+                    <p class="feature-desc">Gmail automatically links attachments and shared documents to deals, turning conversations and files into structured funnel data without manual CRM updates.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-left">
+                        <span class="feature-num">03</span>
+                        <h3 class="feature-name">Communication Automation</h3>
+                    </div>
+                    <p class="feature-desc">Gmail reduces admin work by generating meeting summaries, suggesting follow-ups, and syncing email and calendar actions so sales managers can stay focused on selling.</p>
+                </div>
+            </div>
             <div class="text-section" id="solutions">
                 <h2 class="section-title">Sitemap</h2>
                 <p class="section-body">*The Funnel extension integrates directly into Gmail (similar to Meet, Chat, and Notes) allowing users to manage deals, insights, and communication workflows without leaving their inbox.
@@ -521,12 +596,12 @@
                 <h2 class="section-title">Main Pages</h2>
                 </p>
             </div>
-            <div class="img-full">
-                <img src="assets/images/Website_Images/Funnel/7.png" alt="Gmail Funnel Extension">
+            <div class="img-full video">
+                <video src="assets/images/Website_Images/Funnel/vid3.mp4" autoplay loop muted playsinline></video>
             </div>
 
             <div class="text-section" id="outcome">
-                <h2 class="section-title">Core Feature 1: AI Deal Intelligence</h2>
+                <h2 class="section-title">Core Flow 1: AI Deal Intelligence</h2>
                 <p class="section-body">Enable sales managers to make  faster, more confident decisions  by surfacing priority, risk, and recommended actions directly inside their email workflow.
                 </p>
             </div>
@@ -535,7 +610,7 @@
             </div>
 
             <div class="text-section" id="outcome">
-                <h2 class="section-title">Core Feature 2: Smart Attachments</h2>
+                <h2 class="section-title">Core Flow 2: Smart Attachments</h2>
                 <p class="section-body">Automatically links email attachments and shared Google Docs to the correct deals inside Gmail, turning conversations and files into structured funnel data without manual CRM updates.
                 </p>
             </div>
@@ -582,11 +657,6 @@
 
     <script src="js/script.js"></script>
     <script>
-        const cursor = document.querySelector('.cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
 
         // highlight active sidebar link on scroll
         const sections = document.querySelectorAll('[id]');

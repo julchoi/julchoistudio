@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- TO DO LIST: Change img text into diff format and change footer back to org -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,55 +13,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js" crossorigin="anonymous"></script>
 
     <style>
-        /* ── CURSOR ── */
-        * { cursor: none;}
+       * { cursor: auto; }  /* restore default cursor */
 
         .cursor {
-            width: 16px;
-            height: 16px;
-            background: #5D4FF6;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 50%;
             position: fixed;
             top: 0;
             left: 0;
             pointer-events: none;
             transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease;
             z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-        }
-
-        .cursor span {
-            color: white;
-            font-family: 'Geist Mono', monospace;
-            font-size: 0.65rem;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            opacity: 0;
+            opacity: 0;  /* hidden by default */
             transition: opacity 0.2s ease;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
         }
 
-        .cursor.expanded {
-            height: 30px;
-            width: auto;
-            height: auto;
-            padding: 10px 16px;
-            border-radius: 20px;
+        .cursor img {
+            width: 24px;
+            height: 24px;
         }
 
-        .cursor.expanded span {
+        .cursor.visible {
             opacity: 1;
-        }
-
-
+     }
         /* ── RESET ── */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -160,7 +140,7 @@
 
 
         .work-grid {
-            padding: 0 1.5rem 10rem;
+            padding: 0 1.5rem 15rem;
         }
 
         /* Two columns, responsive width */
@@ -172,7 +152,6 @@
 
 
         /* Image container */
-        /* Fixed aspect ratio instead of fixed px height */
         .grid-item .thumb {
             aspect-ratio: 880 / 547;
             overflow: hidden;
@@ -238,6 +217,36 @@
 
         footer {
             display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 1.2rem;
+            border-top: 1px solid #e0e0e0;
+            font-family: 'Geist Mono', monospace;
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2.7rem;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover { color: #000; }
+
+        /* footer {
+            display: flex;
             align-items: flex-start;
             justify-content: space-between;
             padding: 2.2rem 2rem 1.5rem;
@@ -277,7 +286,7 @@
             font-size: 0.75rem;
             margin-top: 0.5rem;
             color: #aaa;
-        }
+        } */
 
         /* ══ RESPONSIVE ═══════════════════════════════════ */
         @media (max-width: 768px) {
@@ -305,8 +314,9 @@
 </head>
 
 <body>
-    <div class="cursor"><span></span></div>
-
+    <div class="cursor">
+        <img src="assets/images/icons/rightdiaarrow.png" alt="">
+    </div>
     <!-- NAV -->
     <nav>
         <a href="home.html" class="logo">julchoistudio.</a>
@@ -339,7 +349,7 @@
                 <a href="gmailfunnel.html">
                     <div class="thumb"><img src="assets/images/Main/Funnel.png" alt="Funnel"></div>
                     <div class="caption">
-                        <span class="title">Gmail Funnel Extension</span>
+                        <span class="title">Gmail Sales Funnel Extension</span>
                         <span class="meta">Google · Design Challenge 2026</span>
                     </div>
                 </a>
@@ -411,6 +421,32 @@
     <script src="js/script.js"></script>
 
     <footer>
+        <span class="footer-copy">© Julie Choi</span>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank" aria-label="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect x="2" y="9" width="4" height="12"/>
+                    <circle cx="4" cy="4" r="2"/>
+                </svg>
+            </a>
+            <a href="https://www.instagram.com/julchoi.studio/" target="_blank" aria-label="Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+                </svg>
+            </a>
+            <a href="mailto:juliechoistudio@gmail.com" aria-label="Email">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="M2 7l10 7 10-7"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <!-- <footer>
         <div class="footer-links">
             <div class="footer-col">
                 <span class="footer-label">For Networking</span>
@@ -426,7 +462,7 @@
             </div>
         </div>
         <span class="footer-copy">© Julie Choi</span>
-    </footer>
+    </footer> -->
 
 </body>
 </html>

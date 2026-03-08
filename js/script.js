@@ -73,9 +73,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 });
 
-// cursor
-document.addEventListener('DOMContentLoaded', () => {
-
+    // cursor
     const cursor = document.querySelector('.cursor');
 
     document.addEventListener('mousemove', (e) => {
@@ -83,19 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
         cursor.style.top = e.clientY + 'px';
     });
 
-    document.querySelectorAll('.grid-item').forEach(item => {
-        const link = item.querySelector('a');
-        const href = link?.getAttribute('href') || '';
-        const isExternal = href.startsWith('http');
-
-        item.addEventListener('mouseenter', () => {
-            cursor.classList.add('expanded');
-            cursor.querySelector('span').textContent = isExternal ? '↗ View Article' : '⊙ View Case Study';
+    document.querySelectorAll('.grid-item .thumb').forEach(thumb => {
+        thumb.addEventListener('mouseenter', () => {
+            cursor.classList.add('visible');
         });
-
-        item.addEventListener('mouseleave', () => {
-            cursor.classList.remove('expanded');
-            cursor.querySelector('span').textContent = '';
+        thumb.addEventListener('mouseleave', () => {
+            cursor.classList.remove('visible');
         });
     });
-});
