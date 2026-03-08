@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI File Organization for Music Producers — Julie Choi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&family=STIX+Two+Text:ital@1&display=swap" rel="stylesheet">
+
+    <style>
+        * { cursor: none; box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Geist', sans-serif;
+            font-weight: 400;
+            color: #33363F;
+            background: #fafcfd;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { display: block; width: 100%; height: auto; }
+
+        /* ── CURSOR ── */
+        .cursor {
+            width: 12px;
+            height: 12px;
+            background: #5D4FF6;
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+        }
+
+        /* ── NAV ── */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            height: 52px;
+            border-bottom: 1px solid #e0e0e0;
+            background: #fafcfd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #33363F;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #aaa;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: #000; }
+        .nav-links a.active { color: #5D4FF6; }
+
+
+        /* ── PAGE LAYOUT ── */
+        .page {
+            display: grid;
+            grid-template-columns: 15% 85%;
+            min-height: calc(100vh - 52px);
+        }
+
+
+        /* ── SIDEBAR ── */
+        .sidebar {
+            padding: 2rem 0 2rem 1.5rem;
+            position: sticky;
+            top: 52px;
+            height: calc(100vh - 52px);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .back-btn {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.75rem;
+            color: #aaa;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover { color: #000; }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            align-items: flex-start;
+            padding-left: 0;
+        }
+
+        .sidebar-nav a {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.72rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+            text-decoration: none;
+            border: none;
+            outline: none;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active { color: #000; }
+
+
+        /* ── MAIN CONTENT ── */
+        .main {
+            padding: 3rem 6rem;
+            max-width: 100%;
+        }
+
+
+        /* ── PROJECT HEADER ── */
+        .project-tag {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.72rem;
+            color: #aaa;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        .project-title {
+            font-size: 3rem;
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+
+        .project-desc {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: #666;
+            max-width: 890px;
+            margin-bottom: 3rem;
+        }
+
+
+        /* ── META TABLE ── */
+        .project-meta {
+            display: flex;
+            gap: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .meta-label {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.68rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .meta-value {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #33363F;
+        }
+
+
+        /* ── CONTENT SECTIONS ── */
+        .img-full {
+            width: 100%;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .img-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .img-four-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .text-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-label {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.7rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-body {
+            font-size: 0.92rem;
+            line-height: 1.8;
+            color: #666;
+            max-width: 1050px;
+        }
+
+        .img-placeholder {
+            width: 100%;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.72rem;
+            color: #bbb;
+            border-radius: 4px;
+        }
+
+        .img-placeholder.tall { height: 480px; }
+        .img-placeholder.short { height: 280px; }
+
+        .img-full video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .img-slideshow-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .slideshow {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slideshow img {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+
+        .slideshow img.active {
+            display: block;
+        }
+
+        .slideshow-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 2;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: #fff;
+        }
+
+
+        /* ── FOOTER ── */
+        footer {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 3rem 1.5rem 2.5rem;
+            border-top: 1px solid #e0e0e0;
+            font-family: 'Geist Mono', monospace;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .footer-label {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #33363F;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: #5D4FF6; }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            color: #aaa;
+            margin-top: 0.5rem;
+        }
+
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .page { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+            .main { padding: 2rem 1.5rem; }
+            .project-title { font-size: 1.8rem; }
+            .img-two-col { grid-template-columns: 1fr; }
+            .project-meta { flex-wrap: wrap; gap: 2rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="cursor"></div>
+
+    <!-- NAV -->
+    <nav>
+        <a href="home.html" class="logo">julchoistudio.</a>
+        <div class="nav-links">
+            <a href="home.html" class="active">Work</a>
+            <a href="playground.html">Fun</a>
+            <a href="about.html">About</a>
+            <a href="#">Resume</a>
+        </div>
+    </nav>
+
+    <div class="page">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <a href="home.html" class="back-btn">← Back</a>
+            <div class="sidebar-nav">
+                <a href="#context" class="active">Context</a>  
+                <a href="#overview">Overview</a>
+                <a href="#research">Research</a>
+                <a href="#userresearch">User Research</a>
+                <a href="#solutions">Solutions</a>
+                <a href="#outcome">Outcome</a>
+                <a href="#reflection">Reflection</a>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <div class="main">
+
+            <p class="project-tag">Sorta · UX/UI 2025</p>
+            <h1 class="project-title">AI File Organizer for Music Producers</h1>
+            <p class="project-desc">By automatically detecting tempo, key, and mood, Sorta organizes music files like demos, loops, and beats into smart folders. The project focuses on simplifying creative workflow so artists can spend less time searching, and more time making music.</p>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Role</span>
+                    <span class="meta-value">UX/UI Designer</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Timeline</span>
+                    <span class="meta-value">3 months</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Type</span>
+                    <span class="meta-value">Personal Casestudy</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Skills</span>
+                    <span class="meta-value">UX/UI · Research</span>
+                </div>
+            </div>
+
+            <!-- Hero image -->
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/Sorta1.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/Sorta.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/1.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/2.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/3.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/4-1.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/4.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/5-2.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/6.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/7.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/8.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/9.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/11.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/10.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/12.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/13.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/14.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/15.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/16.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/17.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/18.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/19.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/20.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/21.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/22.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/23.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/24.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/25.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/26.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/27.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/28.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/29.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/30.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/31.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Keepr/32.png" alt="Gmail Funnel Extension">
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <script src="js/script.js"></script>
+    <script>
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // highlight active sidebar link on scroll
+        const sections = document.querySelectorAll('[id]');
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = 'context';
+            sections.forEach(section => {
+                if (window.scrollY >= section.offsetTop - 130) {
+                    current = section.getAttribute('id');
+                }
+            });
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        // slideshow
+        document.querySelectorAll('.slideshow').forEach(slideshow => {
+            const imgs = slideshow.querySelectorAll('img');
+            const dots = slideshow.querySelectorAll('.dot');
+            let current = 0;
+
+            setInterval(() => {
+                imgs[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = (current + 1) % imgs.length;
+                imgs[current].classList.add('active');
+                dots[current].classList.add('active');
+            }, 3000);
+        });
+    </script>
+    
+
+</body>
+</html>

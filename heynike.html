@@ -3,191 +3,357 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/style.css">
-    <title>Work</title>
+    <title>Gmail Funnel Extension — Julie Choi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&family=STIX+Two+Text:ital@1&display=swap" rel="stylesheet">
+
+    <style>
+        * { cursor: none; box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Geist', sans-serif;
+            font-weight: 400;
+            color: #33363F;
+            background: #fafcfd;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { display: block; width: 100%; height: auto; }
+
+        /* ── CURSOR ── */
+        .cursor {
+            width: 12px;
+            height: 12px;
+            background: #5D4FF6;
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* ── NAV ── */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            height: 52px;
+            border-bottom: 1px solid #e0e0e0;
+            background: #fafcfd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #33363F;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #aaa;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: #000; }
+        .nav-links a.active { color: #5D4FF6; }
+
+
+        /* ── PROJECT HEADER ── */
+        .project-header {
+            padding: 80px 1.5rem 60px;
+            max-width: 760px;
+        }
+
+        .project-tag {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.75rem;
+            color: #aaa;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        .project-title {
+            font-size: 2.8rem;
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-title em {
+            font-family: 'STIX Two Text', serif;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .project-desc {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #666;
+            max-width: 600px;
+        }
+
+
+        /* ── PROJECT META ── */
+        .project-meta {
+            display: flex;
+            gap: 3rem;
+            padding: 2rem 1.5rem 3rem;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            margin: 0 1.5rem 4rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .meta-label {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.7rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .meta-value {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #33363F;
+        }
+
+
+        /* ── CONTENT SECTIONS ── */
+        .project-content {
+            padding: 0 1.5rem 8rem;
+            max-width: 1200px;
+        }
+
+        /* Full width image */
+        .img-full {
+            width: 100%;
+            margin-bottom: 4rem;
+        }
+
+        .img-full img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Two column images */
+        .img-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Text section */
+        .text-section {
+            max-width: 660px;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.72rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: #33363F;
+        }
+
+        .section-body {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: #666;
+        }
+
+        /* Image placeholder (remove once you have real images) */
+        .img-placeholder {
+            width: 100%;
+            background: #f0f0f0;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.75rem;
+            color: #aaa;
+        }
+
+        .img-placeholder.tall { height: 500px; }
+        .img-placeholder.short { height: 300px; }
+
+
+        /* ── FOOTER ── */
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            height: 52px;
+            border-top: 1px solid #e0e0e0;
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.75rem;
+            color: #aaa;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .footer-links a { color: #aaa; transition: color 0.2s; }
+        .footer-links a:hover { color: #000; }
+
+    </style>
 </head>
 <body>
-    <div class="wrap work detail">
-        <header>
-            <nav>
-                <ul>
-                    <li>
-                        <a class="logo" href="home.html">julchoistudio.</a>
-                    </li>
-                    <li>
-                        <a href="about.html">About</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a href="home.html">Work</a>
-                    </li>
-                    <li>
-                        <a href="playground.html">Playground</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
 
-        <main>
-            <div class="left">
-                <section class="work-info">
-                    <ul>
-                        <li>
-                            <span>[project]</span>
-                            <b>Hey, Nike!</b>
-                        </li>
-                        <li>
-                            <span>[category]</span>
-                            <b>UX/UI</b>
-                        </li>
-                        <li>
-                            <span>[Teammate]</span>
-                            <b>Adam Chen</b>
-                        </li>
-                        <li>
-                            <span>[instructor]</span>
-                            <b>Justin Lee & Thomas Loizeau</b>
-                        </li>
-                    </ul>
-                </section>
-            
-                <work-list></work-list>
-                
-            </div>
-            <div class="right">  
-                <p class="desc-01">Nike wants to improve the usability and accessibility of its app for older users so that seniors can also easily navigate and enjoy the full range of Nike products and services. The target users are mainly seniors (ages 65+) and seniors who want to explore Nike products and services.  </p>
-              
-                <div class="img-box">
-                    <picture>
-                        <!-- <source srcset="assets/images/Website_Images/Nike-m/1.png" media="(max-width: 835px)">
-                        <source srcset="assets/images/Website_Images/Nike-t/1.png" media="(max-width: 1024px)"> -->
-                        <img src="assets/images/Website_Images/Nike/0-1.png" alt="View Comm Dsgn">
-                    </picture>
-                </div>
-                <div class="img-box">
-                    <picture>
-                        <!-- <source srcset="assets/images/Website_Images/Nike-m/Main.png" media="(max-width: 835px)">
-                        <source srcset="assets/images/Website_Images/Nike-t/Main.png" media="(max-width: 1024px)"> -->
-                        <img src="assets/images/Website_Images/Nike/Main.png" alt="View Comm Dsgn">
-                    </picture>
-                </div>
-                <div class="img-box">
-                    <picture>
-                        <!-- <source srcset="assets/images/Website_Images/Nike-m/1.png" media="(max-width: 835px)">
-                        <source srcset="assets/images/Website_Images/Nike-t/1.png" media="(max-width: 1024px)"> -->
-                        <img src="assets/images/Website_Images/Nike/1.png" alt="View Comm Dsgn">
-                    </picture>
-                </div>
-                <div class="img-box">
-                    <picture>
-                        <!-- <source srcset="assets/images/Website_Images/Nike-m/1.png" media="(max-width: 835px)">
-                        <source srcset="assets/images/Website_Images/Nike-t/1.png" media="(max-width: 1024px)"> -->
-                        <img src="assets/images/Website_Images/Nike/1-1.png" alt="View Comm Dsgn">
-                    </picture>
-                </div>
-                <div class="img-box">
-                    <picture>
-                        <!-- <source srcset="assets/images/Website_Images/Nike-m/1.png" media="(max-width: 835px)">
-                        <source srcset="assets/images/Website_Images/Nike-t/1.png" media="(max-width: 1024px)"> -->
-                        <img src="assets/images/Website_Images/Nike/4-1.png" alt="View Comm Dsgn">
-                    </picture>
-                </div>
-                <div class="img-box border">
-                    <picture>
-                        <!-- <source srcset="assets/images/Website_Images/Nike/2-m.png" media="(max-width: 835px)"> -->
-                        <!-- <source srcset="assets/images/Website_Images/Nike-t/2.png" media="(max-width: 1024px)"> -->
-                        <img src="assets/images/Website_Images/Nike/2.png" alt="View Comm Dsgn">
-                    </picture>
-                </div>
-                <div class="img-box border">
-                    <picture>
-                        <!-- <source srcset="assets/images/Website_Images/Nike-m/3.png" media="(max-width: 835px)">
-                        <source srcset="assets/images/Website_Images/Nike-t/3.png" media="(max-width: 1024px)"> -->
-                        <img src="assets/images/Website_Images/Nike/3.png" alt="View Comm Dsgn">
-                    </picture>
-                </div>
-                <div class="img-box border">
-                    <picture>
-                        <!-- <source srcset="assets/images/Website_Images/Nike-m/5.png" media="(max-width: 835px)">
-                        <source srcset="assets/images/Website_Images/Nike-t/5.png" media="(max-width: 1024px)"> -->
-                        <img src="assets/images/Website_Images/Nike/5.png" alt="View Comm Dsgn">
-                    </picture>
-                </div>
-                <div class="img-box">
-                    <picture>
-                        <!-- <source srcset="assets/images/Website_Images/Nike-m/4.png" media="(max-width: 835px)">
-                        <source srcset="assets/images/Website_Images/Nike-t/4.png" media="(max-width: 1024px)"> -->
-                        <img src="assets/images/Website_Images/Nike/4.png" alt="View Comm Dsgn">
-                    </picture>
-                </div>
-                <div class="img-box">
-                    <picture>
-                        <!-- <source srcset="assets/images/Website_Images/Nike-m/6.png" media="(max-width: 835px)">
-                        <source srcset="assets/images/Website_Images/Nike-t/6.png" media="(max-width: 1024px)"> -->
-                        <img src="assets/images/Website_Images/Nike/6.png" alt="View Comm Dsgn">
-                    </picture>
-                </div>
-                <div class="img-box border">
-                    <picture>
-                        <!-- <source srcset="assets/images/Website_Images/Nike-m/7.png" media="(max-width: 835px)">
-                        <source srcset="assets/images/Website_Images/Nike-t/7.png" media="(max-width: 1024px)"> -->
-                        <img src="assets/images/Website_Images/Nike/7.png" alt="View Comm Dsgn">
-                    </picture>
-                </div>
-                <div class="img-box">
-                    <picture>
-                        <!-- <source srcset="assets/images/Website_Images/Nike-m/8.png" media="(max-width: 835px)">
-                        <source srcset="assets/images/Website_Images/Nike-t/8.png" media="(max-width: 1024px)"> -->
-                        <img src="assets/images/Website_Images/Nike/8.png" alt="View Comm Dsgn">
-                    </picture>
-                </div>
-                <div class="img-box">
-                    <picture>
-                        <!-- <source srcset="assets/images/Website_Images/Nike-m/9.png" media="(max-width: 835px)">
-                        <source srcset="assets/images/Website_Images/Nike-t/9.png" media="(max-width: 1024px)"> -->
-                        <img src="assets/images/Website_Images/Nike/9.png" alt="View Comm Dsgn">
-                    </picture>
-                </div>
-                <div class="img-box">
-                    <picture>
-                        <!-- <source srcset="assets/images/Website_Images/Nike-m/4.png" media="(max-width: 835px)">
-                        <source srcset="assets/images/Website_Images/Nike-t/4.png" media="(max-width: 1024px)"> -->
-                        <img src="assets/images/Website_Images/Nike/9-1.png" alt="View Comm Dsgn">
-                    </picture>
-                </div>
-                <div class="img-box">
-                    <picture>
-                        <!-- <source srcset="assets/images/Website_Images/Nike-m/10.png" media="(max-width: 835px)">
-                        <source srcset="assets/images/Website_Images/Nike-t/10.png" media="(max-width: 1024px)"> -->
-                        <img src="assets/images/Website_Images/Nike/10.png" alt="View Comm Dsgn">
-                    </picture>
-                </div>
+    <div class="cursor"></div>
 
-                <!-- prev, next button -->
-                <div class="pagenation">
-                    <a href="morii.html" class="prev-btn">
-                        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0.646447 3.64254C0.451184 3.8378 0.451184 4.15438 0.646447 4.34965L3.82843 7.53163C4.02369 7.72689 4.34027 7.72689 4.53553 7.53163C4.7308 7.33636 4.7308 7.01978 4.53553 6.82452L1.70711 3.99609L4.53553 1.16767C4.7308 0.972404 4.7308 0.655821 4.53553 0.460559C4.34027 0.265297 4.02369 0.265297 3.82843 0.460559L0.646447 3.64254ZM15 3.49609L1 3.49609L1 4.49609L15 4.49609L15 3.49609Z" fill="black"/>
-                            </svg>
-                            Prev
-                    </a>
-                    <a href="cvs.html" class="next-btn">Next
-                        <svg width="15" height="8" viewBox="0 0 15 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14.3536 4.35355C14.5488 4.15829 14.5488 3.84171 14.3536 3.64645L11.1716 0.464466C10.9763 0.269204 10.6597 0.269204 10.4645 0.464466C10.2692 0.659728 10.2692 0.976311 10.4645 1.17157L13.2929 4L10.4645 6.82843C10.2692 7.02369 10.2692 7.34027 10.4645 7.53553C10.6597 7.7308 10.9763 7.7308 11.1716 7.53553L14.3536 4.35355ZM0 4.5L14 4.5V3.5L0 3.5L0 4.5Z" fill="black"/>
-                            </svg>
-                    </a>
-                </div>
+    <!-- NAV -->
+    <nav>
+        <a href="home.html" class="logo">julchoistudio.</a>
+        <div class="nav-links">
+            <a href="home.html" class="active">Work</a>
+            <a href="playground.html">Fun</a>
+            <a href="about.html">About</a>
+            <a href="#">Resume</a>
+        </div>
+    </nav>
 
-            </div>
-        </main>
-
-        <!-- mobile bottom menu -->
-        <m-nav></m-nav>
-        
+    <!-- PROJECT HEADER -->
+    <div class="project-header">
+        <p class="project-tag">Google · Design Challenge · 2026</p>
+        <h1 class="project-title">Gmail Funnel <em>Extension</em></h1>
+        <p class="project-desc">A Chrome extension that transforms Gmail into a lightweight CRM — helping sales teams track leads, prioritize follow-ups, and close deals without leaving their inbox.</p>
     </div>
 
+    <!-- PROJECT META -->
+    <div class="project-meta">
+        <div class="meta-item">
+            <span class="meta-label">Role</span>
+            <span class="meta-value">UX/UI Designer</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Timeline</span>
+            <span class="meta-value">2 Weeks</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Type</span>
+            <span class="meta-value">Design Challenge</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Year</span>
+            <span class="meta-value">2026</span>
+        </div>
+    </div>
+
+    <!-- PROJECT CONTENT -->
+    <div class="project-content">
+
+        <!-- Hero image -->
+        <div class="img-full">
+            <img src="assets/images/Main/Funnel.png" alt="Gmail Funnel Extension">
+        </div>
+
+        <!-- Overview -->
+        <div class="text-section">
+            <p class="section-label">[ Overview ]</p>
+            <h2 class="section-title">The Problem</h2>
+            <p class="section-body">Sales teams spend hours switching between Gmail and their CRM tools, losing context and missing follow-ups. Gmail Funnel brings the CRM experience directly into the inbox — no tab switching, no lost threads.</p>
+        </div>
+
+        <!-- Two column images — replace src with your actual images -->
+        <div class="img-two-col">
+            <div class="img-placeholder tall">Image placeholder</div>
+            <div class="img-placeholder tall">Image placeholder</div>
+        </div>
+
+        <!-- Section -->
+        <div class="text-section">
+            <p class="section-label">[ Process ]</p>
+            <h2 class="section-title">Research & Ideation</h2>
+            <p class="section-body">Add your process description here. What did you discover? What were the key insights that shaped your design decisions?</p>
+        </div>
+
+        <!-- Full width placeholder -->
+        <div class="img-full">
+            <div class="img-placeholder tall">Image placeholder</div>
+        </div>
+
+        <!-- Solution -->
+        <div class="text-section">
+            <p class="section-label">[ Solution ]</p>
+            <h2 class="section-title">Final Design</h2>
+            <p class="section-body">Describe your final solution here. What did you design and why does it solve the problem effectively?</p>
+        </div>
+
+        <div class="img-two-col">
+            <div class="img-placeholder short">Image placeholder</div>
+            <div class="img-placeholder short">Image placeholder</div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <span>Designed + Coded with ♥ by Julie</span>
+        <div class="footer-links">
+            <a href="https://www.instagram.com/julchoi.studio/" target="_blank">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="mailto:juliechoistudio@gmail.com">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </a>
+        </div>
+    </footer>
+
     <script src="js/script.js"></script>
+    <script>
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+    </script>
 
 </body>
 </html>

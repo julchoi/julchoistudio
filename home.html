@@ -3,244 +3,430 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.0/masonry.pkgd.min.js" integrity="sha512-WaqrlkVlJRs7/+/McaNTsxOA8LGnPK9pzfzTTHOCzo/XcgcC9yG8JJxJ+IGYn3j65x2DP9q0o8fBX8HtBJuc2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js" integrity="sha512-kfs3Dt9u9YcOiIt4rNcPUzdyNNO9sVGQPiZsub7ywg6lRW5KuK1m145ImrFHe3LMWXHndoKo2YRXWy8rnOcSKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>Work</title>
+    <title>Julie Choi — Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital@1&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.0/masonry.pkgd.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* ── CURSOR ── */
+        * { cursor: none;}
+
+        .cursor {
+            width: 16px;
+            height: 16px;
+            background: #5D4FF6;
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .cursor span {
+            color: white;
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .cursor.expanded {
+            height: 30px;
+            width: auto;
+            height: auto;
+            padding: 10px 16px;
+            border-radius: 20px;
+        }
+
+        .cursor.expanded span {
+            opacity: 1;
+        }
+
+
+        /* ── RESET ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Geist', sans-serif;
+            font-weight: 400;
+            color: #000;
+            background: #fafcfd; /* matches your Figma background */
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { display: block; width: 100%; height: auto; }
+
+
+        /* ══ NAV ══════════════════════════════════════════
+           julchoistudio.  [logo left]
+           WORK  FUN  ABOUT  RESUME  [links right]
+        ═══════════════════════════════════════════════ */
+        
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            height: 52px;
+            border-bottom: 1px solid #e0e0e0;
+            background: #fafcfd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #33363F;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #aaa;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a.active {
+            color: #5D4FF6;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+
+        .hero {
+            display: grid;
+            padding: 210px 1.5rem 1rem; 
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .hero-text h1 {
+            font-size: 3.1rem;
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            color: #33363F;
+        }
+
+        .hero-text h1 em {
+            font-family: 'STIX Two Text', serif;
+            font-size: 3.3rem;
+            font-style: italic;
+            font-weight: 300;
+            color: #33363F;
+        }
+
+        .hero-label {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #aaa;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+
+        .work-grid {
+            padding: 0 1.5rem 10rem;
+        }
+
+        /* Two columns, responsive width */
+        .grid-sizer,
+        .grid-item {
+            width: calc(50% - 16px);
+            margin-bottom: 1.5rem;
+        }
+
+
+        /* Image container */
+        /* Fixed aspect ratio instead of fixed px height */
+        .grid-item .thumb {
+            aspect-ratio: 880 / 547;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .grid-item .thumb video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.4s ease;
+            transform: scale(1.10);
+        }
+
+        .grid-item .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .grid-item:hover .thumb img {
+            transform: scale(1.02);
+        }
+
+        .grid-item .thumb::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            transition: background 0.3s ease;
+        }
+
+        .grid-item:hover .thumb::after {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Caption below image — matches your Figma layout */
+        .grid-item .caption {
+            padding: 0.85rem 0 0 ;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .grid-item .caption .title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #000;
+        }
+
+        .grid-item .caption .meta {
+            font-family: 'Geist Mono', monospace;
+            font-weight: 400;
+            font-size: 0.8rem;
+            color: #aaa;
+            white-space: nowrap;
+        }
+
+        footer {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 2.2rem 2rem 1.5rem;
+            border-top: 1px solid #e0e0e0;
+            font-family: 'Geist Mono', monospace;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .footer-label {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #33363F;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: #5D4FF6; }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            color: #aaa;
+        }
+
+        /* ══ RESPONSIVE ═══════════════════════════════════ */
+        @media (max-width: 768px) {
+
+            nav { padding: 0 1.2rem; }
+
+            .hero {
+                grid-template-columns: 1fr;
+                height: auto;
+                padding: 1.6rem 1.2rem 2rem;
+                gap: 2rem;
+            }
+
+            .hero-text { justify-content: flex-start; }
+
+            .hero-text h1 { font-size: 1.8rem; }
+
+            .work-grid { padding: 0 1.2rem 5rem; }
+
+            .grid-sizer,
+            .grid-item { width: 100%; }
+        }
+
+    </style>
 </head>
 <body>
-    <div class="wrap work">
+    <div class="cursor"><span></span></div>
 
-        <!-- header -->
-        <header>
-            <nav>
-                <ul>
-                    <li>
-                        <a class="logo" href="home.html">julchoistudio.</a>
-                    </li>
-                    <li>
-                        <a href="about.html">About</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a href="home.html">Work</a> 
-                    </li>
-                    <li>
-                        <a href="playground.html">Playground</a>
-                    </li>
-                </ul>
-        </header>
-        <!-- header -->
+    <!-- NAV -->
+    <nav>
+        <a href="home.html" class="logo">julchoistudio.</a>
+        <div class="nav-links">
+            <a href="home.html" class="active">Work</a>
+            <a href="#">Fun</a>
+            <a href="#">About</a>
+            <a href="#">Resume</a>
+        </div>
+    </nav>
 
-        <main>
+    <!-- HERO -->
+    <section class="hero">
 
-            <!-- Left side -->
-            <div class="left">
+        <!-- Left: headline at bottom -->
+        <div class="hero-text">
+            <span class="hero-label">Hi, I'm Julie!</span>
+            <h1>A product designer focused on <br> interaction, visual, and strategy.</h1>
+        </div>
 
-                <section class="introduce">
-                    <p>
-                        Hi, I’m Julie Choi, a New York–based designer creating intuitive digital experiences that bridge design and function. I focus on product design, with a growing passion for branding.                    </p>
-                </section>
-                
-                <!-- Work list Template (※ 내용 수정은 js파일 / css 수정은 work-list.css) -->
-                <work-list></work-list>
+    </section>
+
+    <!-- WORK GRID -->
+    <section class="work-grid">
+        <div class="grid">
+
+            <div class="grid-sizer"></div>
+
+            <div class="grid-item">
+                <a href="gmailfunnel.html">
+                    <div class="thumb"><img src="assets/images/Main/Funnel.png" alt="Funnel"></div>
+                    <div class="caption">
+                        <span class="title">Gmail Funnel Extension</span>
+                        <span class="meta">Google · Design Challenge 2026</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="grid-item">
+                <a href="sanix.html">
+                    <div class="thumb video"><video src="assets/images/Main/Sanix.mp4" autoplay loop muted playsinline alt="Sanix"></div>
+                    <div class="caption">
+                        <span class="title">AI/AR Glasses: Making Invisible Risk Visible</span>
+                        <span class="meta">SANIX · UXUI 2026</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="grid-item">
+                <a href="https://medium.com/@schoi77/sva-ai-hackathon-creating-an-ai-communication-platform-for-immigrant-families-31a9896f44e7?postPublishedType=repub" target="_blank">
+                    <div class="thumb video"><video src="assets/images/Main/Familihear1.mp4" autoplay loop muted playsinline alt="Sanix"></div>
+                        <div class="caption">
+                        <span class="title">Product for Immigrant Families</span>
+                        <span class="meta">Familihear · Hackathon 2025</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="grid-item">
+                <a href="sorta.html">
+                    <div class="thumb"><img src="assets/images/Main/Sorta.png" alt="Sorta"></div>
+                    <div class="caption">
+                        <span class="title">AI File Organization for Music Producers</span>
+                        <span class="meta">SORTA · UXUI 2025</span>
+                    </div>
+                </a>
             </div>
 
 
-             <!-- Right side -->
-            <div class="right grid">
 
-                <div class="grid-sizer"></div>
-
-                <!-- Top blank -->
-                <!-- <div class="blank-top grid-item"></div> -->
-
-
-                <!-- Work Thumnail list -->
-                <!-- 이미지 hover 시 나타나는 작업물 제목은 a태그 안의 name 부분에 작성하면 자동으로 들어갑니다. (css로 작성 X) -->
-
-                <div class="img-box grid-item" data-id="1">
-                    <a href="keepr.html" class="work03" name="Sorta, UXUI">
-                        <picture>
-                            <source srcset="assets/images/Main-mobile/Sorta.png" media="(max-width: 835px)">
-                            <source srcset="assets/images/Main/Sorta1.png" media="(max-width: 1024px)">
-                            <img src="assets/images/Main/Sorta1.png" alt="View COMM DSGN" loading="lazy">
-                        </picture>
-                        <p class="m-title">Sorta, UXUI</p>
-                    </a>
-                </div>
-                <div class="img-box grid-item margin-none" data-id="2">
-                    <a href="https://medium.com/@schoi77/sva-ai-hackathon-creating-an-ai-communication-platform-for-immigrant-families-31a9896f44e7?postPublishedType=repub" class="work08" name="Familihear,Hackathon">
-                        <picture>
-                            <source srcset="assets/images/Main-mobile/Familihear.png" media="(max-width: 835px)">
-                            <source srcset="assets/images/Main-tablet/Familihear.png" media="(max-width: 1024px)">
-                            <img src="assets/images/Main/Familihear.png" alt="View familihear" loading="lazy">
-                        </picture>
-                        <p class="m-title">Familihear,Hackathon</p>
-                    </a>
-                </div>
-                <div class="img-box grid-item" data-id="3">
-                    <a href="heynike.html" class="work04" name="Hey, Nike!, UX/UI">
-                        <picture>
-                            <source srcset="assets/images/Main-mobile/Nike1.png" media="(max-width: 835px)">
-                            <source srcset="assets/images/Main-tablet/Nike.png" media="(max-width: 1024px)">
-                            <img src="assets/images/Main/Nike.png" alt="View Hey, Nike! UX/UI Design" loading="lazy">
-                        </picture>
-                        <p class="m-title">Hey, Nike!, UX/UI</p>
-                    </a>
-                </div>
-                <div class="img-box grid-item margin-none" data-id="4">
-                    <a href="cvs.html" class="work06" name="CVS Health, UX/UI">
-                        <picture>
-                            <source srcset="assets/images/Main-mobile/CVS.png" media="(max-width: 835px)">
-                            <source srcset="assets/images/Main-tablet/CVS.png" media="(max-width: 1024px)">
-                            <img src="assets/images/Main/CVS.png" alt="View Pedal to Petal Branding" loading="lazy">
-                        </picture>
-                        <p class="m-title">CVS Health, UX/UI</p>
-                    </a>
-                </div>
-                <div class="img-box grid-item" data-id="5">
-                    <a href="pedaltopetal.html" class="work07" name="Pedal to Petal, Branding">
-                        <picture>
-                            <source srcset="assets/images/Main-mobile/P2P2.png" media="(max-width: 835px)">
-                            <source srcset="assets/images/Main-tablet/P2P2.png" media="(max-width: 1024px)">
-                            <img src="assets/images/Main/P2P.png" alt="View Pedal to Petal Branding" loading="lazy">
-                        </picture>
-                        <p class="m-title">Pedal to Petal, Branding</p>
-                    </a>
-                </div>
-                <div class="img-box grid-item margin-none" data-id="6">
-                    <a href="morii.html" class="work02" name="MORII Magazine, Editorial">
-                        <picture>
-                            <source srcset="assets/images/Main-mobile/MORII.png" media="(max-width: 835px)">
-                            <source srcset="assets/images/Main-tablet/MORII.png" media="(max-width: 1024px)">
-                            <img src="assets/images/Main/MORII.png" alt="View MORII Magazine" loading="lazy">
-                        </picture>
-                        <p class="m-title">MORII Magazine, Editorial</p>
-                    </a>  
-                </div>
-                <div class="img-box grid-item" data-id="7">
-                    <a href="airplan.html" class="work05" name="Airplan, UX/UI">
-                        <picture>
-                            <source srcset="assets/images/Main-mobile/Airplan.png" media="(max-width: 835px)">
-                            <source srcset="assets/images/Main-tablet/Airplan.png" media="(max-width: 1024px)">
-                            <img src="assets/images/Main/Airplan.png" alt="View Airplan UX/UI Design" loading="lazy">                        
-                        </picture>
-                        <p class="m-title">Airplan, UX/UI</p>
-                    </a>
-                </div>   
-                <div class="img-box grid-item margin-none" data-id="8">
-                    <a href="ahole.html" class="work01" name="AHOLE, Typeface & Poster">
-                        <picture>
-                            <source srcset="assets/images/Main-mobile/AHOLE.png" media="(max-width: 835px)">
-                            <source srcset="assets/images/Main-tablet/AHOLE.png" media="(max-width: 1024px)">
-                            <img src="assets/images/Main/AHOLE.png" alt="View AHOLE Typeface">
-                        </picture>
-                        <p class="m-title">AHOLE, Typeface & Poster</p>
-                    </a>
-                </div>
-                <!-- <div class="img-box grid-item margin-none" data-id="9">
-                    <a href="familihear.html" class="work09" name="Project 1, UX/UI">
-                        <picture>
-                            <source srcset="assets/images/Main-mobile/empty.png" media="(max-width: 835px)">
-                            <source srcset="assets/images/Main-tablet/empty.png" media="(max-width: 1024px)">
-                            <img src="assets/images/Main/empty.png" alt="View project" loading="lazy">
-                        </picture>
-                        <p class="m-title">Project 1, UX/UI</p>
-                    </a>
-                </div>
-                <div class="img-box grid-item margin-none"  data-id="10">
-                    <a href="empty2.html" class="work10" name="Project 2, UX/UI">
-                        <picture>
-                            <source srcset="assets/images/Main-mobile/empty.png" media="(max-width: 835px)">
-                            <source srcset="assets/images/Main-tablet/empty.png" media="(max-width: 1024px)">
-                            <img src="assets/images/Main/empty.png" alt="View yearbook poster" loading="lazy">
-                        </picture>
-                        <p class="m-title">Project 2, UX/UI</p>
-                    </a>
-                </div> -->
-
-
-                 <!-- bottom blank -->
-                <div class="blank grid-item"></div>
+            <div class="grid-item">
+                <a href="morii.html">
+                    <div class="thumb"><img src="assets/images/Main/Nike.png" alt="Hey Nike"></div>
+                    <div class="caption">
+                        <span class="title">Enhancing Usability for Seniors</span>
+                        <span class="meta">Nike · UXUI 2024</span>
+                    </div>
+                </a>
             </div>
-        </main>
 
-        <!-- mobile bottom menu Template  (※ 내용 수정은 js파일 / css 수정은 m-nav.css)-->
-        <m-nav></m-nav>
-
-    </div>
-
-    <script src="js/script.js"></script>
+            <div class="grid-item">
+                <a href="cvs.html">
+                    <div class="thumb"><img src="assets/images/Main/CVS.png" alt="CVS Health"></div>
+                    <div class="caption">
+                        <span class="title">Making CVS Accessible for Teens</span>
+                        <span class="meta">CVS · UXUI 2024</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
     <script>
         const grid = document.querySelector('.grid');
-        const body = document.body;
-    
-        function getGutterByWindowWidth() {
-            if (window.innerWidth > 1439) return 20;
-            if (window.innerWidth < 1439) return 11;
-            return 20;
-        }
-    
-        let msnry = null;
-    
-        function initMasonry() {
-            msnry = new Masonry(grid, {
+        imagesLoaded(grid, function () {
+            new Masonry(grid, {
                 itemSelector: '.grid-item',
                 columnWidth: '.grid-sizer',
                 percentPosition: true,
-                gutter: getGutterByWindowWidth(),
-                fitWidth: false,
+                gutter: 24,
                 horizontalOrder: true
             });
-        }
-    
-        function refreshMasonry() {
-            imagesLoaded(grid, function () {
-                msnry.layout();
-                // 스크롤 맨 위로
-            window.scrollTo(0, 0);
-
-            });
-        }
-    
-        // 최초 초기화
-        imagesLoaded(grid, function () {
-            initMasonry();
-            msnry.layout();
-    
-            // 스크롤 맨 위로
-            window.scrollTo(0, 0);
-
-            // IntersectionObserver 적용 (선택 사항)
-            const items = document.querySelectorAll('.grid-item');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('show');
-                    } else {
-                        entry.target.classList.remove('show');
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-    
-            items.forEach((item) => observer.observe(item));
-        });
-    
-        // 리사이즈 대응
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                msnry.options.gutter = getGutterByWindowWidth();
-                refreshMasonry();
-            }, 200);
-        });
+       });
     </script>
-    
+    <script src="js/script.js"></script>
+
+    <footer>
+        <div class="footer-links">
+            <div class="footer-col">
+                <span class="footer-label">For Networking</span>
+                <a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank">LinkedIn ↗</a>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">For Behind the Scenes</span>
+                <a href="https://www.instagram.com/julchoi.studio/" target="_blank">Instagram ↗</a>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">For Work Inquiries</span>
+                <a href="mailto:juliechoistudio@gmail.com">Email ↗</a>
+            </div>
+        </div>
+        <span class="footer-copy">© Julie Choi</span>
+    </footer>
 
 </body>
 </html>

@@ -10,27 +10,16 @@
 </head>
 <body>
     <div class="wrap play">
-        <!-- header -->
-        <header>
-            <nav>
-                <ul>
-                    <li>
-                        <a class="logo" href="home.html">julchoistudio.</a>
-                    </li>
-                    <li>
-                        <a href="about.html">About</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a href="home.html">Work</a> 
-                    </li>
-                    <li>
-                        <a href="playground.html" class="active">Playground</a>
-                    </li>
-                </ul>
-        </header>
-        <!-- header -->
+        <!-- NAV -->
+    <nav>
+        <a href="home.html" class="logo">julchoistudio.</a>
+        <div class="nav-links">
+            <a href="home.html" class="active">Work</a>
+            <a href="playground.html">Fun</a>
+            <a href="about.html">About</a>
+            <a href="#">Resume</a>
+        </div>
+    </nav>
 
         <main>
             <div class="grid">
@@ -203,6 +192,51 @@
             }, 200);
         });
     </script>
+
+    <style>
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            height: 52px;
+            border-bottom: 1px solid #e0e0e0;
+            background: #fafcfd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #33363F;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #aaa;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a.active {
+            color: #5D4FF6;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+
+    </style>
 
 </body>
 </html>
