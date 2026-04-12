@@ -65,7 +65,7 @@
             flex: 1;
             position: relative;
             display: flex;
-            align-items: flex-start;   /* vertically center the filmstrip-wrap */
+            align-items: center;
         }
 
         /* ── FILMSTRIP WRAP ──
@@ -77,7 +77,7 @@
             width: calc(100% - 3rem);
             height: 600px;
             display: flex;
-            margin-top: 68px;
+            margin-top: -5%;  /* negative pulls slightly above true center — adjust this value */
             margin-left: 1.5rem;
             margin-right: 1.5rem;
             align-items: center;
@@ -388,7 +388,7 @@
         @media (max-width: 768px) {
             .nav-links   { display: none; }
             .m-menu-btn  { display: block; }
-            .filmstrip-wrap { height: 400px; margin-top: 100px; }
+            .filmstrip-wrap { height: 400px; width: calc(100% - 2rem); margin-top: -11%; }
             .film-item   { width: 120px; height: 120px; }
             .filmstrip   { gap: 8px; }
             .toggle-bar  { bottom: 6.5rem; }
@@ -587,7 +587,7 @@
         /* Fixed stage position: where the enlarged image always lands (center of wrap) */
         // 0 = left edge, 0.5 = center, 1 = right edge — different per breakpoint
         const isMobileLayout = window.matchMedia('(max-width: 768px)').matches;
-        const STAGE_X    = isMobileLayout ? 0.50 : 0.30;
+        const STAGE_X    = isMobileLayout ? 0.43 : 0.30;
         const EXPANDED_W = isMobileLayout ? 240  : 360; // must match .film-item.active width in CSS
         const DEFAULT_W  = isMobileLayout ? 120  : 160; // must match .film-item default width in CSS
 
@@ -625,7 +625,7 @@
             strip.querySelectorAll('.film-item').forEach((el, i) => {
                 el.classList.toggle('active', i % n === activeIdx);
             });
-            scrollToActive();
+            requestAnimationFrame(() => requestAnimationFrame(() => scrollToActive()));
         }
 
         /* ── Build strip: single pass, no loop ── */
@@ -706,15 +706,30 @@
             }
         });
 
-        /* ── Scroll wheel → step through images one at a time ── */
+        /* ── Scroll wheel → step through images one at a time (desktop only) ── */
         wrap.addEventListener('wheel', e => {
             e.preventDefault();
+            if (isMobileLayout) return; // mobile uses tap, not scroll
             if (wheelLocked) return;
             wheelLocked = true;
             const dir = (e.deltaY || e.deltaX) > 0 ? 1 : -1;
             setActive(activeIdx + dir);
             setTimeout(() => { wheelLocked = false; }, 900);
         }, { passive: false });
+
+        /* ── Mobile touch: clear active state while scrolling ── */
+        if (isMobileLayout) {
+            let touchScrolling = false;
+            let touchScrollTimer;
+            wrap.addEventListener('touchstart', () => {
+                touchScrolling = true;
+                clearTimeout(touchScrollTimer);
+                strip.querySelectorAll('.film-item').forEach(el => el.classList.remove('active'));
+            }, { passive: true });
+            wrap.addEventListener('touchend', () => {
+                touchScrollTimer = setTimeout(() => { touchScrolling = false; }, 100);
+            }, { passive: true });
+        }
 
         /* ── Toggle: Linear ↔ Randoom ── */
         const toggle    = document.getElementById('toggle');
