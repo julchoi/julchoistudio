@@ -585,9 +585,11 @@
         let wheelLocked = false;
 
         /* Fixed stage position: where the enlarged image always lands (center of wrap) */
-        const STAGE_X = 0.30; // 0 = left edge, 0.5 = center, 1 = right edge
-        const EXPANDED_W = 360; // must match .film-item.active width in CSS
-        const DEFAULT_W  = 160; // must match .film-item default width in CSS
+        // 0 = left edge, 0.5 = center, 1 = right edge — different per breakpoint
+        const isMobileLayout = window.matchMedia('(max-width: 768px)').matches;
+        const STAGE_X    = isMobileLayout ? 0.50 : 0.30;
+        const EXPANDED_W = isMobileLayout ? 240  : 360; // must match .film-item.active width in CSS
+        const DEFAULT_W  = isMobileLayout ? 120  : 160; // must match .film-item default width in CSS
 
         function scrollToActive() {
             const n = SOURCES.length;
@@ -788,7 +790,7 @@
             const item = e.target.closest('.film-item');
             if (!item) return;
 
-            const isMobile = window.matchMedia('(hover: none)').matches;
+            const isMobile = isMobileLayout;
 
             if (isMobile) {
                 const items = [...strip.querySelectorAll('.film-item')];
