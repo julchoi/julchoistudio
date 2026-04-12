@@ -248,11 +248,12 @@
             grid-template-columns: 32% 1fr;
             overflow: hidden;
             position: relative;
+            border-radius: 5px;
         }
 
         /* Left panel — fixed text */
         .lb-left {
-            padding: 3rem 2.5rem;
+            padding: 2.5rem 2.5rem;
             border-right: 1px solid #e0e0e0;
             display: flex;
             flex-direction: column;
@@ -616,7 +617,11 @@
                 - wrap.getBoundingClientRect().left
                 + wrap.scrollLeft;
             const scrollTarget = itemScrollLeft + EXPANDED_W / 2 - stageX;
-            wrap.scrollTo({ left: scrollTarget, behavior: 'smooth' });
+            if (isMobileLayout) {
+                wrap.scrollLeft = scrollTarget; // instant on mobile — smooth scroll unreliable on iOS
+            } else {
+                wrap.scrollTo({ left: scrollTarget, behavior: 'smooth' });
+            }
         }
 
         function setActive(idx) {
