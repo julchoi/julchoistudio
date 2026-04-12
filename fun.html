@@ -392,7 +392,9 @@
             .film-item   { width: 120px; height: 120px; }
             .filmstrip   { gap: 8px; }
             .toggle-bar  { bottom: 6.5rem; }
-            .film-item.active { width: 220px; height: 280px; }
+            .film-item.active,
+            .film-item:hover { width: 240px; height: 260px; }
+            .filmstrip-wrap.item-hovered .film-item.active:not(:hover) { width: 120px; height: 120px; }
             .cursor { display: none; }
         }
     </style>
@@ -481,7 +483,7 @@
                 ],
             },
             {
-                src: 'assets/images/Fun/2.png', title: 'New York Times Redesign', meta: 'EDITORIAL · 2023',
+                src: 'assets/images/Fun/2.png', title: 'New York Times', meta: 'EDITORIAL · 2023',
                 desc: 'An editorial rebuild & redesign of the New York Times magazine spread, rethinking layout and typographic hierarchy.',
                 images: [
                     'assets/images/Fun/2/Main.png',
@@ -561,7 +563,7 @@
                 ],
             },
             {
-                src: 'assets/images/Fun/9.png', title: 'Un-Algorithmic', meta: 'TAROT CARDS · 2026',
+                src: 'assets/images/Fun/9.png', title: 'Un-algorithmic', meta: 'TAROT CARDS · 2026',
                 desc: 'An un-algorithmic tarot card series designed as a counter-narrative to algorithmic prediction and digital fate.',
                 images: [
                     'assets/images/Fun/9/Main.png',
@@ -742,46 +744,66 @@
         const lbRight  = document.getElementById('lb-right');
         const lbClose  = document.getElementById('lb-close');
 
-        strip.addEventListener('click', e => {
-            if (dragging) return;
-            const item = e.target.closest('.film-item');
-            if (!item) return;
+        const videoExts = /\.(mp4|webm|mov|ogg)$/i;
+
+        function makeMedia(s, title) {
+            if (videoExts.test(s)) {
+                const vid = document.createElement('video');
+                vid.src         = s;
+                vid.controls    = s.includes('vid.mp4');
+                vid.autoplay    = true;
+                vid.muted       = true;
+                vid.loop        = true;
+                vid.playsInline = true;
+                return vid;
+            } else {
+                const img = document.createElement('img');
+                img.src = s;
+                img.alt = title || '';
+                return img;
+            }
+        }
+
+        function openLightbox(item) {
             lbTag.textContent   = item.dataset.meta  || '';
             lbTitle.textContent = item.dataset.title || '';
             lbDesc.textContent  = item.dataset.desc  || '';
-            lbRight.innerHTML = '';
+            lbRight.innerHTML   = '';
             const imgs = JSON.parse(item.dataset.images || '[]');
-            const videoExts = /\.(mp4|webm|mov|ogg)$/i;
-
-            function makeMedia(s) {
-                if (videoExts.test(s)) {
-                    const vid = document.createElement('video');
-                    vid.src         = s;
-                    vid.controls    = s.includes('vid.mp4');
-                    vid.autoplay    = true;
-                    vid.muted       = true;
-                    vid.loop        = true;
-                    vid.playsInline = true;
-                    return vid;
-                } else {
-                    const img = document.createElement('img');
-                    img.src = s;
-                    img.alt = item.dataset.title || '';
-                    return img;
-                }
-            }
-
             imgs.forEach(entry => {
                 if (Array.isArray(entry)) {
                     const row = document.createElement('div');
                     row.className = 'lb-row-2col';
-                    entry.forEach(s => row.appendChild(makeMedia(s)));
+                    entry.forEach(s => row.appendChild(makeMedia(s, item.dataset.title)));
                     lbRight.appendChild(row);
                 } else {
-                    lbRight.appendChild(makeMedia(entry));
+                    lbRight.appendChild(makeMedia(entry, item.dataset.title));
                 }
             });
             lightbox.classList.add('open');
+        }
+
+        strip.addEventListener('click', e => {
+            if (dragging) return;
+            const item = e.target.closest('.film-item');
+            if (!item) return;
+
+            const isMobile = window.matchMedia('(hover: none)').matches;
+
+            if (isMobile) {
+                const items = [...strip.querySelectorAll('.film-item')];
+                const idx = items.indexOf(item) % SOURCES.length;
+                if (item.classList.contains('active')) {
+                    // already enlarged — open overlay
+                    openLightbox(item);
+                } else {
+                    // first tap — enlarge it
+                    setActive(idx);
+                }
+            } else {
+                // desktop — click always opens overlay
+                openLightbox(item);
+            }
         });
 
         lbClose.addEventListener('click', () => lightbox.classList.remove('open'));
