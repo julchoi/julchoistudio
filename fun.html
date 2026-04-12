@@ -594,31 +594,28 @@
 
         function scrollToActive() {
             const n = SOURCES.length;
-            const items = [...strip.querySelectorAll('.film-item')];
-            const activeItems = items.filter((_, i) => i % n === activeIdx);
-            const stageX = wrap.offsetWidth * STAGE_X; // fixed pixel position in wrap
+            const gap = isMobileLayout ? 8 : 12;
+            const stageX = wrap.offsetWidth * STAGE_X;
 
-            // find the copy of the active item closest to current scroll center
-            const scrollCenter = wrap.scrollLeft + stageX;
-            let best = activeItems[0];
+            // Calculate final item position purely from index — avoids mid-transition DOM errors
+            // One set = n items at DEFAULT_W with (n-1) gaps between them
+            const oneSetWidth = n * DEFAULT_W + (n - 1) * gap;
+            const numCopies = 2;
+
+            // Pick the copy whose active item is closest to current scroll center
+            let bestCopy = 0;
             let bestDist = Infinity;
-            activeItems.forEach(el => {
-                // item's absolute left in scroll-space (scroll-independent)
-                const itemScrollLeft = el.getBoundingClientRect().left
-                    - wrap.getBoundingClientRect().left
-                    + wrap.scrollLeft;
-                const dist = Math.abs(itemScrollLeft + DEFAULT_W / 2 - scrollCenter);
-                if (dist < bestDist) { bestDist = dist; best = el; }
-            });
-            if (!best) return;
+            for (let c = 0; c < numCopies; c++) {
+                const itemLeft = c * oneSetWidth + activeIdx * (DEFAULT_W + gap);
+                const dist = Math.abs(itemLeft + EXPANDED_W / 2 - (wrap.scrollLeft + stageX));
+                if (dist < bestDist) { bestDist = dist; bestCopy = c; }
+            }
 
-            // calculate where to scroll so the expanded item sits exactly at stageX
-            const itemScrollLeft = best.getBoundingClientRect().left
-                - wrap.getBoundingClientRect().left
-                + wrap.scrollLeft;
-            const scrollTarget = itemScrollLeft + EXPANDED_W / 2 - stageX;
+            const itemLeft = bestCopy * oneSetWidth + activeIdx * (DEFAULT_W + gap);
+            const scrollTarget = itemLeft + EXPANDED_W / 2 - stageX;
+
             if (isMobileLayout) {
-                wrap.scrollLeft = scrollTarget; // instant on mobile — smooth scroll unreliable on iOS
+                wrap.scrollLeft = scrollTarget;
             } else {
                 wrap.scrollTo({ left: scrollTarget, behavior: 'smooth' });
             }
@@ -630,7 +627,7 @@
             strip.querySelectorAll('.film-item').forEach((el, i) => {
                 el.classList.toggle('active', i % n === activeIdx);
             });
-            requestAnimationFrame(() => requestAnimationFrame(() => scrollToActive()));
+            scrollToActive();
         }
 
         /* ── Build strip: single pass, no loop ── */
