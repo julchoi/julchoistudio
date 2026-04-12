@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>julchoistudio - Gmail Sales Funnel Extension </title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%235D4FF6'/></svg>"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&family=STIX+Two+Text:ital@1&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Geist', sans-serif;
+            font-weight: 400;
+            color: #33363F;
+            background: #fafcfd;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { display: block; width: 100%; height: auto; }
+
+       /* ── NAV ── */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            height: 52px;
+            border-bottom: 1px solid #e0e0e0;
+            background: #fafcfd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #33363F;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #aaa;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: #000; }
+        .nav-links a.active { color: #5D4FF6; }
+
+
+        /* ── PAGE LAYOUT ── */
+        .page {
+            display: grid;
+            grid-template-columns: 15% 85%;
+            min-height: calc(100vh - 52px);
+        }
+
+
+        /* ── SIDEBAR ── */
+        .sidebar {
+            padding: 2rem 0 2rem 1.5rem;
+            position: sticky;
+            top: 52px;
+            height: calc(100vh - 52px);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .back-btn {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.75rem;
+            color: #aaa;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover { color: #000; }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            align-items: flex-start;
+            padding-left: 0;
+        }
+
+        .sidebar-nav a {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.72rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+            text-decoration: none;
+            border: none;
+            outline: none;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active { color: #000; }
+
+
+        /* ── MAIN CONTENT ── */
+        .main {
+            padding: 3rem 6rem;
+            max-width: 100%;
+        }
+
+
+        /* ── PROJECT HEADER ── */
+        .project-tag {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.72rem;
+            color: #aaa;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        .project-title {
+            font-size: 3rem;
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+
+        .project-desc {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: #666;
+            max-width: 580px;
+            margin-bottom: 3rem;
+        }
+
+
+        /* ── META TABLE ── */
+        .project-meta {
+            display: flex;
+            gap: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .meta-label {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.68rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .meta-value {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #33363F;
+        }
+
+
+        /* ── CONTENT SECTIONS ── */
+        .img-full {
+            width: 100%;
+            margin-bottom: 4rem;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .img-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .img-four-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .text-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-label {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.7rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-body {
+            font-size: 0.92rem;
+            line-height: 1.8;
+            color: #666;
+            max-width: 1050px;
+        }
+
+        .img-placeholder {
+            width: 100%;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.72rem;
+            color: #bbb;
+            border-radius: 4px;
+        }
+
+        .img-placeholder.tall { height: 480px; }
+        .img-placeholder.short { height: 280px; }
+
+        .img-full video {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-position: center 20%;
+        }
+
+        .feature-list {
+            margin-bottom: 4rem;
+        }
+
+        .feature-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            padding: 1.2rem 0 2.5rem;
+            border-top: 1px solid #e0e0e0;
+            align-items: start;
+        }
+
+        .feature-item:last-child {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .feature-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .feature-num {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.72rem;
+            color: #aaa;
+            letter-spacing: 0.06em;
+        }
+
+        .feature-name {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            color: #33363F;
+        }
+
+        .feature-desc {
+            font-size: 0.88rem;
+            line-height: 1.8;
+            color: #666;
+            padding-top: 0.3rem;
+        }
+
+        .competitor-logos {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .competitor-logos img {
+            width: 100%;
+            height: 150px;
+            border-radius: 8px;
+            background: #fff;
+            padding: 1.5rem 2rem;
+            object-fit: contain;
+        }
+
+        .img-slideshow-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .slideshow {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slideshow img {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+
+        .slideshow img.active {
+            display: block;
+        }
+
+        .slideshow-dots {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 2;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: #fff;
+        }
+
+
+        /* ── FOOTER ── */
+        footer {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 3rem 1.5rem 2.5rem;
+            border-top: 1px solid #e0e0e0;
+            font-family: 'Geist Mono', monospace;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .footer-label {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #33363F;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: #5D4FF6; }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            color: #aaa;
+            margin-top: 0.5rem;
+        }
+
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .page { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+            .main { padding: 2rem 1.5rem; }
+            .project-title { font-size: 1.8rem; }
+            .img-two-col { grid-template-columns: 1fr; }
+            .project-meta { flex-wrap: wrap; gap: 2rem; }
+            .cursor { display: none; }
+            .m-menu-btn { display: block; }
+            .nav-links { display: none; }
+        }
+
+        .m-menu-btn {
+            display: none;
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            font-family: 'Geist', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            color: #33363F;
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            z-index: 150;
+        }
+
+        .m-nav {
+            display: none;
+            position: fixed;
+            bottom: 5rem;
+            left: 1.2rem;
+            right: 1.2rem;
+            background: rgba(250, 252, 253, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            z-index: 200;
+            flex-direction: column;
+            padding: 1.5rem;
+            gap: 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .m-nav.active { display: flex; }
+
+        .m-nav-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            align-self: flex-end;
+            color: #33363F;
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+        }
+
+        .m-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            flex: 1;
+            margin-bottom: 3rem;
+        }
+
+        .m-nav-links a {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #33363F;
+            letter-spacing: -0.01em;
+        }
+
+        .m-nav-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .m-nav-footer a {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .m-menu-btn { display: block; }
+            .nav-links { display: none; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="cursor"></div>
+
+    <!-- NAV -->
+    <nav>
+        <a href="home.html" class="logo">julchoistudio.</a>
+        <div class="nav-links">
+            <a href="home.html" class="active">Work</a>
+            <a href="playground.html">Fun</a>
+            <a href="about.html">About</a>
+            <a href="#">Resume</a>
+        </div>
+        <button class="m-menu-btn">Menu</button>
+    </nav>
+
+    <div class="page">
+    
+         <!-- Mobile Nav -->
+    <div class="m-nav">
+        <button class="m-nav-close">✕</button>
+        <div class="m-nav-links">
+            <a href="home.html">Work</a>
+            <a href="#">Playground</a>
+            <a href="#">About</a>
+        </div>
+        <div class="m-nav-footer">
+            <a href="https://www.instagram.com/julchoi.studio/" target="_blank">Instagram ↗</a>
+            <a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank">Linkedin ↗</a>
+        </div>
+    </div>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <a href="home.html" class="back-btn">← Back</a>
+            <div class="sidebar-nav">
+                <a href="#context" class="active">Context</a>  
+                <a href="#overview">Overview</a>
+                <a href="#research">Research</a>
+                <a href="#userresearch">User Research</a>
+                <a href="#solutions">Solutions</a>
+                <a href="#outcome">Outcome</a>
+                <a href="#reflection">Reflection</a>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <div class="main">
+
+            <p class="project-tag">Google · Design Challenge 2026</p>
+            <h1 class="project-title">Gmail Sales Funnel Extension</h1>
+            <p class="project-desc">A Chrome extension that transforms Gmail into a lightweight CRM — helping sales teams track leads, prioritize follow-ups, and close deals without leaving their inbox.</p>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Role</span>
+                    <span class="meta-value">Product Designer</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Timeline</span>
+                    <span class="meta-value">20 Hours</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Type</span>
+                    <span class="meta-value">Design Challenge</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Skills</span>
+                    <span class="meta-value">UX/UI · Research · Product <br> Strategy · Prototyping</span>
+                </div>
+            </div>
+
+            <!-- Hero image -->
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Funnel/Main.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="text-section" id="overview">
+                <p class="section-label">[ Overview ]</p>
+                <h2 class="section-title">Design Process</h2>
+                <p class="section-body">Since this was a 20-hour design challenge, I divided design steps into structured workflow covering research, insight synthesis, ideation, solution development, prototyping, and final validation.</p>
+            </div>
+
+            <div class="img-full" id="context">
+                <img src="assets/images/Website_Images/Funnel/1.png" alt="Gmail Funnel Extension">
+            </div>
+
+            <div class="text-section" id="overview">
+                <h2 class="section-title">The Problem</h2>
+                <p class="section-body">Google Workspace is already the primary place where business conversations, customer communication, and relationship building happen. However, sales managers and business teams still rely on external CRM tools to track deal progress, prioritize opportunities, and manage follow-ups.</p>
+            </div>
+
+
+            <div class="img-two-col">
+                <img src="assets/images/Website_Images/Funnel/2.png" alt="Funnel">
+                <img src="assets/images/Website_Images/Funnel/2-1.png" alt="Searching on Laptop">
+            </div>
+
+            <div class="text-section" id="research">
+                <p class="section-label">[ Research ]</p>
+                <h2 class="section-title">Background & User Research</h2>
+                <p class="section-body">* White paper research about current funnel management system’s role, strong & weak points.</p>
+            </div>
+
+            <div class="img-full">
+                <img src="assets/images/Website_Images/Funnel/3-1.png" alt="Funnel">
+            </div>
+
+            <div class="text-section" id="research">
+                <h2 class="section-title">Research Insights</h2>
+                <p class="section-body">These numbers reinforce the direction that sales workflows should be integrated directly into communication tools like Gmail, rather than relying on separate CRM platforms. Since most sales communication already happens in email, switching between multiple tools creates friction and wastes time on manual updates. Embedding CRM functions directly into Gmail could streamline workflows and reduce administrative work.
+                </p>
+            </div>
+
+            <div class="img-full">
+                <img src="assets/images/Website_Images/Funnel/3.png" alt="Funnel">
+            </div>
+
+            <div class="text-section" id="userresearch">
+                <p class="section-label">[ User Research ]</p>
+                <h2 class="section-title">Target Users</h2>
+                <p class="section-body">SMB (Small to Medium) sales managers (25-40) struggling with complex and 
+                    time-consuming CRMS.</p>
+            </div>
+
+            <div class="img-full">
+                <img src="assets/images/Website_Images/Funnel/4.png" alt="Funnel">
+            </div>
+
+            <div class="text-section" id="userresearch">
+                <h2 class="section-title">Competitor Analysis</h2>
+                <p class="section-body">Competitors like HubSpot and Salesforce already provide advanced funnel management capabilities through features such as AI email drafting and automated meeting notes, but they still lack deeper intelligence in areas like smart attachment automation and relationship mapping.</p>
+            </div>
+            <div class="competitor-logos">
+                <img src="assets/images/Website_Images/Funnel/5-1.png" alt="HubSpot">
+                <img src="assets/images/Website_Images/Funnel/5-2.png" alt="Streak">
+                <img src="assets/images/Website_Images/Funnel/5-3.png" alt="Slack">
+                <img src="assets/images/Website_Images/Funnel/5-4.png" alt="Notion">
+                <img src="assets/images/Website_Images/Funnel/5-5.png" alt="Salesforce">
+                <img src="assets/images/Website_Images/Funnel/5-6.png" alt="Copper">
+                <img src="assets/images/Website_Images/Funnel/5-7.png" alt="Pipedrive">
+                <img src="assets/images/Website_Images/Funnel/5-8.png" alt="Microsoft Dynamics">
+            </div>
+
+            <!-- <div class="img-full">
+                <img src="assets/images/Website_Images/Funnel/5.png" alt="Funnel">
+            </div> -->
+
+            <div class="text-section" id="userresearch">
+                <p class="section-body">I positioned our service as a high-AI, workflow-native solution that supports both individual productivity and team-level deal visibility.</p>
+            </div>
+            <div class="img-full">
+                <img src="assets/images/Website_Images/Funnel/6.png" alt="Funnel">
+            </div>
+
+            <div class="text-section" id="solutions">
+                <p class="section-label">[ Solutions ]</p>
+                <h2 class="section-title">3 Key Features</h2>                </p>
+            </div>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-left">
+                        <span class="feature-num">01</span>
+                        <h3 class="feature-name">AI Deal Intelligence</h3>
+                    </div>
+                    <p class="feature-desc">Gmail uses AI to analyze email engagement and deal activity to surface lead priority, predict deal risk, and recommend next best actions, helping sales managers focus on high-impact opportunities.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-left">
+                        <span class="feature-num">02</span>
+                        <h3 class="feature-name">Smart Attachment → Funnel Intelligence</h3>
+                    </div>
+                    <p class="feature-desc">Gmail automatically links attachments and shared documents to deals, turning conversations and files into structured funnel data without manual CRM updates.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-left">
+                        <span class="feature-num">03</span>
+                        <h3 class="feature-name">Communication Automation</h3>
+                    </div>
+                    <p class="feature-desc">Gmail reduces admin work by generating meeting summaries, suggesting follow-ups, and syncing email and calendar actions so sales managers can stay focused on selling.</p>
+                </div>
+            </div>
+            <div class="text-section" id="solutions">
+                <h2 class="section-title">Sitemap</h2>
+                <p class="section-body">*The Funnel extension integrates directly into Gmail (similar to Meet, Chat, and Notes) allowing users to manage deals, insights, and communication workflows without leaving their inbox.
+                </p>
+            </div>
+            <div class="img-full">
+                <img src="assets/images/Website_Images/Funnel/8.png" alt="Funnel">
+            </div>
+
+            <div class="text-section" id="outcome">
+                <p class="section-label">[ Outcome ]</p>
+                <h2 class="section-title">Main Pages</h2>
+                </p>
+            </div>
+            <div class="img-full video">
+                <video src="assets/images/Website_Images/Funnel/vid3.mp4" autoplay loop muted playsinline></video>
+            </div>
+
+            <div class="text-section" id="outcome">
+                <h2 class="section-title">Core Flow 1: AI Deal Intelligence</h2>
+                <p class="section-body">Enable sales managers to make  faster, more confident decisions  by surfacing priority, risk, and recommended actions directly inside their email workflow.
+                </p>
+            </div>
+            <div class="img-full video">
+                <video src="assets/images/Website_Images/Funnel/vid1.mp4" autoplay loop muted playsinline></video>
+            </div>
+
+            <div class="text-section" id="outcome">
+                <h2 class="section-title">Core Flow 2: Smart Attachments</h2>
+                <p class="section-body">Automatically links email attachments and shared Google Docs to the correct deals inside Gmail, turning conversations and files into structured funnel data without manual CRM updates.
+                </p>
+            </div>
+            <div class="img-full video">
+                <video src="assets/images/Website_Images/Funnel/vid2.mp4" autoplay loop muted playsinline></video>
+            </div>
+
+
+            <div class="text-section" id="reflection">
+                <p class="section-label">[ Reflection ]</p>
+                <h2 class="section-title">If I had more time...</h2>
+                <p class="section-body">I want to expand Funnel into a workspace-wide experience powered by Gemini, combining communication automation, AI relationship mapping, and deal intelligence to turn emails, meetings, and documents into actionable sales insights.</p>
+            </div>
+
+            <!-- <div class="img-four-col">
+                <img src="assets/images/Website_Images/Funnel/9-4.png" alt="">
+                <img src="assets/images/Website_Images/Funnel/9-1.png" alt="">
+                <img src="assets/images/Website_Images/Funnel/9-3.png" alt="">
+                <img src="assets/images/Website_Images/Funnel/9-2.png" alt="">
+            </div> -->
+
+            <div class="img-slideshow-col">
+                <div class="slideshow">
+                    <img src="assets/images/Website_Images/Funnel/9-4.png" alt="">
+                    <img src="assets/images/Website_Images/Funnel/9-1.png" alt="">
+                    <div class="slideshow-dots">
+                        <div class="dot active"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+                <div class="slideshow">
+                    <img src="assets/images/Website_Images/Funnel/9-3.png" alt="">
+                    <img src="assets/images/Website_Images/Funnel/9-2.png" alt="">
+                    <div class="slideshow-dots">
+                        <div class="dot active"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="js/script.js"></script>
+    <script>
+
+        // highlight active sidebar link on scroll
+        const sections = document.querySelectorAll('[id]');
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = 'context';
+            sections.forEach(section => {
+                if (window.scrollY >= section.offsetTop - 130) {
+                    current = section.getAttribute('id');
+                }
+            });
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        // slideshow
+        document.querySelectorAll('.slideshow').forEach(slideshow => {
+            const imgs = slideshow.querySelectorAll('img');
+            const dots = slideshow.querySelectorAll('.dot');
+            let current = 0;
+
+            setInterval(() => {
+                imgs[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = (current + 1) % imgs.length;
+                imgs[current].classList.add('active');
+                dots[current].classList.add('active');
+            }, 3000);
+        });
+    </script>
+    
+
+</body>
+</html>
