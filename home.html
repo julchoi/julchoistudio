@@ -75,7 +75,7 @@
         .logo {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #33363F;
+            color: #222;
         }
 
         .nav-links {
@@ -103,7 +103,7 @@
 
         .hero {
             display: grid;
-            padding: 210px 1.5rem 1rem; 
+            padding: 3rem 1.5rem 8rem; 
         }
 
         .hero-text {
@@ -113,11 +113,11 @@
         }
 
         .hero-text h1 {
-            font-size: 3.1rem;
+            font-size: 2.7rem;
             font-weight: 400;
-            line-height: 1.2;
-            letter-spacing: -0.03em;
-            color: #33363F;
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            color: #111;
         }
 
         .hero-text h1 em {
@@ -140,7 +140,21 @@
 
 
         .work-grid {
-            padding: 3rem 1.5rem 15rem;
+            padding: 20rem 1.5rem 13.5rem;
+        }
+
+        .section-header {
+            margin-bottom: 0rem;
+        }
+
+        .grid {
+            padding-top: 1.5rem; /* gap between line and first images — adjust this */
+        }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid #c2c1c1;
+            margin-top: 1rem;
         }
 
         /* Two columns, responsive width */
@@ -153,9 +167,10 @@
 
         /* Image container */
         .grid-item .thumb {
-            aspect-ratio: 880 / 547;
+            aspect-ratio: 880 / 520;
             overflow: hidden;
             position: relative;
+            border-radius: 0px;
         }
 
         .grid-item .thumb video {
@@ -438,14 +453,18 @@
 
         <!-- Left: headline at bottom -->
         <div class="hero-text">
-            <span class="hero-label">Hi, I'm Julie!</span>
-            <h1>A product designer focused on <br class="desktop-only"> interaction, visual, and strategy.</h1>
+            <!-- <span class="hero-label">Hi, I'm Julie!</span> -->
+            <h1>Julie Choi is a <span style="color:#aaa">NYC-based product <br> designer</span> bridging <span style="color:#aaa">strategy</span> and <span style="color:#aaa">intuition</span> <br> to design <span style="color:#aaa">human-centered services.</span></h1>
         </div>
 
     </section>
 
     <!-- WORK GRID -->
     <section class="work-grid">
+        <div class="section-header">
+            <!-- <span class="hero-label">[ Selected Works ]</span> -->
+            <hr class="section-rule">
+        </div>
         <div class="grid">
 
             <div class="grid-sizer"></div>
@@ -471,11 +490,11 @@
             </div>
 
             <div class="grid-item">
-                <a href="familihear.html">
-                    <div class="thumb"><img src="assets/images/Main/Familihear.png" alt="Sorta"></div>
-                        <div class="caption">
-                        <span class="title">Product for Immigrant Families</span>
-                        <span class="meta">Familihear · Hackathon 2025</span>
+                <a href="heynike.html">
+                    <div class="thumb"><img src="assets/images/Main/Nike.png" alt="Hey Nike"></div>
+                    <div class="caption">
+                        <span class="title">Enhancing Usability for Seniors</span>
+                        <span class="meta">Nike · UXUI 2024</span>
                     </div>
                 </a>
             </div>
@@ -486,26 +505,6 @@
                     <div class="caption">
                         <span class="title">AI File Organization for Music Producers</span>
                         <span class="meta">SORTA · UXUI 2025</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="grid-item">
-                <a href="#">
-                    <div class="thumb"><img src="assets/images/Main/Nike.png" alt="Hey Nike"></div>
-                    <div class="caption">
-                        <span class="title">Enhancing Usability for Seniors</span>
-                        <span class="meta">Nike · UXUI 2024</span>
-                    </div>
-                </a>
-            </div>
-
-            <div class="grid-item">
-                <a href="#">
-                    <div class="thumb"><img src="assets/images/Main/CVS.png" alt="CVS Health"></div>
-                    <div class="caption">
-                        <span class="title">Making CVS Accessible for Teens</span>
-                        <span class="meta">CVS · UXUI 2024</span>
                     </div>
                 </a>
             </div>
