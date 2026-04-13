@@ -1,0 +1,6 @@
+.wrap{
+    padding: 0 var(--common-gap);
+    display: flex;
+    flex-direction: column;
+
+}
