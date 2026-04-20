@@ -12,6 +12,10 @@
     <style>
         * { cursor: none; box-sizing: border-box; margin: 0; padding: 0; }
 
+        html {
+            scroll-padding-top: 140px;
+        }
+
         body {
             font-family: 'Geist', sans-serif;
             font-weight: 400;
@@ -502,7 +506,7 @@
         <!-- MAIN -->
         <div class="main">
 
-            <p class="project-tag">Nike · UX/UI 2024</p>
+            <p class="project-tag" id="context">Nike · UX/UI 2024</p>
             <h1 class="project-title">Enhancing Usability for Seniors</h1>
             <p class="project-desc">Nike wants to improve the usability and accessibility of its app for older users so that seniors can also easily navigate and enjoy the full range of Nike products and services. The target users are mainly seniors (ages 65+) and seniors who want to explore Nike products and services.</p>
 
@@ -526,15 +530,15 @@
             </div>
 
             <!-- Hero image -->
-            <div class="img-full" id="context">
+            <div class="img-full">
                 <img src="assets/images/Website_Images/Nike/0-1.png" alt="Hey Nike">
             </div>
 
-            <div class="img-full" id="context">
+            <div class="img-full">
                 <img src="assets/images/Website_Images/Nike/Main.png" alt="Hey Nike">
             </div>
 
-            <div class="img-full" id="context">
+            <div class="img-full">
                 <img src="assets/images/Website_Images/Nike/1.png" alt="Hey Nike">
             </div>
 
@@ -598,23 +602,35 @@
         });
 
         // highlight active sidebar link on scroll
-        const sections = document.querySelectorAll('[id]');
         const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+        const sidebarIds = [...sidebarLinks].map(a => a.getAttribute('href').slice(1));
 
-        window.addEventListener('scroll', () => {
-            let current = 'context';
-            sections.forEach(section => {
-                if (window.scrollY >= section.offsetTop - 130) {
-                    current = section.getAttribute('id');
+        // collect ALL elements with each sidebar id, not just the first
+        const sectionGroups = {};
+        sidebarIds.forEach(id => {
+            sectionGroups[id] = document.querySelectorAll('[id="' + id + '"]');
+        });
+
+        function updateSidebar() {
+            let current = sidebarIds[0];
+            // check each section group in order
+            for (let i = 0; i < sidebarIds.length; i++) {
+                const id = sidebarIds[i];
+                const els = sectionGroups[id];
+                if (els.length > 0 && els[0].getBoundingClientRect().top <= 160) {
+                    current = id;
                 }
-            });
+            }
             sidebarLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === '#' + current) {
                     link.classList.add('active');
                 }
             });
-        });
+        }
+
+        window.addEventListener('scroll', updateSidebar);
+        window.addEventListener('load', updateSidebar);
         // slideshow
         document.querySelectorAll('.slideshow').forEach(slideshow => {
             const imgs = slideshow.querySelectorAll('img');

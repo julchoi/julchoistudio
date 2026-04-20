@@ -1,37 +1,573 @@
 <!DOCTYPE html>
+<!-- TO DO LIST: Change img text into diff format and change footer back to org -->
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login Page</title>
-  <link rel="stylesheet" href="assets/login.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>julchoistudio.</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%235D4FF6'/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital@1&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.0/masonry.pkgd.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js" crossorigin="anonymous"></script>
 
-  <script>
-    function checkPassword(event) {
-      event.preventDefault(); // stop form refresh
-      const input = document.getElementById("password").value;
-      const correct = "julie2025"; // change this to your real password
+    <style>
+       * { cursor: auto; }  /* restore default cursor */
 
-      if (input === correct) {
-        window.location.href = "home.html"; // redirect to main page
-      } else {
-        document.getElementById("error").textContent = "Incorrect password.";
-      }
-    }
-  </script>
+        .cursor {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;  /* hidden by default */
+            transition: opacity 0.2s ease;
+        }
+
+        .cursor img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .cursor.visible {
+            opacity: 1;
+     }
+        /* ── RESET ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Geist', sans-serif;
+            font-weight: 400;
+            color: #000;
+            background: #fafcfd; /* matches your Figma background */
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { display: block; width: 100%; height: auto; }
+
+
+        /* ══ NAV ══════════════════════════════════════════
+           julchoistudio.  [logo left]
+           WORK  FUN  ABOUT  RESUME  [links right]
+        ═══════════════════════════════════════════════ */
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            height: 52px;
+            border-bottom: 1px solid #e0e0e0;
+            background: #fafcfd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #222;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #aaa;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a.active {
+            color: #5D4FF6;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+
+        .hero {
+            display: grid;
+            padding: 3rem 1.5rem 8rem;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .hero-text h1 {
+            font-size: 2.7rem;
+            font-weight: 400;
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            color: #111;
+        }
+
+        .hero-text h1 em {
+            font-family: 'STIX Two Text', serif;
+            font-size: 3.3rem;
+            font-style: italic;
+            font-weight: 300;
+            color: #33363F;
+        }
+
+        .hero-label {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #aaa;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+
+        .work-grid {
+            padding: 20rem 1.5rem 13.5rem;
+        }
+
+        .section-header {
+            margin-bottom: 0rem;
+        }
+
+        .grid {
+            padding-top: 1.5rem; /* gap between line and first images — adjust this */
+        }
+
+        .section-rule {
+            border: none;
+            border-top: 1px solid #c2c1c1;
+            margin-top: 1rem;
+        }
+
+        /* Two columns, responsive width */
+        .grid-sizer,
+        .grid-item {
+            width: calc(50% - 16px);
+            margin-bottom: 2rem;
+        }
+
+
+        /* Image container */
+        .grid-item .thumb {
+            aspect-ratio: 880 / 520;
+            overflow: hidden;
+            position: relative;
+            border-radius: 0px;
+        }
+
+        .grid-item .thumb video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.4s ease;
+            transform: scale(1.10);
+        }
+
+        .grid-item .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .grid-item:hover .thumb img {
+            transform: scale(1.02);
+        }
+
+        .grid-item .thumb::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            transition: background 0.3s ease;
+        }
+
+        .grid-item:hover .thumb::after {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Caption below image — matches your Figma layout */
+        .grid-item .caption {
+            padding: 0.85rem 0 0 ;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .grid-item .caption .title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #000;
+        }
+
+        .grid-item .caption .meta {
+            font-family: 'Geist Mono', monospace;
+            font-weight: 400;
+            font-size: 0.8rem;
+            color: #aaa;
+            white-space: nowrap;
+        }
+
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 1.2rem;
+            border-top: 1px solid #e0e0e0;
+            font-family: 'Geist Mono', monospace;
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2.7rem;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover { color: #000; }
+
+        /* footer {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 2.2rem 2rem 1.5rem;
+            border-top: 1px solid #e0e0e0;
+            font-family: 'Geist Mono', monospace;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .footer-label {
+            font-size: 0.7rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #33363F;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: #5D4FF6; }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            color: #aaa;
+        } */
+
+        /* ══ RESPONSIVE ═══════════════════════════════════ */
+        @media (max-width: 768px) {
+
+            nav { padding: 0 1.2rem; }
+
+            /* hide nav links, show only logo */
+            .nav-links { display: none; }
+
+            /* hide footer on mobile */
+            footer { display: none; }
+
+            .hero {
+                grid-template-columns: 1fr;
+                height: auto;
+                padding: 5rem 1.2rem 1rem;
+                gap: 2rem;
+            }
+
+        .hero-text { justify-content: flex-start; }
+        .hero-text h1 { font-size: 1.8rem; }
+            .work-grid { padding: 0 1.2rem 5rem; }
+
+            .grid-sizer,
+            .grid-item { width: 100%; }
+            .m-menu-btn { display: block; }
+            .nav-links { display: none; }
+            .cursor { display: none; }
+            .desktop-only { display: none; }
+        }
+
+        .m-menu-btn {
+            display: none;
+            position: fixed;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            font-family: 'Geist', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            color: #33363F;
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            z-index: 150;
+        }
+
+        .m-nav {
+            display: none;
+            position: fixed;
+            bottom: 5rem;
+            left: 1.2rem;
+            right: 1.2rem;
+            background: rgba(250, 252, 253, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            z-index: 200;
+            flex-direction: column;
+            padding: 1.5rem;
+            gap: 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .m-nav.active { display: flex; }
+
+        .m-nav-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            align-self: flex-end;
+            color: #33363F;
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+        }
+
+
+        .m-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            flex: 1;
+            margin-bottom: 3rem;
+        }
+
+        .m-nav-links a {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #33363F;
+            letter-spacing: -0.01em;
+        }
+
+        .m-nav-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .m-nav-footer a {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .m-menu-btn { display: block; }
+        }
+
+    </style>
 </head>
+
 <body>
-  <main class="container">
-    <div class="lock-icon">🔒</div>
-    <h1>This site is private.</h1>
-    <p>To view, please enter the password.</p>
-    <form onsubmit="checkPassword(event)">
-      <div class="input-wrapper">
-        <input type="password" id="password" placeholder="Enter password" />
-        <button type="submit" aria-label="Submit password">→</button>
-      </div>
-      <p id="error"></p>
-    </form>
-  </main>
+    <div class="cursor">
+        <img src="assets/images/icons/rightdiaarrow.png" alt="">
+    </div>
+    <!-- NAV -->
+    <nav>
+        <a href="index.html" class="logo">julchoistudio.</a>
+        <div class="nav-links">
+            <a href="index.html" class="active">Work</a>
+            <a href="fun.html">Fun</a>
+            <a href="#">About</a>
+            <a href="#">Resume</a>
+        </div>
+        <button class="m-menu-btn">Menu</button>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <div class="m-nav">
+        <button class="m-nav-close">✕</button>
+        <div class="m-nav-links">
+            <a href="index.html">Work</a>
+            <a href="fun.html">Playground</a>
+            <a href="about.html">About</a>
+        </div>
+        <div class="m-nav-footer">
+            <a href="https://www.instagram.com/julchoi.studio/" target="_blank">Instagram ↗</a>
+            <a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank">Linkedin ↗</a>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <!-- Left: headline at bottom -->
+        <div class="hero-text">
+            <!-- <span class="hero-label">Hi, I'm Julie!</span> -->
+            <h1>Julie Choi is a <span style="color:#aaa">NYC-based product <br> designer</span> bridging <span style="color:#aaa">strategy</span> and <span style="color:#aaa">intuition</span> <br> to design <span style="color:#aaa">human-centered services.</span></h1>
+        </div>
+
+    </section>
+
+    <!-- WORK GRID -->
+    <section class="work-grid">
+        <div class="section-header">
+            <!-- <span class="hero-label">[ Selected Works ]</span> -->
+            <hr class="section-rule">
+        </div>
+        <div class="grid">
+
+            <div class="grid-sizer"></div>
+
+            <div class="grid-item">
+                <a href="gmailfunnel.html">
+                    <div class="thumb"><img src="assets/images/Main/Funnel.png" alt="Funnel"></div>
+                    <div class="caption">
+                        <span class="title">Gmail Sales Funnel Extension</span>
+                        <span class="meta">Google · Design Challenge 2026</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="grid-item">
+                <a href="sanix.html">
+                    <div class="thumb"><img src="assets/images/Main/Sanix1.png" alt="Sanix"></div>
+                        <div class="caption">
+                        <span class="title">AI/AR Glasses: Making Invisible Risk Visible</span>
+                        <span class="meta">SANIX · UXUI 2026</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="grid-item">
+                <a href="heynike.html">
+                    <div class="thumb"><img src="assets/images/Main/Nike.png" alt="Hey Nike"></div>
+                    <div class="caption">
+                        <span class="title">Enhancing Usability for Seniors</span>
+                        <span class="meta">Nike · UXUI 2024</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="grid-item">
+                <a href="sorta.html">
+                    <div class="thumb"><img src="assets/images/Main/Sorta.png" alt="Sorta"></div>
+                    <div class="caption">
+                        <span class="title">AI File Organization for Music Producers</span>
+                        <span class="meta">SORTA · UXUI 2025</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <script>
+        const grid = document.querySelector('.grid');
+        imagesLoaded(grid, function () {
+            new Masonry(grid, {
+                itemSelector: '.grid-item',
+                columnWidth: '.grid-sizer',
+                percentPosition: true,
+                gutter: 24,
+                horizontalOrder: true
+            });
+       });
+    </script>
+    <script src="js/script.js"></script>
+
+    <footer>
+        <span class="footer-copy">© Julie Choi</span>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank" aria-label="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect x="2" y="9" width="4" height="12"/>
+                    <circle cx="4" cy="4" r="2"/>
+                </svg>
+            </a>
+            <a href="https://www.instagram.com/julchoi.studio/" target="_blank" aria-label="Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+                </svg>
+            </a>
+            <a href="mailto:juliechoistudio@gmail.com" aria-label="Email">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="M2 7l10 7 10-7"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <!-- <footer>
+        <div class="footer-links">
+            <div class="footer-col">
+                <span class="footer-label">For Networking</span>
+                <a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank">LinkedIn ↗</a>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">For Behind the Scenes</span>
+                <a href="https://www.instagram.com/julchoi.studio/" target="_blank">Instagram ↗</a>
+            </div>
+            <div class="footer-col">
+                <span class="footer-label">For Work Inquiries</span>
+                <a href="mailto:juliechoistudio@gmail.com">Email ↗</a>
+            </div>
+        </div>
+        <span class="footer-copy">© Julie Choi</span>
+    </footer> -->
+
+
 </body>
 </html>

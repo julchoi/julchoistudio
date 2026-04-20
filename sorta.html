@@ -12,6 +12,10 @@
     <style>
         * { cursor: none; box-sizing: border-box; margin: 0; padding: 0; }
 
+        html {
+            scroll-padding-top: 140px;
+        }
+
         body {
             font-family: 'Geist', sans-serif;
             font-weight: 400;
@@ -682,13 +686,14 @@
         });
 
         // highlight active sidebar link on scroll
-        const sections = document.querySelectorAll('[id]');
         const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+        const sidebarIds = [...sidebarLinks].map(a => a.getAttribute('href').slice(1));
+        const sections = sidebarIds.map(id => document.getElementById(id)).filter(Boolean);
 
         window.addEventListener('scroll', () => {
-            let current = 'context';
+            let current = sidebarIds[0];
             sections.forEach(section => {
-                if (window.scrollY >= section.offsetTop - 130) {
+                if (window.scrollY >= section.offsetTop - 160) {
                     current = section.getAttribute('id');
                 }
             });
