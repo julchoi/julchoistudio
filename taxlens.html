@@ -189,9 +189,72 @@
         /* ── CONTENT SECTIONS ── */
         .img-full {
             width: 100%;
-            margin-bottom: 4rem;
-            border-radius: 4px;
+            margin-bottom: 6rem;
+            border-radius: 0;
             overflow: hidden;
+        }
+
+        .img-full.img-tight {
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-cards {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 6rem;
+        }
+
+        .stat-card {
+            background: #E7EAFF;
+            border-radius: 14px;
+            padding: 3rem 2.3rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 260px;
+        }
+
+        .stat-card.stat-primary {
+            background: #C9D0FB;
+        }
+
+        .stat-card.stat-light {
+            background: #F3F5FF;
+        }
+
+        .stat-label {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.7rem;
+            color: #555;
+            white-space: nowrap;
+        }
+
+        .stat-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #5D4FF6;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: #111;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            margin-top: 2rem;
+            margin-bottom: -1rem;
+        }
+
+        .stat-caption {
+            font-size: 0.85rem;
+            color: #666;
         }
 
         .img-two-col {
@@ -572,13 +635,17 @@
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Skills</span>
-                    <span class="meta-value">UX/UI · Research · Product <br> Strategy · Prototyping</span>
+                    <span class="meta-value">UX/UI · Research · Strategy <br> AI Product · Prototyping</span>
                 </div>
             </div>
 
             <!-- Hero image -->
-            <div class="img-full">
+            <div class="img-full img-tight">
                 <img src="assets/images/Main/Taxlens.png" alt="Taxlens">
+            </div>
+
+            <div class="img-full video">
+                <video src="assets/images/Website_Images/Taxlens/1.mp4" autoplay loop muted playsinline style="transform: scale(1.03);"></video>
             </div>
 
             <div class="text-section" id="overview">
@@ -588,45 +655,57 @@
             </div>
 
             <div class="img-full">
-                <img src="assets/images/Website_Images/Funnel/1.png" alt="Gmail Funnel Extension">
+                <img src="assets/images/Website_Images/Taxlens/1.png" alt="TaxLens Overview">
             </div>
 
             <div class="text-section" id="overview">
-                <h2 class="section-title">The Problem</h2>
-                <p class="section-body">Google Workspace is already the primary place where business conversations, customer communication, and relationship building happen. However, sales managers and business teams still rely on external CRM tools to track deal progress, prioritize opportunities, and manage follow-ups.</p>
+                <h2 class="section-title">Discovery: What did I find?</h2>
+                <p class="section-body">Tax workflows depend on multiple stakeholders working across disconnected systems and data sources, leading to inefficiencies, miscommunication, and increased risk in the filing process.</p>
             </div>
 
-
-            <div class="img-two-col">
-                <img src="assets/images/Website_Images/Funnel/2.png" alt="Funnel">
-                <img src="assets/images/Website_Images/Funnel/2-1.png" alt="Searching on Laptop">
+            <div class="img-full video">
+                <video src="assets/images/Website_Images/Taxlens/2.mp4" autoplay loop muted></video>
             </div>
+            
 
             <div class="text-section" id="research">
                 <p class="section-label">[ Research ]</p>
-                <h2 class="section-title">Background & User Research</h2>
-                <p class="section-body">* White paper research about current funnel management system’s role, strong & weak points.</p>
+                <h2 class="section-title">Research Insights</h2>
+                <p class="section-body">Fragmented communication and inconsistent validation create delays across client, accountant, and compliance workflows.</p>
             </div>
 
-            <div class="img-full">
-                <img src="assets/images/Website_Images/Funnel/3-1.png" alt="Funnel">
+            <div class="stat-cards">
+                <div class="stat-card stat-primary">
+                    <div class="stat-label"><span class="stat-dot"></span>Company - End User</div>
+                    <div class="stat-number">74%</div>
+                    <div class="stat-caption">Lack clarity on required docs &amp; experience poor follow-up</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label"><span class="stat-dot"></span>Accountants - Frontstage</div>
+                    <div class="stat-number">97%</div>
+                    <div class="stat-caption">Review inefficiency</div>
+                </div>
+                <div class="stat-card stat-light">
+                    <div class="stat-label"><span class="stat-dot"></span>Compliance - Backstage</div>
+                    <div class="stat-number">89%</div>
+                    <div class="stat-caption">Needs better system</div>
+                </div>
             </div>
 
             <div class="text-section" id="research">
-                <h2 class="section-title">Research Insights</h2>
-                <p class="section-body">These numbers reinforce the direction that sales workflows should be integrated directly into communication tools like Gmail, rather than relying on separate CRM platforms. Since most sales communication already happens in email, switching between multiple tools creates friction and wastes time on manual updates. Embedding CRM functions directly into Gmail could streamline workflows and reduce administrative work.
+                <h2 class="section-title">Competitor Research</h2>
+                <p class="section-body">Existing tools support filing or communication but not investigation and coordinated decision-making.
                 </p>
             </div>
 
             <div class="img-full">
-                <img src="assets/images/Website_Images/Funnel/3.png" alt="Funnel">
+                <img src="assets/images/Website_Images/Taxlens/3.png" alt="TaxLens Competitors">
             </div>
 
             <div class="text-section" id="userresearch">
                 <p class="section-label">[ User Research ]</p>
-                <h2 class="section-title">Target Users</h2>
-                <p class="section-body">SMB (Small to Medium) sales managers (25-40) struggling with complex and 
-                    time-consuming CRMS.</p>
+                <h2 class="section-title">Stakeholders + Why AI</h2>
+                <p class="section-body">TaxLens connects human and AI's workflow, providing more structured and transparent tax workflow, where AI connects accountants and clients' fragmented systems.</p>
             </div>
 
             <div class="img-full">
@@ -655,13 +734,14 @@
             <div class="text-section" id="userresearch">
                 <p class="section-body">I positioned our service as a high-AI, workflow-native solution that supports both individual productivity and team-level deal visibility.</p>
             </div>
-            <div class="img-full">
-                <img src="assets/images/Website_Images/Funnel/6.png" alt="Funnel">
+
+            <div class="img-full video">
+                <video src="assets/images/Website_Images/Taxlens/1.mp4" autoplay loop muted playsinline></video>
             </div>
 
             <div class="text-section" id="solutions">
                 <p class="section-label">[ Solutions ]</p>
-                <h2 class="section-title">3 Key Features</h2>                </p>
+                <h2 class="section-title">3 Key Features</h2>               
             </div>
 
             <div class="feature-list">

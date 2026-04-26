@@ -103,13 +103,35 @@
 
         .hero {
             display: grid;
-            padding: 3rem 1.5rem 8rem;
+            padding: 3rem 1.5rem 4rem;
         }
 
         .hero-text {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+        }
+
+        .tags-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: flex-end;
+            max-width: 420px;
+            margin: 0 0 4rem auto;
+        }
+
+        .tag {
+            font-family: 'Geist Mono', monospace;
+            font-size: 1.125rem;
+            font-weight: 400;
+            color: #aaa;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 0.75rem 1.65rem;
+            border: 1.5px solid #c1c0c0;
+            border-radius: 999px;
+            white-space: nowrap;
         }
 
         .hero-text h1 {
@@ -140,7 +162,7 @@
 
 
         .work-grid {
-            padding: 20rem 1.5rem 13.5rem;
+            padding: 14rem 1.5rem 20rem;
         }
 
         .section-header {
@@ -461,6 +483,12 @@
 
     <!-- WORK GRID -->
     <section class="work-grid">
+        <div class="tags-row">
+            <span class="tag">AI x Design</span>
+            <span class="tag">Branding</span>
+            <span class="tag">Product Design</span>
+            <span class="tag">UX/UI</span>
+        </div>
         <div class="section-header">
             <!-- <span class="hero-label">[ Selected Works ]</span> -->
             <hr class="section-rule">
