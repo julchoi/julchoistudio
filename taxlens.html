@@ -475,11 +475,46 @@
             .sidebar { display: none; }
             .main { padding: 2rem 1.5rem; }
             .project-title { font-size: 1.8rem; }
-            .img-two-col { grid-template-columns: 1fr; }
+            .img-two-col { gap: 0.8rem; }
             .project-meta { flex-wrap: wrap; gap: 2rem; }
             .cursor { display: none; }
             .m-menu-btn { display: block; }
             .nav-links { display: none; }
+
+            .competitor-logos {
+                gap: 0.5rem;
+                margin-bottom: 1.2rem;
+            }
+            .competitor-logos img {
+                height: 80px;
+                padding: 0.8rem 1rem;
+                border-radius: 6px;
+            }
+
+            .img-four-col {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+
+            .stat-cards {
+                grid-template-columns: 1fr;
+                gap: 0.6rem;
+                margin-bottom: 3rem;
+            }
+            .stat-card {
+                padding: 1.5rem 1.3rem;
+                min-height: auto;
+            }
+            .stat-label {
+                white-space: normal;
+            }
+            .stat-number {
+                font-size: 2.5rem;
+                margin-top: 0.8rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .desktop-only { display: none; }
         }
 
         .m-menu-btn {
@@ -777,10 +812,13 @@
             <div class="text-section" id="reflection">
                 <p class="section-label">[ Reflection ]</p>
                 <h2 class="section-title">Future & Takeaways</h2>
-                <p class="section-body">Key reflections and future directions focused on improving scalability, usability, and trust in AI-assisted tax workflows. Through this project, I learned that designing for multi-stakeholder systems requires not just optimizing individual tasks, but carefully structuring how information flows between clients, accountants, and AI. If given more time, I would further validate edge cases with real users, refine error handling and fallback scenarios, and explore more proactive AI guidance, ensuring the system not only reduces friction, but also builds long-term confidence in human–AI collaboration.</p>
+                <p class="section-body">Key reflections and future directions focused on improving scalability, usability, and trust in AI-assisted tax workflows. Through this project, I learned that designing for multi-stakeholder systems requires not just optimizing individual tasks, but carefully structuring how information flows between clients, accountants, and AI.<span class="desktop-only"> If given more time, I would further validate edge cases with real users, refine error handling and fallback scenarios, and explore more proactive AI guidance, ensuring the system not only reduces friction, but also builds long-term confidence in human–AI collaboration.</span></p>
             </div>
             <div class="img-full">
-                <img src="assets/images/Website_Images/Taxlens/7-1.png" alt="TaxLens Competitors">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="assets/images/Website_Images/Taxlens/7.png">
+                    <img src="assets/images/Website_Images/Taxlens/7-1.png" alt="TaxLens Competitors">
+                </picture>
             </div>
 
         </div>

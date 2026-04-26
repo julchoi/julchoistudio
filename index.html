@@ -115,7 +115,7 @@
         .tags-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 1.5rem;
+            gap: 1.3rem;
             justify-content: flex-end;
             max-width: 420px;
             margin: 0 0 4rem auto;
@@ -333,8 +333,9 @@
             /* hide nav links, show only logo */
             .nav-links { display: none; }
 
-            /* hide footer on mobile */
-            footer { display: none; }
+            /* mobile footer: keep desktop design but more compact */
+            footer { padding: 1rem 1.2rem; }
+            .footer-links { gap: 1.4rem; }
 
             .hero {
                 grid-template-columns: 1fr;
@@ -353,6 +354,19 @@
             .nav-links { display: none; }
             .cursor { display: none; }
             .desktop-only { display: none; }
+
+            .tags-row {
+                max-width: 80%;
+                gap: 0.8rem;
+                margin-top: 4em;
+                margin-bottom: 2em;
+            }
+
+            .tag {
+                font-size: 75%;
+                padding: 0.5em 1em;
+                border-width: 1px;
+            }
         }
 
         .m-menu-btn {
@@ -476,7 +490,7 @@
         <!-- Left: headline at bottom -->
         <div class="hero-text">
             <!-- <span class="hero-label">Hi, I'm Julie!</span> -->
-            <h1>Julie Choi is a <span style="color:#aaa">NYC-based product <br> designer</span> bridging <span style="color:#aaa">strategy</span> and <span style="color:#aaa">intuition</span> <br> to design <span style="color:#aaa">human-centered services.</span></h1>
+            <h1>Julie Choi is a <span style="color:#aaa">NYC-based product <br class="desktop-only"> designer</span> bridging <span style="color:#aaa">strategy</span> and <span style="color:#aaa">intuition</span> <br class="desktop-only"> to design <span style="color:#aaa">human-centered services.</span></h1>
         </div>
 
     </section>
@@ -518,7 +532,7 @@
 
             <div class="grid-item">
                 <a href="sanix.html">
-                    <div class="thumb"><img src="assets/images/Main/Sanix1.png" alt="Sanix"></div>
+                    <div class="thumb"><img src="assets/images/Main/Sanix.png" alt="Sanix"></div>
                         <div class="caption">
                         <span class="title">AI/AR Glasses: Making Invisible Risk Visible</span>
                         <span class="meta">SANIX · UXUI 2026</span>
