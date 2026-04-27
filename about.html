@@ -71,7 +71,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             column-gap: 2rem;
-            padding: 0 1.5rem 16rem;
+            padding: 0 1.5rem 20rem;
             margin-top: 13rem;
             position: relative;
         }
@@ -292,7 +292,7 @@
         }
         .m-nav-links {
             display: flex; flex-direction: column;
-            gap: 0.2rem; flex: 1; margin-bottom: 3rem;
+            gap: 0.5rem; flex: 1; margin-bottom: 3rem;
         }
         .m-nav-links a {
             font-size: 1.5rem; font-weight: 500;
@@ -308,8 +308,8 @@
 
         /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
-            .hero { padding: 2.5rem 1.2rem 1.5rem; }
-            .hero-title { font-size: 2rem; }
+            .hero { padding: 3.5rem 1.2rem 0.7rem; }
+            .hero-title { font-size: 1.8rem; }
 
             .about-grid {
                 grid-template-columns: 1fr;
@@ -323,22 +323,31 @@
             .right-half .photo,
             .right-half .section {
                 grid-column: 1 !important;
-                grid-row: auto !important;
             }
+
+            /* Hide top line above the photo on mobile */
+            .about-grid::before { display: none; }
+
+            /* Mobile order: Photo → About → Experience → Education → Achievements → Contact */
+            .right-half .photo               { grid-row: 1 !important; margin-top: 0; width: 100%; margin-bottom: 2rem; }
+            .left-half .section:nth-child(1) { grid-row: 2 !important; }
+            .left-half .section:nth-child(2) { grid-row: 3 !important; }
+            .left-half .section:nth-child(3) { grid-row: 4 !important; }
+            .left-half .section:nth-child(4) { grid-row: 5 !important; }
+            .right-half .section { grid-row: 6 !important; width: 100%; margin-top: 5rem; }
+
+            /* Hide Contact pill on mobile, keep only the list */
+            .right-half .section .section-label { display: none; }
 
             .section {
                 grid-template-columns: 1fr;
-                gap: 0.8rem;
-                padding: 1.2rem 0;
-            }
-
-            .right-half .photo {
-                margin-top: 0;
+                gap: 1.6rem;
+                padding: 2rem 0;
             }
 
             .contact-list {
                 grid-template-columns: 1fr;
-                gap: 0.4rem;
+                gap: 1rem;
                 justify-self: stretch;
             }
 
