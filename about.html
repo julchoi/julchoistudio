@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/style.css">
-    <title>About</title>
-</head>
+    <title>julchoistudio. — About</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%235D4FF6'/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
-<style>
-     /* ══ NAV ══════════════════════════════════════════
-           julchoistudio.  [logo left]
-           WORK  FUN  ABOUT  RESUME  [links right]
-        ═══════════════════════════════════════════════ */
-        
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Geist', sans-serif;
+            font-weight: 400;
+            color: #000;
+            background: #fafcfd;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { display: block; width: 100%; height: auto; }
+
+        /* ── NAV ── */
         nav {
             display: flex;
             align-items: center;
@@ -26,19 +33,8 @@
             top: 0;
             z-index: 100;
         }
-
-        .logo {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #33363F;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2.2rem;
-        }
-
+        .logo { font-size: 1.1rem; font-weight: 600; color: #222; }
+        .nav-links { display: flex; align-items: center; gap: 2.2rem; }
         .nav-links a {
             font-size: 0.8rem;
             font-weight: 500;
@@ -46,183 +42,491 @@
             text-transform: uppercase;
             transition: color 0.2s;
         }
+        .nav-links a.active { color: #5D4FF6; }
+        .nav-links a:hover { color: #000; }
 
-        .nav-links a.active {
-            color: #5D4FF6;
+        /* ── HERO ── */
+        .hero {
+            padding: 3rem 1.5rem 4rem;
+        }
+        .hero-eyebrow {
+            font-family: 'Geist Mono', monospace;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #797979;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.7rem;
+        }
+        .hero-title {
+            font-size: 2.7rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+            color: #111;
         }
 
-        .nav-links a:hover {
-            color: #000;
+        /* ── ABOUT GRID ── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 2rem;
+            padding: 0 1.5rem 16rem;
+            margin-top: 13rem;
+            position: relative;
+        }
+        /* Top line spans full content width (image left edge → right edge) */
+        .about-grid::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 1.5rem;
+            right: 1.5rem;
+            height: 1px;
+            background: #e0e0e0;
         }
 
-</style>
+        /* Halves participate in shared grid rows */
+        .left-half,
+        .right-half {
+            display: contents;
+        }
+
+        /* Each section: pill (col 1 of sub-grid) + content (col 2 of sub-grid) */
+        .section {
+            display: grid;
+            grid-template-columns: minmax(120px, 0.5fr) 1fr;
+            column-gap: 2rem;
+            padding: 1.6rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            align-items: start;
+        }
+
+        /* RIGHT side (col 2 of about-grid): About / Experience / Education / Achievements */
+        .left-half .section:nth-child(1)  { grid-column: 2; grid-row: 1; border-top: 1px solid #e0e0e0; }
+        .left-half .section:nth-child(2)  { grid-column: 2; grid-row: 2; }
+        .left-half .section:nth-child(3)  { grid-column: 2; grid-row: 3; }
+        .left-half .section:nth-child(4)  { grid-column: 2; grid-row: 4; border-bottom: none; }
+
+        /* LEFT side (col 1 of about-grid): Photo (rows 2-3) + Contact (row 4) */
+        .right-half .photo {
+            grid-column: 1;
+            grid-row: 2 / 4;
+            margin-top: 1.6rem;
+        }
+        .right-half .section {
+            grid-column: 1;
+            grid-row: 4;
+            width: 80%;
+            padding-bottom: 2rem;
+            align-self: start;
+            border-bottom: none;
+        }
+
+        /* Photo */
+        .photo {
+            width: 80%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background: #ececec;
+        }
+        .photo picture {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 35%;
+        }
+
+        /* ── PILL LABEL ── */
+        .pill {
+            display: inline-block;
+            font-family: 'Geist Mono', monospace;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #aaa;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 0.5rem 1.2rem;
+            border: 1.8px solid #cac9c9;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        /* ── ABOUT ME TEXT ── */
+        .about-text p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 0.9rem;
+            max-width: 460px;
+        }
+        .about-text p:last-child { margin-bottom: 0; }
+
+        /* ── CONTACT LIST ── */
+        .contact-list {
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 0.4rem 1.8rem;
+            font-size: 0.9rem;
+            justify-self: end;
+        }
+        .contact-list a {
+            color: #444;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: color 0.2s;
+            justify-self: end;
+        }
+        .contact-list a:hover { color: #000; }
+        .contact-list .arrow {
+            width: 9px;
+            height: auto;
+            display: inline-block;
+        }
+
+        /* ── ENTRY LISTS (Experience, Education, Achievements) ── */
+        .entry-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            max-width: 460px;
+        }
+        .entry {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            row-gap: 0.15rem;
+            column-gap: 1rem;
+            align-items: baseline;
+        }
+        .entry-org {
+            grid-column: 1;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        .entry-title {
+            grid-column: 1;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #111;
+            line-height: 1.35;
+        }
+        .entry-year {
+            grid-column: 2;
+            grid-row: 1 / span 2;
+            align-self: center;
+            font-size: 0.9rem;
+            color: #111;
+            white-space: nowrap;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 1.2rem;
+            border-top: 1px solid #e0e0e0;
+            font-family: 'Geist Mono', monospace;
+        }
+        .footer-copy {
+            font-size: 0.75rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .footer-links { display: flex; gap: 2.7rem; }
+        .footer-links a {
+            color: #aaa;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+        }
+        .footer-links a:hover { color: #000; }
+
+        /* ── MOBILE MENU BTN ── */
+        .m-menu-btn {
+            display: none;
+            position: fixed;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            font-family: 'Geist', sans-serif;
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: #33363F;
+            padding: 0.85rem 2.3rem;
+            border-radius: 30px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            z-index: 150;
+        }
+        .m-nav {
+            display: none;
+            position: fixed;
+            bottom: 5rem;
+            left: 1.2rem;
+            right: 1.2rem;
+            background: rgba(250, 252, 253, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            z-index: 200;
+            flex-direction: column;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        .m-nav.active { display: flex; }
+        .m-nav-close {
+            background: none; border: none; font-size: 1.2rem;
+            cursor: pointer; align-self: flex-end;
+            color: #33363F; position: absolute; top: 1.5rem; right: 1.5rem;
+        }
+        .m-nav-links {
+            display: flex; flex-direction: column;
+            gap: 0.2rem; flex: 1; margin-bottom: 3rem;
+        }
+        .m-nav-links a {
+            font-size: 1.5rem; font-weight: 500;
+            color: #33363F; letter-spacing: -0.01em;
+        }
+        .m-nav-footer {
+            display: flex; flex-direction: column; gap: 0.3rem;
+        }
+        .m-nav-footer a {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.8rem; color: #aaa;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .hero { padding: 2.5rem 1.2rem 1.5rem; }
+            .hero-title { font-size: 2rem; }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                column-gap: 0;
+                padding: 0 1.2rem 10rem;
+                margin-top: 1.5rem;
+            }
+
+            /* Stack everything in single column on mobile */
+            .left-half .section,
+            .right-half .photo,
+            .right-half .section {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+            }
+
+            .section {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+                padding: 1.2rem 0;
+            }
+
+            .right-half .photo {
+                margin-top: 0;
+            }
+
+            .contact-list {
+                grid-template-columns: 1fr;
+                gap: 0.4rem;
+                justify-self: stretch;
+            }
+
+            .nav-links { display: none; }
+            .m-menu-btn { display: block; }
+
+            footer { padding: 1rem 1.2rem; }
+            .footer-links { gap: 1.4rem; }
+        }
+    </style>
+</head>
 
 <body>
-    <div class="wrap about">
-        <main>
+    <!-- NAV -->
+    <nav>
+        <a href="index.html" class="logo">julchoistudio.</a>
+        <div class="nav-links">
+            <a href="index.html">Work</a>
+            <a href="fun.html">Fun</a>
+            <a href="about.html" class="active">About</a>
+            <a href="#">Resume</a>
+        </div>
+        <button class="m-menu-btn">Menu</button>
+    </nav>
 
+    <!-- Mobile Nav -->
+    <div class="m-nav">
+        <button class="m-nav-close">✕</button>
+        <div class="m-nav-links">
+            <a href="index.html">Work</a>
+            <a href="fun.html">Playground</a>
+            <a href="about.html">About</a>
+        </div>
+        <div class="m-nav-footer">
+            <a href="https://www.instagram.com/julchoi.studio/" target="_blank">Instagram ↗</a>
+            <a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank">Linkedin ↗</a>
+        </div>
+    </div>
 
-            <!-- Text contents -->
-            <section class="title-list">
-                <ul>
-                    <li>
-                        <span class="title">[About Me]</span>
-                        <p>
-                           Hi, I’m Julie Choi, a graphic design student based in New York with a background shaped by living across South Korea, Vancouver, London, Beijing, and Kuala Lumpur. My work blends cultural diversity with a strong focus on product design, branding, and digital experiences that connect people and ideas.<br>
-                            <em></em>
-                           I’m passionate about crafting design solutions that are not only visually compelling but also purposeful, user-centered, and impactful.
-                        </p>
-                    </li>
-                    <li>
-                        <span class="title">[experience]</span>
-                        <ul>
-                            <li>
-                                <span>Strappino - Los Angles</span>
-                                <b>Freelance Graphic Designer</b>
-                            </li>
-                            <li>
-                                <span>Estudent - Vancouver</span>
-                                <b>Marketer & Web Publisher</b>
-                            </li>
-                            <li>
-                                <span>MONOVA - Vancouver</span>
-                                <b>Social Media Marketer</b>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="title">[Education]</span>
-                        <ul>
-                            <li>
-                                <span>School of Visual Arts - New York</span>
-                                <b>Bachelor of Design </b>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="title">[Achievements]</span>
-                        <ul>
-                            <li>
-                                <span>The One Club for Creativity</span>
-                                <b>2024 Young Ones Finalist Young<br> Ones ADC Digital Merit</b>
-                            </li>
-                            <li>
-                                <span>School of Visual Arts</span>
-                                <b>2024 UG Design Award</b>
-                            </li>
-                            <li>
-                                <span>School of Visual Arts</span>
-                                <b>2021-2024 Portfolio Top Percentile</b>
-                            </li>
-                            <li>
-                                <span>School of Visual Arts</span>
-                                <b>2021-2024 High Term Honors</b>
-                            </li>
-                            <li>
-                                <span>School of Visual Arts</span>
-                                <b>2020-2024 Silas H. Rodes Merit Scholarship</b>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="m-contact">
-                        <span class="title">[Contact & Social]</span>
-                        <ul>
-                            <li>
-                                <b><a href="" target="_blank" class="dig">+1 929 600 4711</a></b>
-                            </li>
-                            <li>
-                                <b><a href="mailto:julchoi24@gmail.com" target="_blank"
-                                        class="dig">julchoi24@gmail.com</a></b>
-                            </li>
-                            <li>
-                                <b><a href="https://www.instagram.com/julchoi.studio/" target="_blank"
-                                        class="dig">Instagram</a></b>
-                            </li>
-                            <li>
-                                <b><a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank"
-                                        class="dig">Linkedln</a></b>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
+    <!-- HERO -->
+    <section class="hero">
+        <p class="hero-eyebrow">HI,i'm julie  </p>
+        <h1 class="hero-title">Welcome to my portfolio :)</h1>
+    </section>
 
-            <!-- Profile image -->
-            <section class="about-img">
-                <div class="img-box">
-                    <picture>
-                        <source srcset="assets/images/Main-mobile/Profile Image.png" media="(max-width:835px)">
-                        <source srcset="assets/images/Main-tablet/Profile Image.png" media="(max-width:1023px)">
-                        <img src="assets/images/Main/Profile Image.png" alt="Profile Image">
-                    </picture>
+    <!-- ABOUT GRID -->
+    <section class="about-grid">
+        <!-- RIGHT SIDE: 4 sections -->
+        <div class="left-half">
+            <div class="section">
+                <div class="section-label"><span class="pill">About Me</span></div>
+                <div class="section-content about-text">
+                    <p>Julie Choi is a NYC-based product designer focused on creating intuitive, human-centered experiences.</p>
+                    <p>She combines product strategy and design to simplify complex workflows, with a growing focus on AI-driven systems that enhance clarity and efficiency.</p>
                 </div>
+            </div>
 
-                <!-- contact info -->
-                <div class="contact">
-                    <span class="title">[Contact & Social]</span>
-                    <ul>
-                        <li>
-                            <a href="" target="_blank" class="dig">+1 929 600 4711</a>
-                            <a href="mailto:julchoi24@gmail.com" target="_blank" class="dig">julchoi24@gmail.com</a>
+            <div class="section">
+                <div class="section-label"><span class="pill">Experience</span></div>
+                <div class="section-content">
+                    <ul class="entry-list">
+                        <li class="entry">
+                            <span class="entry-org">Jagco — Los Angeles</span>
+                            <strong class="entry-title">Freelance Web Designer</strong>
+                            <span class="entry-year">2025</span>
                         </li>
-                        <li>
-                            <a href="https://www.instagram.com/julchoi.studio/" target="_blank"
-                                class="dig">Instagram</a>
-                            <a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank"
-                                class="dig">Linkedln</a>
+                        <li class="entry">
+                            <span class="entry-org">Strappino — Los Angeles</span>
+                            <strong class="entry-title">Freelance Graphic Designer</strong>
+                            <span class="entry-year">2025</span>
+                        </li>
+                        <li class="entry">
+                            <span class="entry-org">Estudent — Vancouver</span>
+                            <strong class="entry-title">Marketer &amp; Web Publisher</strong>
+                            <span class="entry-year">2024</span>
+                        </li>
+                        <li class="entry">
+                            <span class="entry-org">MONOVA — Vancouver</span>
+                            <strong class="entry-title">Social Media Marketer</strong>
+                            <span class="entry-year">2023</span>
                         </li>
                     </ul>
                 </div>
-
-            </section>
-
-
-            <!-- Desktop-hide-bottom -->
-            <div class="hide-bottom">
             </div>
-        </main>
 
-        <!-- Mobile bottom menu -->
-        <m-nav></m-nav>
+            <div class="section">
+                <div class="section-label"><span class="pill">Education</span></div>
+                <div class="section-content">
+                    <ul class="entry-list">
+                        <li class="entry">
+                            <span class="entry-org">School of Visual Arts — New York</span>
+                            <strong class="entry-title">Bachelor of Design</strong>
+                            <span class="entry-year">2021–2026</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-    </div>
-    <script src="js/script.js"></script>
+            <div class="section">
+                <div class="section-label"><span class="pill">Achievements</span></div>
+                <div class="section-content">
+                    <ul class="entry-list">
+                        <li class="entry">
+                            <span class="entry-org">School of Visual Arts</span>
+                            <strong class="entry-title">2026 AI Hackathon</strong>
+                        </li>
+                        <li class="entry">
+                            <span class="entry-org">School of Visual Arts</span>
+                            <strong class="entry-title">2021–2025 High Term Honors</strong>
+                        </li>
+                        <li class="entry">
+                            <span class="entry-org">School of Visual Arts</span>
+                            <strong class="entry-title">2024 UG Design Award</strong>
+                        </li>
+                        <li class="entry">
+                            <span class="entry-org">School of Visual Arts</span>
+                            <strong class="entry-title">2021–2024 Portfolio Top Percentile</strong>
+                        </li>
+                        <li class="entry">
+                            <span class="entry-org">The One Club for Creativity</span>
+                            <strong class="entry-title">2024 Young Ones Finalist · Young Ones ADC Digital Merit</strong>
+                        </li>
+                        <li class="entry">
+                            <span class="entry-org">School of Visual Arts</span>
+                            <strong class="entry-title">2020–2024 Silas H. Rodes Merit Scholarship</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEFT SIDE: photo + contact -->
+        <div class="right-half">
+            <div class="photo">
+                <picture>
+                    <source srcset="assets/images/Main-mobile/Profile Image.png" media="(max-width:835px)">
+                    <source srcset="assets/images/Main-tablet/Profile Image.png" media="(max-width:1023px)">
+                    <img src="assets/images/Main/Profile Image.png" alt="Profile photo">
+                </picture>
+            </div>
+
+            <div class="section">
+                <div class="section-label"><span class="pill">Contact</span></div>
+                <div class="section-content contact-list">
+                    <a href="tel:+19299895162">+1 929 989 5162 <img src="assets/images/Main/Arrow.png" alt="" class="arrow"></a>
+                    <a href="https://www.instagram.com/julchoi.studio/" target="_blank">Instagram <img src="assets/images/Main/Arrow.png" alt="" class="arrow"></a>
+                    <a href="mailto:julchoi24@gmail.com">julchoi24@gmail.com <img src="assets/images/Main/Arrow.png" alt="" class="arrow"></a>
+                    <a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank">LinkedIn <img src="assets/images/Main/Arrow.png" alt="" class="arrow"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <span class="footer-copy">© Julie Choi</span>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank" aria-label="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                    <rect x="2" y="9" width="4" height="12"/>
+                    <circle cx="4" cy="4" r="2"/>
+                </svg>
+            </a>
+            <a href="https://www.instagram.com/julchoi.studio/" target="_blank" aria-label="Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+                </svg>
+            </a>
+            <a href="mailto:juliechoistudio@gmail.com" aria-label="Email">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="M2 7l10 7 10-7"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
     <script>
-         // about 페이지에서 스크롤 시 하단 요소 애니메이션 작업
-    let lastScrollTop = 0;
-    let ticking = false;
-
-    const targetElement = document.querySelector(".hide-bottom");
-    const aboutContainer = document.querySelector(".about main");
-
-    function onScroll() {
-        const currentScroll = aboutContainer.scrollTop;
-
-        if (currentScroll - lastScrollTop > 3) {
-            // 아래로 스크롤
-            targetElement.style.transform = "translateY(100%)";
-            targetElement.style.opacity = "0";
-        } else if (lastScrollTop - currentScroll > 3) {
-            // 위로 스크롤
-            targetElement.style.transform = "translateY(0)";
-            targetElement.style.opacity = "1";
+        const menuBtn = document.querySelector('.m-menu-btn');
+        const mNav = document.querySelector('.m-nav');
+        const mNavClose = document.querySelector('.m-nav-close');
+        if (menuBtn && mNav) {
+            menuBtn.addEventListener('click', () => mNav.classList.add('active'));
+            mNavClose.addEventListener('click', () => mNav.classList.remove('active'));
         }
-
-        lastScrollTop = currentScroll;
-        ticking = false;
-    }
-
-    aboutContainer.addEventListener("scroll", function () {
-        if (!ticking) {
-            requestAnimationFrame(onScroll);
-            ticking = true;
-        }
-    });
-
-    window.addEventListener("load", function () {
-    document.querySelector('.about main').scrollTop = 0;
-});
     </script>
 </body>
-
 </html>
