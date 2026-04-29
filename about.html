@@ -86,10 +86,16 @@
             background: #e0e0e0;
         }
 
-        /* Halves participate in shared grid rows */
-        .left-half,
-        .right-half {
+        /* Left side (right-half) is a flex column so photo + contact stack tight */
+        .left-half {
             display: contents;
+        }
+        .right-half {
+            display: flex;
+            flex-direction: column;
+            grid-column: 1;
+            grid-row: 1 / 5;
+            align-self: start;
         }
 
         /* Each section: pill (col 1 of sub-grid) + content (col 2 of sub-grid) */
@@ -108,18 +114,13 @@
         .left-half .section:nth-child(3)  { grid-column: 2; grid-row: 3; }
         .left-half .section:nth-child(4)  { grid-column: 2; grid-row: 4; border-bottom: none; }
 
-        /* LEFT side (col 1 of about-grid): Photo (rows 2-3) + Contact (row 4) */
+        /* Photo + contact stack inside right-half (flex column) */
         .right-half .photo {
-            grid-column: 1;
-            grid-row: 2 / 4;
-            margin-top: 1.6rem;
+            margin-top: 13.6rem;
         }
         .right-half .section {
-            grid-column: 1;
-            grid-row: 4;
             width: 80%;
             padding-bottom: 2rem;
-            align-self: start;
             border-bottom: none;
         }
 
@@ -390,7 +391,7 @@
 
     <!-- HERO -->
     <section class="hero">
-        <p class="hero-eyebrow">HI,i'm julie  </p>
+        <p class="hero-eyebrow">HI, i'm julie  </p>
         <h1 class="hero-title">Welcome to my portfolio :)</h1>
     </section>
 
@@ -457,15 +458,15 @@
                         </li>
                         <li class="entry">
                             <span class="entry-org">School of Visual Arts</span>
+                            <strong class="entry-title">2026 SVA Fashion & Graphic Design Award</strong>
+                        </li>
+                        <li class="entry">
+                            <span class="entry-org">School of Visual Arts</span>
                             <strong class="entry-title">2021–2025 High Term Honors</strong>
                         </li>
                         <li class="entry">
                             <span class="entry-org">School of Visual Arts</span>
                             <strong class="entry-title">2024 UG Design Award</strong>
-                        </li>
-                        <li class="entry">
-                            <span class="entry-org">School of Visual Arts</span>
-                            <strong class="entry-title">2021–2024 Portfolio Top Percentile</strong>
                         </li>
                         <li class="entry">
                             <span class="entry-org">The One Club for Creativity</span>
