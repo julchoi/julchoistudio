@@ -16,6 +16,7 @@
             color: #000;
             background: #fafcfd;
             -webkit-font-smoothing: antialiased;
+            padding-top: 52px;
         }
         a { text-decoration: none; color: inherit; }
         img { display: block; width: 100%; height: auto; }
@@ -29,8 +30,10 @@
             height: 52px;
             border-bottom: 1px solid #e0e0e0;
             background: #fafcfd;
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
         }
         .logo { font-size: 1.1rem; font-weight: 600; color: #222; }
@@ -319,6 +322,11 @@
                 margin-top: 1.5rem;
             }
 
+            /* Override .right-half from flex back to display:contents so children are direct grid items on mobile */
+            .right-half {
+                display: contents;
+            }
+
             /* Stack everything in single column on mobile */
             .left-half .section,
             .right-half .photo,
@@ -355,7 +363,9 @@
             .nav-links { display: none; }
             .m-menu-btn { display: block; }
 
-            footer { padding: 1rem 1.2rem; }
+            nav { height: 56px; }
+            body { padding-top: 56px; }
+            footer { height: 56px; padding: 1rem 1.2rem; }
             .footer-links { gap: 1.4rem; }
         }
     </style>
@@ -369,7 +379,7 @@
             <a href="index.html">Work</a>
             <a href="fun.html">Fun</a>
             <a href="about.html" class="active">About</a>
-            <a href="https://drive.google.com/file/d/1PnoOVuj9loLknUmZ2izpkW_DhG2Tqhe2/view?usp=sharing" target="_blank">Resume</a>
+            <a href="https://drive.google.com/file/d/1shOiBuWTnWUCFDWCgE47ayGA7JssaNLj/view?usp=sharing" target="_blank">Resume</a>
         </div>
         <button class="m-menu-btn">Menu</button>
     </nav>
@@ -381,7 +391,6 @@
             <a href="index.html">Work</a>
             <a href="fun.html">Playground</a>
             <a href="about.html">About</a>
-            <a href="https://drive.google.com/file/d/1PnoOVuj9loLknUmZ2izpkW_DhG2Tqhe2/view?usp=sharing" target="_blank">Resume</a>
         </div>
         <div class="m-nav-footer">
             <a href="https://www.instagram.com/julchoi.studio/" target="_blank">Instagram ↗</a>
@@ -402,8 +411,8 @@
             <div class="section">
                 <div class="section-label"><span class="pill">About Me</span></div>
                 <div class="section-content about-text">
-                    <p>Julie Choi is a NYC-based product designer focused on creating intuitive, human-centered experiences.</p>
-                    <p>She combines product strategy and design to simplify complex workflows, with a growing focus on AI-driven systems that enhance clarity and efficiency.</p>
+                    <p>I’m a NYC based product designer focused on simplifying complex workflows into clear, intuitive experiences. I enjoy turning ambiguity into structured, usable solutions, and designing systems that help people make better decisions with less friction. </p>
+                    <p>My recent work explores how AI can support clarity and efficiency in products like TaxLens and Gmail Funnel. I care deeply about how thoughtful design can reduce confusion and build confidence for users navigating complex situations.</p>
                 </div>
             </div>
 
@@ -412,8 +421,8 @@
                 <div class="section-content">
                     <ul class="entry-list">
                         <li class="entry">
-                            <span class="entry-org">Jagco — Los Angeles</span>
-                            <strong class="entry-title">Freelance Web Designer</strong>
+                            <span class="entry-org">SVA AI Hackathon - New York</span>
+                            <strong class="entry-title">Product Designer</strong>
                             <span class="entry-year">2025</span>
                         </li>
                         <li class="entry">
@@ -425,11 +434,6 @@
                             <span class="entry-org">Estudent — Vancouver</span>
                             <strong class="entry-title">Marketer &amp; Web Publisher</strong>
                             <span class="entry-year">2024</span>
-                        </li>
-                        <li class="entry">
-                            <span class="entry-org">MONOVA — Vancouver</span>
-                            <strong class="entry-title">Social Media Marketer</strong>
-                            <span class="entry-year">2023</span>
                         </li>
                     </ul>
                 </div>
@@ -454,11 +458,7 @@
                     <ul class="entry-list">
                         <li class="entry">
                             <span class="entry-org">School of Visual Arts</span>
-                            <strong class="entry-title">2026 AI Hackathon</strong>
-                        </li>
-                        <li class="entry">
-                            <span class="entry-org">School of Visual Arts</span>
-                            <strong class="entry-title">2026 SVA Fashion & Graphic Design Award</strong>
+                            <strong class="entry-title">2026 Graphic Design Award</strong>
                         </li>
                         <li class="entry">
                             <span class="entry-org">School of Visual Arts</span>
@@ -494,9 +494,9 @@
             <div class="section">
                 <div class="section-label"><span class="pill">Contact</span></div>
                 <div class="section-content contact-list">
-                    <a href="tel:+19299895162">+1 929 989 5162 <img src="assets/images/Main/Arrow.png" alt="" class="arrow"></a>
+                    <a href="tel:+19296004711">+1 929 600 4711 <img src="assets/images/Main/Arrow.png" alt="" class="arrow"></a>
                     <a href="https://www.instagram.com/julchoi.studio/" target="_blank">Instagram <img src="assets/images/Main/Arrow.png" alt="" class="arrow"></a>
-                    <a href="mailto:julchoi24@gmail.com">julchoi24@gmail.com <img src="assets/images/Main/Arrow.png" alt="" class="arrow"></a>
+                    <a href="mailto:julchoiwork@gmail.com">julchoiwork@gmail.com <img src="assets/images/Main/Arrow.png" alt="" class="arrow"></a>
                     <a href="https://www.linkedin.com/in/julie-c-454063305/" target="_blank">LinkedIn <img src="assets/images/Main/Arrow.png" alt="" class="arrow"></a>
                 </div>
             </div>
@@ -521,7 +521,7 @@
                     <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
                 </svg>
             </a>
-            <a href="mailto:juliechoistudio@gmail.com" aria-label="Email">
+            <a href="mailto:julchoiwork@gmail.com" aria-label="Email">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <rect x="2" y="4" width="20" height="16" rx="2"/>
                     <path d="M2 7l10 7 10-7"/>

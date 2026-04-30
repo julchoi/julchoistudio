@@ -49,6 +49,7 @@
             color: #000;
             background: #fafcfd; /* matches your Figma background */
             -webkit-font-smoothing: antialiased;
+            padding-top: 52px;
         }
         a { text-decoration: none; color: inherit; }
         img { display: block; width: 100%; height: auto; }
@@ -67,8 +68,10 @@
             height: 52px;
             border-bottom: 1px solid #e0e0e0;
             background: #fafcfd;
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
         }
 
@@ -333,8 +336,10 @@
             /* hide nav links, show only logo */
             .nav-links { display: none; }
 
-            /* mobile footer: keep desktop design but more compact */
-            footer { padding: 1rem 1.2rem; }
+            /* mobile nav + footer: 56px tall */
+            nav { height: 56px; }
+            body { padding-top: 56px; }
+            footer { height: 56px; padding: 1rem 1.2rem; }
             .footer-links { gap: 1.4rem; }
 
             .hero {
@@ -465,7 +470,7 @@
             <a href="index.html" class="active">Work</a>
             <a href="fun.html">Fun</a>
             <a href="about.html">About</a>
-            <a href="https://drive.google.com/file/d/1PnoOVuj9loLknUmZ2izpkW_DhG2Tqhe2/view?usp=sharing" target="_blank">Resume</a>
+            <a href="https://drive.google.com/file/d/1shOiBuWTnWUCFDWCgE47ayGA7JssaNLj/view?usp=sharing" target="_blank">Resume</a>
         </div>
         <button class="m-menu-btn">Menu</button>
     </nav>
@@ -477,7 +482,6 @@
             <a href="index.html">Work</a>
             <a href="fun.html">Playground</a>
             <a href="about.html">About</a>
-            <a href="https://drive.google.com/file/d/1PnoOVuj9loLknUmZ2izpkW_DhG2Tqhe2/view?usp=sharing" target="_blank">Resume</a>
         </div>
         <div class="m-nav-footer">
             <a href="https://www.instagram.com/julchoi.studio/" target="_blank">Instagram ↗</a>
@@ -593,7 +597,7 @@
                     <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
                 </svg>
             </a>
-            <a href="mailto:juliechoistudio@gmail.com" aria-label="Email">
+            <a href="mailto:julchoiwork@gmail.com" aria-label="Email">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <rect x="2" y="4" width="20" height="16" rx="2"/>
                     <path d="M2 7l10 7 10-7"/>
@@ -614,7 +618,7 @@
             </div>
             <div class="footer-col">
                 <span class="footer-label">For Work Inquiries</span>
-                <a href="mailto:juliechoistudio@gmail.com">Email ↗</a>
+                <a href="mailto:julchoiwork@gmail.com">Email ↗</a>
             </div>
         </div>
         <span class="footer-copy">© Julie Choi</span>
