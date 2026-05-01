@@ -192,7 +192,7 @@
         /* ── CONTENT SECTIONS ── */
         .img-full {
             width: 100%;
-            margin-bottom: 6rem;
+            margin-bottom: 5rem;
             border-radius: 0;
             overflow: hidden;
         }
@@ -266,20 +266,22 @@
         }
 
         .feature-list {
-            margin-bottom: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 5rem;
+            background: linear-gradient(135deg, #0E5243, #222);
+            padding: 2rem;
         }
 
         .feature-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            padding: 1.2rem 0 2.5rem;
-            border-top: 1px solid #e0e0e0;
-            align-items: start;
-        }
-
-        .feature-item:last-child {
-            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1.6rem 1.6rem;
+            background: rgba(255, 255, 255, 0.80);
+            border: 1px solid #ffffff;
+            border-radius: 12px;
         }
 
         .feature-left {
@@ -291,22 +293,29 @@
         .feature-num {
             font-family: 'Geist Mono', monospace;
             font-size: 0.72rem;
-            color: #aaa;
+            color: #a7a7a7;
             letter-spacing: 0.06em;
         }
 
         .feature-name {
-            font-size: 1.3rem;
-            font-weight: 400;
+            font-size: 1.2rem;
+            font-weight: 500;
             letter-spacing: -0.02em;
             color: #33363F;
         }
 
         .feature-desc {
             font-size: 0.88rem;
-            line-height: 1.8;
+            line-height: 1.6;
             color: #666;
-            padding-top: 0.3rem;
+        }
+
+        .feature-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            margin-top: auto;
         }
 
         .competitor-toggle-wrapper {
@@ -717,6 +726,16 @@
             footer { height: 56px; padding: 1rem 1.2rem; }
             .footer-links { gap: 1.5rem; flex-wrap: wrap; }
 
+            /* Feature cards: stack to single column on mobile */
+            .feature-list {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .feature-item {
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+
             .desktop-only { display: none; }
         }
 
@@ -979,10 +998,17 @@
                 </div>
             </div>
 
+            <div class="img-full img-tight" id="research">
+                <img src="assets/images/Website_Images/Sanix/8.png" alt="Sanix">
+            </div>
+            <div class="img-full" id="research">
+                <img src="assets/images/Website_Images/Sanix/last.png" alt="Sanix">
+            </div>
+
 
             <div class="text-section" id="solutions">
                 <p class="section-label">[ Solutions ]</p>
-                <h2 class="section-title">3 Key Features</h2>        
+                <h2 class="section-title">3 Key Features</h2>
             </div>
 
             <div class="feature-list">
@@ -992,27 +1018,26 @@
                         <h3 class="feature-name">Real-Time Risk Mapping</h3>
                     </div>
                     <p class="feature-desc">Makes invisible contamination risk visible in real time and highlights high-risk surfaces so workers can focus cleaning efforts where it matters most.</p>
+                    <img src="assets/images/Website_Images/Sanix/feature 1.png" alt="Real-Time Risk Mapping" class="feature-img">
                 </div>
                 <div class="feature-item">
                     <div class="feature-left">
                         <span class="feature-num">02</span>
-                        <h3 class="feature-name">Adaptive Cleaning Guidance</h3>
+                        <h3 class="feature-name">Cleaning Verification</h3>
                     </div>
-                    <p class="feature-desc">Guides workers through cleaning based on real-time contamination risk and room priority, helping them clean critical areas first and manage time pressure.</p>
+                    <p class="feature-desc">Uses image capture and AI analysis to document cleaning completion, generate proof of cleaning quality, and automatically support compliance reporting.</p>
+                    <img src="assets/images/Website_Images/Sanix/7.png" alt="Cleaning Verification" class="feature-img">
                 </div>
                 <div class="feature-item">
                     <div class="feature-left">
                         <span class="feature-num">03</span>
-                        <h3 class="feature-name">Cleaning Verification</h3>
+                        <h3 class="feature-name">Adaptive Cleaning Guidance</h3>
                     </div>
-                    <p class="feature-desc">Uses image capture and AI analysis to document cleaning completion, generate proof of cleaning quality, and automatically support compliance reporting.</p>
+                    <p class="feature-desc">Guides workers through cleaning based on real-time contamination risk and room priority, helping them clean critical areas first and manage time pressure.</p>
+                    <img src="assets/images/Website_Images/Sanix/6.png" alt="Adaptive Cleaning Guidance" class="feature-img">
                 </div>
             </div>
 
-            <div class="img-full" id="research">
-                <img src="assets/images/Website_Images/Sanix/last.png" alt="Sanix">
-            </div>
-            
             <div class="text-section" id="solutions">
                 <h2 class="section-title">Information Architecture</h2>
                 <p class="section-body">Sanix is designed around an Ambient Scan as the default state, passively capturing environmental data without requiring user input. This allows workers to stay focused on their tasks while the system continuously detects room context and contamination risk in the background. The information architecture is structured into four core areas—Live Risk Mapping, Cleaning Guidance, Verification, and Settings—aligning directly with the natural workflow of CVS workers. By organizing features around their existing mental model, the system minimizes navigation, reduces cognitive load, and supports quick, in-the-moment decision-making.</p>
