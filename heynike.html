@@ -536,18 +536,18 @@
             </div>
 
             <!-- Hero image -->
-            <div class="img-full">
+            <div class="img-full" id="context">
                 <img src="assets/images/Website_Images/Nike/0-1.png" alt="Hey Nike">
             </div>
-            <div class="img-full video">
+            <div class="img-full video" id="context">
                 <video src="assets/images/Website_Images/Nike/1.mov" autoplay loop muted playsinline></video>
             </div>
 
-            <div class="img-full">
+            <div class="img-full" id="context">
                 <img src="assets/images/Website_Images/Nike/Main.png" alt="Hey Nike">
             </div>
 
-            <div class="img-full">
+            <div class="img-full" id="context">
                 <img src="assets/images/Website_Images/Nike/1.png" alt="Hey Nike">
             </div>
 
@@ -614,32 +614,40 @@
         const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
         const sidebarIds = [...sidebarLinks].map(a => a.getAttribute('href').slice(1));
 
-        // collect ALL elements with each sidebar id, not just the first
-        const sectionGroups = {};
-        sidebarIds.forEach(id => {
-            sectionGroups[id] = document.querySelectorAll('[id="' + id + '"]');
-        });
+        // get FIRST element with each id (use getElementById for first-only)
+        const sectionEls = sidebarIds
+            .map(id => document.getElementById(id))
+            .filter(Boolean);
 
-        function updateSidebar() {
-            let current = sidebarIds[0];
-            // check each section group in order
-            for (let i = 0; i < sidebarIds.length; i++) {
-                const id = sidebarIds[i];
-                const els = sectionGroups[id];
-                if (els.length > 0 && els[0].getBoundingClientRect().top <= 160) {
-                    current = id;
-                }
-            }
+        function setActive(id) {
             sidebarLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
+                if (link.getAttribute('href') === '#' + id) {
                     link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
                 }
             });
         }
 
-        window.addEventListener('scroll', updateSidebar);
-        window.addEventListener('load', updateSidebar);
+        function onScroll() {
+            const triggerY = 200;
+            let activeId = sectionEls[0] ? sectionEls[0].id : null;
+            for (let i = 0; i < sectionEls.length; i++) {
+                const rect = sectionEls[i].getBoundingClientRect();
+                if (rect.top <= triggerY) {
+                    activeId = sectionEls[i].id;
+                } else {
+                    break;
+                }
+            }
+            if (activeId) setActive(activeId);
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('load', onScroll);
+        window.addEventListener('resize', onScroll);
+        document.addEventListener('DOMContentLoaded', onScroll);
+        onScroll();
         // slideshow
         document.querySelectorAll('.slideshow').forEach(slideshow => {
             const imgs = slideshow.querySelectorAll('img');
