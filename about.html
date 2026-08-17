@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        if (localStorage.getItem('julchoistudio_unlocked') !== 'true') {
+            window.location.replace('login.html?redirect=' + encodeURIComponent(location.pathname.split('/').pop() || 'index.html'));
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>julchoistudio. — About</title>
@@ -421,6 +426,16 @@
                 <div class="section-content">
                     <ul class="entry-list">
                         <li class="entry">
+                            <span class="entry-org">Amazon - Seattle</span>
+                            <strong class="entry-title">UXUI Designer (DXD Team, Alexa)</strong>
+                            <span class="entry-year">2026</span>
+                        </li>
+                        <li class="entry">
+                            <span class="entry-org">Mocmallen Studio - New York</span>
+                            <strong class="entry-title">UXUI Designer</strong>
+                            <span class="entry-year">2025-2026</span>
+                        </li>
+                        <li class="entry">
                             <span class="entry-org">SVA AI Hackathon - New York</span>
                             <strong class="entry-title">Product Designer</strong>
                             <span class="entry-year">2025</span>
@@ -458,7 +473,7 @@
                     <ul class="entry-list">
                         <li class="entry">
                             <span class="entry-org">School of Visual Arts</span>
-                            <strong class="entry-title">2026 Graphic Design Award</strong>
+                            <strong class="entry-title">2026 The Rhodes Family Award</strong>
                         </li>
                         <li class="entry">
                             <span class="entry-org">School of Visual Arts</span>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>julchoistudio.</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%235D4FF6'/></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/login.css">
+    <script>
+        // Already unlocked? Skip straight to the requested page.
+        if (localStorage.getItem('julchoistudio_unlocked') === 'true') {
+            var params = new URLSearchParams(window.location.search);
+            window.location.replace(params.get('redirect') || 'index.html');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="lock-icon">&#128274;</div>
+        <h1>julchoistudio.</h1>
+        <p>This site is password protected.</p>
+        <form id="loginForm" autocomplete="off">
+            <div class="input-wrapper">
+                <input type="password" id="password" placeholder="Enter password" autocomplete="off" required>
+                <button type="submit" aria-label="Submit">&#8594;</button>
+            </div>
+            <div id="error"></div>
+        </form>
+    </div>
+
+    <script>
+        var CORRECT_PASSWORD = "unlockjulchoi24";
+        var form = document.getElementById('loginForm');
+        var errorEl = document.getElementById('error');
+        var passwordInput = document.getElementById('password');
+        var params = new URLSearchParams(window.location.search);
+        var redirect = params.get('redirect') || 'index.html';
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (passwordInput.value === CORRECT_PASSWORD) {
+                localStorage.setItem('julchoistudio_unlocked', 'true');
+                window.location.href = redirect;
+            } else {
+                errorEl.textContent = 'Incorrect password. Try again.';
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        });
+    </script>
+</body>
+</html>

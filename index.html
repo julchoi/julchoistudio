@@ -2,6 +2,11 @@
 <!-- TO DO LIST: Change img text into diff format and change footer back to org -->
 <html lang="en">
 <head>
+    <script>
+        if (localStorage.getItem('julchoistudio_unlocked') !== 'true') {
+            window.location.replace('login.html?redirect=' + encodeURIComponent(location.pathname.split('/').pop() || 'index.html'));
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>julchoistudio.</title>
